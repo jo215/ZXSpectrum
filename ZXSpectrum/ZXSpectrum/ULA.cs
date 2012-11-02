@@ -88,7 +88,7 @@ namespace ZXSpectrum
         /// </summary>
         private void LoadROM()
         {
-            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\48k", FileMode.Open, FileAccess.Read))
+            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\48", FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader br = new BinaryReader(fs))
                 {

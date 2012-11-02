@@ -143,7 +143,7 @@ namespace ZXSpectrum.Z_80
                 //if (PC == 0x11e2) Console.WriteLine("l11e2 ram-read");
                 //if (PC == 0x11ef) Console.WriteLine("l11ef ram-done");
                 //prefix = 0;
-                //if (PC == 0x1219) Console.WriteLine("l1219 ram-set " + Get16BitRegisters(2));
+                if (PC == 0x1219) Console.WriteLine("l1219 ram-set " + Get16BitRegisters(2));
 
                 //if (PC == 0x0edf) Console.WriteLine("l0edf clear-prb");
                 //if (PC == 0x0ee7) Console.WriteLine("l0ee7 prb-bytes");
@@ -155,6 +155,8 @@ namespace ZXSpectrum.Z_80
                 //if (PC == 0x0c0a) Console.WriteLine("l0c0a po-msg");
 
                 //if (PC == 0x12a2) Console.WriteLine("l12a2 main-exec");
+
+                SanityCheck();
 
                 //  Fetch
                 opcode = Memory[PC++];
@@ -567,6 +569,21 @@ namespace ZXSpectrum.Z_80
             }
         }
 
+        private void SanityCheck()
+        {
+            if (A < 0 || A > 255) Console.WriteLine("A = " + A + " PC: " + PC);
+            if (B < 0 || B > 255) Console.WriteLine("B = " + B + " PC: " + PC);
+            if (C < 0 || C > 255) Console.WriteLine("C = " + C + " PC: " + PC);
+            if (D < 0 || D > 255) Console.WriteLine("D = " + D + " PC: " + PC);
+            if (E < 0 || E > 255) Console.WriteLine("E = " + E + " PC: " + PC);
+            if (H < 0 || H > 255) Console.WriteLine("H = " + H + " PC: " + PC);
+            if (L < 0 || L > 255) Console.WriteLine("L = " + L + " PC: " + PC);
+            if (IXH < 0 || IXH > 255) Console.WriteLine("IXH = " + IXH + " PC: " + PC);
+            if (IXL < 0 || IXL > 255) Console.WriteLine("IXL = " + IXL + " PC: " + PC);
+            if (IYH < 0 || IYH > 255) Console.WriteLine("IYH = " + IYH + " PC: " + PC);
+            if (IYL < 0 || IYL > 255) Console.WriteLine("IYL = " + IYL + " PC: " + PC);
+        }
+
         /// <summary>
         /// OTDR
         /// (HL) is written to port BC. B and HL are decremented. If B != 0 then PC -= 2
@@ -688,10 +705,10 @@ namespace ZXSpectrum.Z_80
 
             ModifySignFlag(A - compare);
             ModifyHalfCarryFlagAddition(A, -compare);
-            int n = A - compare;
+            int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
-                n -= 1;
+                n = (n-1) & 0xff;
             }
             ModifyUndocumentedFlagsCompareGroup(n);
             if (Get16BitRegisters(0) != 0)
@@ -857,10 +874,10 @@ namespace ZXSpectrum.Z_80
 
             ModifySignFlag(A - compare);
             ModifyHalfCarryFlagAddition(A, -compare);
-            int n = A - compare;
+            int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
-                n -= 1;
+                n = (n-1) & 0xff;
             }
             ModifyUndocumentedFlagsCompareGroup(n);
             if (Get16BitRegisters(0) - 1 != 0)
@@ -1005,11 +1022,13 @@ namespace ZXSpectrum.Z_80
 
             ModifySignFlag((A - compare) & 0xff);
             ModifyHalfCarryFlagAddition(A, -compare);
-            int n = A - compare & 0xff;
+            
+            int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
-                n -= 1;
+                n = (n-1) & 0xff;
             }
+
             ModifyUndocumentedFlagsCompareGroup(n);
             if (Get16BitRegisters(0) != 0)
                 Set(Flag.ParityOverflow);
@@ -1409,7 +1428,7 @@ namespace ZXSpectrum.Z_80
             if ((F & Flag.Carry) == Flag.Carry)
                 addition++;
 
-            var result = initial + addition & 0xffff;
+            var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
 
             //  Carry / Half-carry flags set dependent on high-byte
@@ -1440,7 +1459,7 @@ namespace ZXSpectrum.Z_80
             var addition = -Get16BitRegisters(ss);
             if ((F & Flag.Carry) == Flag.Carry)
                 addition--;
-            var result = initial + addition & 0xffff;
+            var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
 
             //  Carry / Half-carry flags set dependent on high-byte
@@ -1550,7 +1569,7 @@ namespace ZXSpectrum.Z_80
                 tStates += 8;
 
             r = GetRegister(r);
-            debug = r;
+
             if ((r & (1 << b)) == (1 << b))
             {
                 Reset(Flag.Zero);
@@ -2817,9 +2836,7 @@ namespace ZXSpectrum.Z_80
             tStates += 4;
 
             if (A % 2 == 1)
-            {
                 Set(Flag.Carry);
-            }
             else
                 Reset(Flag.Carry);
 
@@ -2981,7 +2998,7 @@ namespace ZXSpectrum.Z_80
 
         /// <summary>
         /// LD A, (nn)
-        /// The contents of the memory address specified by operands nn are loaded to the accumulator.
+        /// The contents of the memory address specified by operand nn is loaded to the accumulator.
         /// </summary>
         private void LD_A_nn()
         {

@@ -63,6 +63,20 @@ namespace TestProject2
         #endregion
 
         /// <summary>
+        ///Special Jimmy test
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("EmuTest.exe")]
+        public void JimmyTest()
+        {
+            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new int[65536]));
+            Z80_Accessor target = new Z80_Accessor(param0);
+            target.Set16BitRegisters(0, 0x0000);
+            target.DEC_ss(0);
+            Assert.IsTrue(target.Get16BitRegisters(0) == 0xffff);
+        }
+
+        /// <summary>
         ///A test for the Stack
         ///</summary>
         [TestMethod()]

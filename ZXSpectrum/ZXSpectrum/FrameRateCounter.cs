@@ -63,7 +63,7 @@ namespace ZXSpectrum
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(spriteFont, fps, new Vector2(32, 343), Color.White);
+            spriteBatch.DrawString(spriteFont, fps, new Vector2(10, 10), Color.White);
 
             spriteBatch.End();
         }

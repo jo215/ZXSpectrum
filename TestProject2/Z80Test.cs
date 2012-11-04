@@ -74,6 +74,16 @@ namespace TestProject2
             target.Set16BitRegisters(0, 0x0000);
             target.DEC_ss(0);
             Assert.IsTrue(target.Get16BitRegisters(0) == 0xffff);
+            target.A = 199;
+            target.CPL();
+            Assert.IsTrue(target.A == 56);
+            target.A = 100;
+            target.NEG();
+            Assert.IsTrue(target.A == 156);
+            target.A = 16;
+            target.B = 1;
+            target.SUB_r(0);
+            Assert.IsTrue(target.A == 15 && (target.F & Flag.HalfCarry) == Flag.HalfCarry);
         }
 
         /// <summary>

@@ -33,7 +33,7 @@ namespace ZXSpectrum.Z_80
         /// Sets all flags according to given byte.
         /// </summary>
         /// <param name="value"></param>
-        private void SetFlags(int value)
+        internal void SetFlags(int value)
         {
             F = F & 0x00;
             BitArray bits = new BitArray(new byte[] { (byte) value});
@@ -51,7 +51,7 @@ namespace ZXSpectrum.Z_80
         /// Sets all shadow flags according to given byte.
         /// </summary>
         /// <param name="value"></param>
-        private void SetShadowFlags(int value)
+        internal void SetShadowFlags(int value)
         {
             F2 = F2 & 0x00;
             BitArray bits = new BitArray(new byte[] { (byte)value });
@@ -104,13 +104,26 @@ namespace ZXSpectrum.Z_80
         }
 
         /// <summary>
+        /// Sets the Carry Flag after an 8-bit addition if there was a carry, resets it otherwise.
+        /// </summary>
+        /// <param name="initial"></param>
+        /// <param name="addition"></param>
+        private void ModifyCarryFlag8(int initial, int addition)
+        {
+            if (initial + addition > 255 || initial + addition < 0)
+                Set(Flag.Carry);
+            else
+                Reset(Flag.Carry);
+        }
+
+        /// <summary>
         /// Sets the Carry Flag after an addition if there was a carry, resets it otherwise.
         /// </summary>
         /// <param name="initial"></param>
         /// <param name="addition"></param>
-        private void ModifyCarryFlag(int initial, int addition)
+        private void ModifyCarryFlag16(int initial, int addition)
         {
-            if (initial + addition > 255 || initial + addition < 0)
+            if (initial + addition > 65535 || initial + addition < 0)
                 Set(Flag.Carry);
             else
                 Reset(Flag.Carry);
@@ -121,7 +134,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         /// <param name="initial"></param>
         /// <param name="addition"></param>
-        private void ModifyHalfCarryFlagAddition(int initial, int addition)
+        private void ModifyHalfCarryFlag8(int initial, int addition)
         {
             if (addition >= 0)
             {
@@ -144,15 +157,43 @@ namespace ZXSpectrum.Z_80
         }
 
         /// <summary>
+        /// Sets the Half-carry/borrow flag after an addition/subtraction if bit 3 carried or bit 4 is borrowed, resets it otherwise.
+        /// </summary>
+        /// <param name="initial"></param>
+        /// <param name="addition"></param>
+        private void ModifyHalfCarryFlag16(int initial, int addition)
+        {
+            int carry = 0;
+            if ((initial & 0xff) + (addition & 0xff) > 0xff)
+            {
+                carry = 1;
+            }
+            initial = initial >> 8;
+            addition = (addition >> 8) + carry;
+
+            ModifyHalfCarryFlag8(initial, addition);
+        }
+
+        /// <summary>
         /// Sets the Sign flag if result is negative, resets it otherwise.
         /// </summary>
         /// <param name="result"></param>
-        private void ModifySignFlag(int result)
+        private void ModifySignFlag8(int result)
         {
             if (result > 127 && result < 256)
                 Set(Flag.Sign);
             else
                 Reset(Flag.Sign);
+        }
+
+        /// <summary>
+        /// Sets the Sign flag if result is negative, resets it otherwise.
+        /// </summary>
+        /// <param name="result"></param>
+        private void ModifySignFlag16(int result)
+        {
+            result = result >> 8;
+            ModifySignFlag8(result);
         }
 
         /// <summary>
@@ -172,14 +213,32 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         /// <param name="initial"></param>
         /// <param name="addition"></param>
-        private void ModifyOverflowFlagAddition(int initial, int addition, int result)
+        private void ModifyOverflowFlag8(int initial, int addition, int result)
         {
 
             if ((initial & 0x80) == (addition & 0x80) && (initial & 0x80) != (result & 0x80))
                 Set(Flag.ParityOverflow);
             else
-                Reset(Flag.ParityOverflow);
-            
+                Reset(Flag.ParityOverflow); 
+        }
+
+        /// <summary>
+        /// Sets the Overflow flag if there was an overflow after addition or subtraction, resets it otherwise.
+        /// </summary>
+        /// <param name="initial"></param>
+        /// <param name="addition"></param>
+        private void ModifyOverflowFlag16(int initial, int addition, int result)
+        {
+            int carry = 0;
+            if ((initial & 0xff) + (addition & 0xff) > 0xff)
+            {
+                carry = 1;
+            }
+            initial = initial >> 8;
+            addition = (addition >> 8) + carry;
+            result = result >> 8;
+
+            ModifyOverflowFlag8(initial, addition, result);
         }
 
         /// <summary>
@@ -204,7 +263,7 @@ namespace ZXSpectrum.Z_80
         /// Sets the undocumented bits 3 & 5 of the flags register.
         /// </summary>
         /// <param name="result"></param>
-        private void ModifyUndocumentedFlags(int result)
+        private void ModifyUndocumentedFlags8(int result)
         {
             if ((result & 8) == 8)
                 Set(Flag.F3);
@@ -214,6 +273,16 @@ namespace ZXSpectrum.Z_80
                 Set(Flag.F5);
             else
                 Reset(Flag.F5);
+        }
+
+        /// <summary>
+        /// Sets the undocumented bits 3 & 5 of the flags register.
+        /// </summary>
+        /// <param name="result"></param>
+        private void ModifyUndocumentedFlags16(int result)
+        {
+            result = result >> 8;
+            ModifyUndocumentedFlags8(result);
         }
 
         /// <summary>

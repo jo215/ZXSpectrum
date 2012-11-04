@@ -76,20 +76,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ULA.cs" />
-    <Compile Include="Z_80\Eval.cs" />
+    <Compile Include="Z_80\Assembler\Eval.cs" />
     <Compile Include="Z_80\Flag.cs" />
     <Compile Include="Z_80\IOController.cs" />
     <Compile Include="Z_80\MockIODevice.cs" />
     <Compile Include="Z_80\Z80.cs" />
-    <Compile Include="Z_80\Z80Debug.cs" />
+    <Compile Include="Z_80\Z80ConsoleMethods.cs" />
     <Compile Include="Z_80\Z80HelperMethods.cs" />
-    <Compile Include="Z_80\ZAsm.cs" />
+    <Compile Include="Z_80\Assembler\ZAsm.cs" />
     <Compile Include="ZXSpectrum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+    <Content Include="Z_80\Assembler\Mnemonics.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Z_80\Assembler\OpcodeMap.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Z_80\Assembler\Registers.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,11 @@ namespace ZXSpectrum
 
         public ZXSpectrum()
         {
+            //  Set up correct window size
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 304;
+            graphics.PreferredBackBufferWidth = 352;
             Content.RootDirectory = "Content";
         }
 
@@ -72,7 +76,7 @@ namespace ZXSpectrum
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            // GameComponents (ULA) auto-update here
 
             base.Update(gameTime);
         }
@@ -83,9 +87,8 @@ namespace ZXSpectrum
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            //  DrawableGameComponents (ULA) auto-draw here
 
             base.Draw(gameTime);
         }

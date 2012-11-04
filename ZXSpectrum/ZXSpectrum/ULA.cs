@@ -18,15 +18,25 @@ namespace ZXSpectrum
     /// </summary>
     public class ULA : Microsoft.Xna.Framework.DrawableGameComponent, IOController
     {
+        GraphicsDevice device;
         SpriteBatch spriteBatch;
         Z80 z80;
         int[] Memory;
 
-        Texture2D pixel;
+        Texture2D pixel, block;
+        Texture2D[] patterns;
+
         Color[] colors;
         int border;
+
+        int borderHeight = 56;
+        int borderWidth = 48;
+        int screenHeight = 192;
+        int screenWidth = 256;
+
         bool earActive, micActive;
         long framesRendered = 0;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -37,9 +47,40 @@ namespace ZXSpectrum
         {
             //  For drawing the display
             this.spriteBatch = spriteBatch;
-            pixel = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            this.device = game.GraphicsDevice;
+
+            //  1 pixel texture
+            pixel = new Texture2D(device, 1, 1, false, SurfaceFormat.Color);
             pixel.SetData<Color>(new[] { Color.White });
 
+            //  8x8 pixel texture
+            block = new Texture2D(device, 8, 8, false, SurfaceFormat.Color);
+            Color[] temp = new Color[64];
+            for (int i = 0; i < 64; i++)
+                temp[i] = Color.White;
+            block.SetData<Color>(temp);
+
+            //  Cache all possible 8-pixel combinations to cut down on draw calls
+            patterns = new Texture2D[256];
+            for (int i = 0; i < 256; i++)
+            {
+                temp = new Color[8];
+                for (int v = 128, b = 0; v > 0; v /= 2, b++)
+                {
+                    if ((i & v) == v)
+                    {
+                        temp[b] = Color.White;
+                    }
+                    else
+                    {
+                        temp[b] = Color.Transparent;
+                    }
+                }
+                patterns[i] = new Texture2D(device, 8, 1, false, SurfaceFormat.Color);
+                patterns[i].SetData<Color>(temp);
+            }
+
+            //  Spectrum colors
             colors = new Color[16];
             colors[0] = new Color(0, 0, 0);
             colors[1] = new Color(0, 0, 0xCD);
@@ -81,6 +122,7 @@ namespace ZXSpectrum
             z80.AddDevice(this);
            
             LoadROM();
+            LoadSNA("JetPac.sna");
         }
 
         /// <summary>
@@ -88,7 +130,7 @@ namespace ZXSpectrum
         /// </summary>
         private void LoadROM()
         {
-            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\48", FileMode.Open, FileAccess.Read))
+            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\48.rom", FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader br = new BinaryReader(fs))
                 {
@@ -96,16 +138,59 @@ namespace ZXSpectrum
                     Array.Copy(rom, Memory, rom.Length);
                 }
             }
-            //  ZEXALL
+        }
 
-            //using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\zexall", FileMode.Open, FileAccess.Read))
-            //{
-            //    using (BinaryReader br = new BinaryReader(fs))
-            //    {
-            //        byte[] rom = br.ReadBytes((int)fs.Length);
-            //        Array.Copy(rom, 0, Memory, 0x8000, rom.Length);
-            //    }
-            //}
+        /// <summary>
+        /// Loads a .SNA snapshot file.
+        /// This is the simplest snapshot format, but corrupts 2 bytes below the stack pointer, and requires a RETN instruction
+        /// to restart the program - discouraged.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void LoadSNA(string fileName)
+        {
+            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\" + fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+                    z80.I = br.ReadByte();
+                    z80.L2 = br.ReadByte();
+                    z80.H2 = br.ReadByte();
+                    z80.E2 = br.ReadByte();
+                    z80.D2 = br.ReadByte();
+                    z80.C2 = br.ReadByte();
+                    z80.B2 = br.ReadByte();
+                    z80.SetShadowFlags(br.ReadByte());
+                    z80.A2 = br.ReadByte();
+                    z80.L = br.ReadByte();
+                    z80.H = br.ReadByte();
+                    z80.E = br.ReadByte();
+                    z80.D = br.ReadByte();
+                    z80.C = br.ReadByte();
+                    z80.B = br.ReadByte();
+                    z80.IYL = br.ReadByte();
+                    z80.IYH = br.ReadByte();
+                    z80.IXL = br.ReadByte();
+                    z80.IXH = br.ReadByte();
+                    if ((br.ReadByte() & 4) == 4)
+                    {
+                        z80.IFF2 = true;
+                    }
+                    else
+                    {
+                        z80.IFF2 = false;
+                    }
+                    z80.R = br.ReadByte();
+                    z80.SetFlags(br.ReadByte());
+                    z80.A = br.ReadByte();
+                    z80.SP = br.ReadByte();
+                    z80.SP += (br.ReadByte() << 8);
+                    z80.interruptMode = br.ReadByte();
+                    this.border = br.ReadByte();
+                    byte[] ram = br.ReadBytes(49152);
+                    Array.Copy(ram, 0, Memory, 16384, ram.Length);
+                    z80.RETN();
+                }
+            }
         }
 
         /// <summary>
@@ -130,42 +215,11 @@ namespace ZXSpectrum
             spriteBatch.Begin();
             //  Pixels in RAM 16384-22527
             //  Each 1/3 of screen (64 lines / 8 characters) stored in alternate lines of 256 pixels 
-            int borderHeight = 56;
-            int borderWidth = 48;
-            int screenHeight = 192;
-            int screenWidth = 256;
-            //  Top border
-            for (int y = 0; y < borderHeight; y++)
-            {
-                for (int x = 0; x < (borderWidth * 2) + screenWidth; x ++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Bottom border
-            for (int y = borderHeight + screenHeight; y < (borderHeight * 2) + screenHeight; y++)
-            {
-                for (int x = 0; x < (borderWidth * 2) + screenWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Left border
-            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
-            {
-                for (int x = 0; x < borderWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Right border
-            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
-            {
-                for (int x = borderWidth + screenWidth; x < (borderWidth*2) + screenWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
+            
+            //DrawBorder();
+            //  Cheat-draw the border by clearing in the correct color - this wont work for the flashing load border
+            device.Clear(colors[border]);
+
             //  Main screen display
             for (int line = 0; line < 24; line++)
             {
@@ -190,33 +244,62 @@ namespace ZXSpectrum
                         paper = ink ^ ink;
                         ink = ink ^ paper;
                     }
+                    int startX = cha * 8 + borderWidth;
+
+                    //  Draw an 8x8 block in current paper color for each character position
+                    spriteBatch.Draw(block, new Vector2(startX + (cha *8), borderHeight + (line * 8)), colors[paper]);
 
                     //  Pixel by pixel is very inefficient...
                     for (int row = 0; row < 8; row++)
                     {
                         int pixels = Memory[16384 + 2048 * (line / 8) + 32 * (line - 8 * (line / 8)) + 256 * row + cha];
                         int y = line * 8 + row + borderHeight;
-                        int startX = cha * 8 + borderWidth;
 
-                        int x = 0;
-                        for (int i = 128; i > 0; i /= 2, x++)
-                        {
-                            if ((pixels & i) == i)
-                            {
-                                spriteBatch.Draw(pixel, new Vector2(startX + x, y), colors[ink]);
-                            }
-                            else
-                            {
-                                spriteBatch.Draw(pixel, new Vector2(startX + x, y), colors[paper]);
-                            }
-
-                        }
+                        spriteBatch.Draw(patterns[pixels], new Vector2(startX, y), colors[ink]);
+                            
+                        
                     }
                 }
             }
             
             spriteBatch.End();
             framesRendered++;
+        }
+
+        private void DrawBorder()
+        {
+            //  Top border
+            for (int y = 0; y < borderHeight; y++)
+            {
+                for (int x = 0; x < (borderWidth * 2) + screenWidth; x++)
+                {
+                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
+                }
+            }
+            //  Bottom border
+            for (int y = borderHeight + screenHeight; y < (borderHeight * 2) + screenHeight; y++)
+            {
+                for (int x = 0; x < (borderWidth * 2) + screenWidth; x++)
+                {
+                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
+                }
+            }
+            //  Left border
+            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
+            {
+                for (int x = 0; x < borderWidth; x++)
+                {
+                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
+                }
+            }
+            //  Right border
+            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
+            {
+                for (int x = borderWidth + screenWidth; x < (borderWidth * 2) + screenWidth; x++)
+                {
+                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
+                }
+            }
         }
 
         /// <summary>

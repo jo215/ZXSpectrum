@@ -12,23 +12,23 @@ namespace ZXSpectrum.Z_80
     public partial class Z80
     {
         //  Registers
-        int A;                              //  Accumulator
-        Flag F;                             //  Flags    
-        int B, C, D, E, H, L;               //  General purpose 8-bit registers
-        int SP, PC;                         //  Stack Pointer & Program Counter
+        internal int A;                              //  Accumulator
+        internal Flag F;                             //  Flags    
+        internal int B, C, D, E, H, L;               //  General purpose 8-bit registers
+        internal int SP, PC;                         //  Stack Pointer & Program Counter
 
-        int IXH, IXL, IYH, IYL;             //  Index registers
+        internal int IXH, IXL, IYH, IYL;             //  Index registers
 
-        int A2, B2, C2, D2, E2, H2, L2;     //  Alternate register set
-        Flag F2;                            //  Alternate flags
+        internal int A2, B2, C2, D2, E2, H2, L2;     //  Alternate register set
+        internal Flag F2;                            //  Alternate flags
 
-        int R;                              //  Memory Refresh
+        internal int R;                              //  Memory Refresh
 
-        int I;                              //  Interupt Control Vector
-        int interruptMode;                  //  Interrupt mode
-        bool IFF1, IFF2;                    //  Interrupt flip-flops
+        internal int I;                              //  Interupt Control Vector
+        internal int interruptMode;                  //  Interrupt mode
+        internal bool IFF1, IFF2;                    //  Interrupt flip-flops
 
-        int[] Memory;                       //  ROM / RAM
+        internal int[] Memory;                       //  ROM / RAM
 
         float MHz;                          //  Clockspeed
         int tStates;                        //  For measuring T-states
@@ -70,8 +70,8 @@ namespace ZXSpectrum.Z_80
         {
             PC = 0;
             //  AF and SP always set to FFFFh after a reset (other registers undefined).
-            A = 0xFF;
-            SP = 0xFFFF;
+            A = 0;
+            SP = 0xffff;
             B = 0; C = 0; D = 0; E = 0; H = 0; L = 0; I = 0; R = 0; IXH = 0; IXL = 0; IYH = 0; IYL = 0;
             SetFlags(0x00);
             F2 = F2 & 0;
@@ -603,7 +603,7 @@ namespace ZXSpectrum.Z_80
             {
                 tStates += 16;
             }
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((written & 128) == 128)
@@ -614,7 +614,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (written + L > 255)
             {
@@ -650,7 +650,7 @@ namespace ZXSpectrum.Z_80
             {
                 tStates += 16;
             }
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((read & 128) == 128)
@@ -661,7 +661,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (read + ((C - 1) & 255) > 255)
             {
@@ -703,8 +703,8 @@ namespace ZXSpectrum.Z_80
                 tStates += 16;
             }
 
-            ModifySignFlag(A - compare);
-            ModifyHalfCarryFlagAddition(A, -compare);
+            ModifySignFlag8(A - compare);
+            ModifyHalfCarryFlag8(A, -compare);
             int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
@@ -738,11 +738,6 @@ namespace ZXSpectrum.Z_80
             }
             Reset(Flag.HalfCarry);
 
-            if (Get16BitRegisters(0) - 1 != 0)
-                Set(Flag.ParityOverflow);
-            else
-                Reset(Flag.ParityOverflow);
-
             Reset(Flag.Subtract);
 
             ModifyUndocumentedFlagsLoadGroup();
@@ -750,6 +745,8 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
             Set16BitRegisters(1, Get16BitRegisters(1) - 1);
             Set16BitRegisters(2, Get16BitRegisters(2) - 1);
+
+                Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -772,7 +769,7 @@ namespace ZXSpectrum.Z_80
             {
                 tStates += 16;
             }
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((written & 128) == 128)
@@ -783,7 +780,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (written + L > 255)
             {
@@ -819,7 +816,7 @@ namespace ZXSpectrum.Z_80
             {
                 tStates += 16;
             }
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((read & 128) == 128)
@@ -830,7 +827,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (read + ((C + 1) & 255) > 255)
             {
@@ -872,8 +869,8 @@ namespace ZXSpectrum.Z_80
                 tStates += 16;
             }
 
-            ModifySignFlag(A - compare);
-            ModifyHalfCarryFlagAddition(A, -compare);
+            ModifySignFlag8(A - compare);
+            ModifyHalfCarryFlag8(A, -compare);
             int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
@@ -907,12 +904,7 @@ namespace ZXSpectrum.Z_80
             }     
        
             Reset(Flag.HalfCarry);
-            
-            if (Get16BitRegisters(0) - 1 != 0)
-                Set(Flag.ParityOverflow);
-            else
-                Reset(Flag.ParityOverflow);
-            
+                       
             Reset(Flag.Subtract);
 
             ModifyUndocumentedFlagsLoadGroup();
@@ -920,6 +912,9 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(1, Get16BitRegisters(1) + 1);
             Set16BitRegisters(2, Get16BitRegisters(2) + 1);
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
+
+
+                Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -934,7 +929,7 @@ namespace ZXSpectrum.Z_80
             B = (B - 1) & 0xff;
             Set16BitRegisters(2, Get16BitRegisters(2) - 1);
 
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((written & 128) == 128)
@@ -945,7 +940,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (written + L > 255)
             {
@@ -975,7 +970,7 @@ namespace ZXSpectrum.Z_80
             Memory[Get16BitRegisters(2)] = read;
             Set16BitRegisters(2, (Get16BitRegisters(2) - 1) & 0xffff);
 
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((read & 128) == 128)
@@ -986,7 +981,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (read + ((C - 1) & 255) > 255)
             {
@@ -1020,8 +1015,8 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(2, Get16BitRegisters(2) - 1);
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
 
-            ModifySignFlag((A - compare) & 0xff);
-            ModifyHalfCarryFlagAddition(A, -compare);
+            ModifySignFlag8((A - compare) & 0xff);
+            ModifyHalfCarryFlag8(A, -compare);
             
             int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
@@ -1050,10 +1045,7 @@ namespace ZXSpectrum.Z_80
 
 
             Reset(Flag.HalfCarry);
-            if (Get16BitRegisters(0) != 0)
-                Set(Flag.ParityOverflow);
-            else
-                Reset(Flag.ParityOverflow);
+
             Reset(Flag.Subtract);
 
             ModifyUndocumentedFlagsLoadGroup();
@@ -1061,6 +1053,11 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
             Set16BitRegisters(1, Get16BitRegisters(1) - 1);
             Set16BitRegisters(2, Get16BitRegisters(2) - 1);
+
+            if (Get16BitRegisters(0) != 0)
+                Set(Flag.ParityOverflow);
+            else
+                Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -1077,7 +1074,7 @@ namespace ZXSpectrum.Z_80
             B = (B - 1) & 0xff;
             Set16BitRegisters(2, Get16BitRegisters(2) + 1);
 
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((written & 128) == 128)
@@ -1088,7 +1085,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (written + L > 255)
             {
@@ -1118,7 +1115,7 @@ namespace ZXSpectrum.Z_80
             B = (B - 1) & 0xff;
             Set16BitRegisters(2, Get16BitRegisters(2) + 1);
 
-            ModifySignFlag(B);
+            ModifySignFlag8(B);
             ModifyZeroFlag(B);
 
             if ((read & 128) == 128)
@@ -1129,7 +1126,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Subtract);
             }
-            ModifyUndocumentedFlags(B);
+            ModifyUndocumentedFlags8(B);
 
             if (read + ((C + 1) & 255) > 255)
             {
@@ -1164,8 +1161,8 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(2, Get16BitRegisters(2) + 1);
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
 
-            ModifySignFlag((A - compare) & 0xff);
-            ModifyHalfCarryFlagAddition(A, -compare);
+            ModifySignFlag8((A - compare) & 0xff);
+            ModifyHalfCarryFlag8(A, -compare);
             int n = A - compare;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
             {
@@ -1191,10 +1188,7 @@ namespace ZXSpectrum.Z_80
             Memory[Get16BitRegisters(1)] = Memory[Get16BitRegisters(2)];
 
             Reset(Flag.HalfCarry);
-            if (Get16BitRegisters(0) != 0)
-                Set(Flag.ParityOverflow);
-            else
-                Reset(Flag.ParityOverflow);
+
             Reset(Flag.Subtract);
 
             ModifyUndocumentedFlagsLoadGroup();
@@ -1202,6 +1196,11 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(1, Get16BitRegisters(1) + 1);
             Set16BitRegisters(2, Get16BitRegisters(2) + 1);
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
+
+            if (Get16BitRegisters(0) != 0)
+                Set(Flag.ParityOverflow);
+            else
+                Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -1220,13 +1219,13 @@ namespace ZXSpectrum.Z_80
             A = (A & 0xf0) + mHi;
             Memory[loc] = aLow + (mLow << 4);
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1245,13 +1244,13 @@ namespace ZXSpectrum.Z_80
             A = (A & 0xf0) + mLow;
             Memory[loc] = mHi + (aLow << 4);
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1263,7 +1262,7 @@ namespace ZXSpectrum.Z_80
             tStates += 9;
 
             A = (R + 2) & 0xff;
-            ModifySignFlag(R);
+            ModifySignFlag8(R);
             ModifyZeroFlag(R);
             Reset(Flag.HalfCarry);
             if (IFF2 == true)
@@ -1272,7 +1271,7 @@ namespace ZXSpectrum.Z_80
                 Reset(Flag.ParityOverflow);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1285,7 +1284,7 @@ namespace ZXSpectrum.Z_80
 
             A = I;
 
-            ModifySignFlag(I);
+            ModifySignFlag8(I);
             ModifyZeroFlag(I);
             Reset(Flag.HalfCarry);
             if (IFF2 == true)
@@ -1294,7 +1293,7 @@ namespace ZXSpectrum.Z_80
                 Reset(Flag.ParityOverflow);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1350,7 +1349,7 @@ namespace ZXSpectrum.Z_80
         /// RETN
         /// Restores the PC at the end of a non-maskable interrupts service.
         /// </summary>
-        private void RETN()
+        internal void RETN()
         {
             tStates += 14;
 
@@ -1379,12 +1378,12 @@ namespace ZXSpectrum.Z_80
 
             var addition = -A;
             A = (byte)(0 + addition);
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlagAddition(0, addition);
+            ModifyHalfCarryFlag8(0, addition);
             Set(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1411,7 +1410,7 @@ namespace ZXSpectrum.Z_80
 
             var address = Memory[PC++] + (Memory[PC++] << 8);
             Memory[address] = Get16BitRegisters(dd) & 0xff;
-            Memory[address + 1] = (Get16BitRegisters(dd) >> 8) & 0xff;
+            Memory[address + 1] = Get16BitRegisters(dd) >> 8;
         }
 
         /// <summary>
@@ -1434,16 +1433,16 @@ namespace ZXSpectrum.Z_80
             //  Carry / Half-carry flags set dependent on high-byte
 
             //  16-bit Carry
-            ModifyCarryFlag(initial >> 8, addition >> 8);
-            ModifyHalfCarryFlagAddition(initial >> 8, addition >> 8);
+            ModifyCarryFlag16(initial, addition);
+            ModifyHalfCarryFlag16(initial, addition);
 
-            ModifySignFlag(result >> 8);
+            ModifySignFlag16(result);
             ModifyZeroFlag(result);
 
-            ModifyOverflowFlagAddition(initial >> 8, addition >> 8, result >> 8);
+            ModifyOverflowFlag16(initial, addition, result);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(result >> 8);
+            ModifyUndocumentedFlags16(result);
         }
 
         /// <summary>
@@ -1459,22 +1458,24 @@ namespace ZXSpectrum.Z_80
             var addition = -Get16BitRegisters(ss);
             if ((F & Flag.Carry) == Flag.Carry)
                 addition--;
+
+
             var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
 
             //  Carry / Half-carry flags set dependent on high-byte
 
             //  16-bit Carry
-            ModifyCarryFlag(initial >> 8, addition >> 8);
-            ModifyHalfCarryFlagAddition(initial >> 8, addition >> 8);
+            ModifyCarryFlag16(initial, addition);
+            ModifyHalfCarryFlag16(initial, addition);
 
-            ModifySignFlag(result >> 8);
+            ModifySignFlag16(result);
             ModifyZeroFlag(result);
 
-            ModifyOverflowFlagAddition(initial >> 8, addition >> 8, result >> 8);
+            ModifyOverflowFlag16(initial, addition, result);
             Set(Flag.Subtract);
 
-            ModifyUndocumentedFlags(result >> 8);
+            ModifyUndocumentedFlags16(result);
         }
 
         /// <summary>
@@ -1506,13 +1507,13 @@ namespace ZXSpectrum.Z_80
             if (r != 6)
                 SetRegister(r, input);
 
-            ModifySignFlag(input);
+            ModifySignFlag8(input);
             ModifyZeroFlag(input);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(input);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(input);
+            ModifyUndocumentedFlags8(input);
         }
 
         /// <summary>
@@ -1592,11 +1593,11 @@ namespace ZXSpectrum.Z_80
             Reset(Flag.Subtract);
 
             if (prefix2 == 0)
-                ModifyUndocumentedFlags(r);
+                ModifyUndocumentedFlags8(r);
             else
             {
                 tStates += 8;
-                ModifyUndocumentedFlags((Get16BitRegisters(2) + displacement) >> 8);
+                ModifyUndocumentedFlags8((Get16BitRegisters(2) + displacement) >> 8);
             }
         }
 
@@ -1631,7 +1632,7 @@ namespace ZXSpectrum.Z_80
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1657,13 +1658,13 @@ namespace ZXSpectrum.Z_80
             val = ((val << 1) & 0xff) + 1;
 
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1695,13 +1696,13 @@ namespace ZXSpectrum.Z_80
             }
 
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1724,13 +1725,13 @@ namespace ZXSpectrum.Z_80
             val = (val << 1) & 0xff;
 
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1758,13 +1759,13 @@ namespace ZXSpectrum.Z_80
             }
 
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1792,13 +1793,13 @@ namespace ZXSpectrum.Z_80
             }    
 
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1825,13 +1826,13 @@ namespace ZXSpectrum.Z_80
                 val = (val >> 1) & 0xff;
             }
             SetRegister(m, val);
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1859,13 +1860,13 @@ namespace ZXSpectrum.Z_80
             }
             SetRegister(r, val);
 
-            ModifySignFlag(val);
+            ModifySignFlag8(val);
             ModifyZeroFlag(val);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(val);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(val);
+            ModifyUndocumentedFlags8(val);
         }
 
         /// <summary>
@@ -1896,17 +1897,17 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
 
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
 
             A = initial;
 
-            ModifyUndocumentedFlags(-addition);
+            ModifyUndocumentedFlags8(-addition);
         }
 
         /// <summary>
@@ -1919,14 +1920,14 @@ namespace ZXSpectrum.Z_80
 
             A = A | Memory[PC++];
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1939,14 +1940,14 @@ namespace ZXSpectrum.Z_80
 
             A = A ^ Memory[PC++];
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1959,14 +1960,14 @@ namespace ZXSpectrum.Z_80
 
             A = A & Memory[PC++];
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Set(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -1984,14 +1985,14 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
-            ModifyCarryFlag(initial, addition);
+            ModifyCarryFlag8(initial, addition);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2007,14 +2008,14 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
-            ModifyCarryFlag(initial, addition);
+            ModifyCarryFlag8(initial, addition);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2032,14 +2033,14 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Reset(Flag.Subtract);
-            ModifyCarryFlag(initial, addition);
+            ModifyCarryFlag8(initial, addition);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2055,14 +2056,14 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Reset(Flag.Subtract);
-            ModifyCarryFlag(initial, addition);
+            ModifyCarryFlag8(initial, addition);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2354,17 +2355,17 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
 
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
 
             A = initial;
 
-            ModifyUndocumentedFlags(reg);
+            ModifyUndocumentedFlags8(reg);
         }
 
         /// <summary>
@@ -2388,14 +2389,14 @@ namespace ZXSpectrum.Z_80
 
             A = A | GetRegister(r);
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2419,14 +2420,14 @@ namespace ZXSpectrum.Z_80
 
             A = A ^ GetRegister(r);
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Reset(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2450,14 +2451,14 @@ namespace ZXSpectrum.Z_80
 
             A = A & GetRegister(r);
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             Set(Flag.HalfCarry);
             ModifyParityFlagLogical(A);
             Reset(Flag.Subtract);
             Reset(Flag.Carry);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2488,15 +2489,15 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
 
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2524,15 +2525,15 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
 
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Set(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2563,15 +2564,15 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
 
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2599,15 +2600,15 @@ namespace ZXSpectrum.Z_80
 
             A = (A + addition) & 0xff;
 
-            ModifySignFlag(A);
+            ModifySignFlag8(A);
             ModifyZeroFlag(A);
             
-            ModifyHalfCarryFlagAddition(initial, addition);
-            ModifyCarryFlag(initial, addition);
-            ModifyOverflowFlagAddition(initial, addition, A);
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2681,7 +2682,7 @@ namespace ZXSpectrum.Z_80
             }
 
             Reset(Flag.Subtract);
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2695,7 +2696,7 @@ namespace ZXSpectrum.Z_80
             Set(Flag.Carry);
             Reset(Flag.HalfCarry);
             Reset(Flag.Subtract);
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2709,7 +2710,7 @@ namespace ZXSpectrum.Z_80
             A = (~A) & 0xff;
             Set(Flag.HalfCarry);
             Set(Flag.Subtract);
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2759,10 +2760,10 @@ namespace ZXSpectrum.Z_80
             }
             ModifyParityFlagLogical(r);
             
-            ModifySignFlag(r);
+            ModifySignFlag8(r);
             ModifyZeroFlag(r);
 
-            ModifyUndocumentedFlags(r);
+            ModifyUndocumentedFlags8(r);
 
             A = r;
         }
@@ -2794,7 +2795,7 @@ namespace ZXSpectrum.Z_80
             Reset(Flag.HalfCarry);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2824,7 +2825,7 @@ namespace ZXSpectrum.Z_80
             Reset(Flag.HalfCarry);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2848,7 +2849,7 @@ namespace ZXSpectrum.Z_80
             if ((F & Flag.Carry) == Flag.Carry)
                 A += 128;
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2872,7 +2873,7 @@ namespace ZXSpectrum.Z_80
             if ((F & Flag.Carry) == Flag.Carry)
                 A = (A + 1) & 0xff;
 
-            ModifyUndocumentedFlags(A);
+            ModifyUndocumentedFlags8(A);
         }
 
         /// <summary>
@@ -2927,14 +2928,14 @@ namespace ZXSpectrum.Z_80
 
             SetRegister(r, result);
 
-            ModifySignFlag(result);
+            ModifySignFlag8(result);
             ModifyZeroFlag(result);
 
-            ModifyHalfCarryFlagAddition(initial, -1);
+            ModifyHalfCarryFlag8(initial, -1);
             //ModifyCarryFlag(initial, -1);
-            ModifyOverflowFlagAddition(initial, -1, result);
+            ModifyOverflowFlag8(initial, -1, result);
             Set(Flag.Subtract);
-            ModifyUndocumentedFlags(result);
+            ModifyUndocumentedFlags8(result);
         }
 
         /// <summary>
@@ -2964,14 +2965,14 @@ namespace ZXSpectrum.Z_80
 
             SetRegister(r, result);
 
-            ModifySignFlag(result);
+            ModifySignFlag8(result);
             ModifyZeroFlag(result);
 
-            ModifyHalfCarryFlagAddition(initial, 1);
+            ModifyHalfCarryFlag8(initial, 1);
             //ModifyCarryFlag(initial, 1);
-            ModifyOverflowFlagAddition(initial, 1, result);
+            ModifyOverflowFlag8(initial, 1, result);
             Reset(Flag.Subtract);
-            ModifyUndocumentedFlags(result);
+            ModifyUndocumentedFlags8(result);
         }
 
         /// <summary>
@@ -3094,13 +3095,13 @@ namespace ZXSpectrum.Z_80
             //  Bitmask to force max 16 bits
             Set16BitRegisters(2, (HL + SS) & 0xffff);
             //  16-bit Carry
-            ModifyCarryFlag(HL >> 8, SS >> 8);
+            ModifyCarryFlag16(HL, SS);
             //  Half-carry flags set dependent on high-bit
-            ModifyHalfCarryFlagAddition(HL >> 8, SS >> 8);
+            ModifyHalfCarryFlag16(HL, SS);
             //  N is reset
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags(Get16BitRegisters(2) >> 8);
+            ModifyUndocumentedFlags16(Get16BitRegisters(2));
         }
 
         /// <summary>

@@ -11,6 +11,19 @@ namespace ZXSpectrum.Z_80
     /// </summary>
     public partial class Z80
     {
+
+        /// <summary>
+        /// Reads in the optional displacement byte required by some opcodes.
+        /// </summary>
+        private void ReadDisplacementByte()
+        {
+            displacement = Memory[PC++];
+            if (displacement > 127)
+            {
+                displacement = -256 + displacement;
+            }
+        }
+
         /// <summary>
         /// Sets the specified flag.
         /// </summary>

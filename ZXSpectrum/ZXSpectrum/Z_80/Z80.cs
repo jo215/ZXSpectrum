@@ -2344,11 +2344,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
             var reg = GetRegister(r);
             var addition = -reg;
@@ -2380,11 +2376,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             A = A | GetRegister(r);
@@ -2411,11 +2403,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             A = A ^ GetRegister(r);
@@ -2442,11 +2430,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             A = A & GetRegister(r);
@@ -2475,11 +2459,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             var addition = -GetRegister(r);
@@ -2514,11 +2494,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             var addition = -GetRegister(r);
@@ -2550,11 +2526,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             var addition = GetRegister(r);
@@ -2589,11 +2561,7 @@ namespace ZXSpectrum.Z_80
             if (r == 6 && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
             }
 
             var addition = GetRegister(r);
@@ -2635,11 +2603,7 @@ namespace ZXSpectrum.Z_80
             if ((r == 6 || r2 == 6) && prefix != 0)
             {
                 tStates += 4;
-                displacement = Memory[PC++];
-                if (displacement > 127)
-                {
-                    displacement = -256 + displacement;
-                }
+                ReadDisplacementByte();
                 if (r == 6)
                 {
                     ignorePrefix = true;
@@ -2885,18 +2849,9 @@ namespace ZXSpectrum.Z_80
         {
             tStates += 7;
 
-            if (r == 6)
-            {
-                
-                if (prefix != 0)
-                {
-                    tStates++;
-                    displacement = Memory[PC++];
-                    if (displacement > 127)
-                    {
-                        displacement = -256 + displacement;
-                    }
-                }
+            if (r == 6 && prefix != 0) {
+                ReadDisplacementByte();
+                tStates++;          
             }
             SetRegister(r, Memory[PC++]);
         }
@@ -2914,13 +2869,7 @@ namespace ZXSpectrum.Z_80
             {
                 tStates++;
                 if (prefix != 0)
-                {
-                    displacement = Memory[PC++];
-                    if (displacement > 127)
-                    {
-                        displacement = -256 + displacement;
-                    }
-                }
+                    ReadDisplacementByte();
             }
 
             var initial = GetRegister(r);
@@ -2932,7 +2881,6 @@ namespace ZXSpectrum.Z_80
             ModifyZeroFlag(result);
 
             ModifyHalfCarryFlag8(initial, -1);
-            //ModifyCarryFlag(initial, -1);
             ModifyOverflowFlag8(initial, -1, result);
             Set(Flag.Subtract);
             ModifyUndocumentedFlags8(result);
@@ -2950,14 +2898,8 @@ namespace ZXSpectrum.Z_80
             if (r == 6)
             {
                 tStates++;
-                if (prefix != 0)
-                {
-                    displacement = Memory[PC++];
-                    if (displacement > 127)
-                    {
-                        displacement = -256 + displacement;
-                    }
-                }
+                if (prefix !=0)
+                    ReadDisplacementByte();
             }
 
             var initial = GetRegister(r);
@@ -2969,7 +2911,6 @@ namespace ZXSpectrum.Z_80
             ModifyZeroFlag(result);
 
             ModifyHalfCarryFlag8(initial, 1);
-            //ModifyCarryFlag(initial, 1);
             ModifyOverflowFlag8(initial, 1, result);
             Reset(Flag.Subtract);
             ModifyUndocumentedFlags8(result);

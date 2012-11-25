@@ -24,8 +24,8 @@ namespace ZXSpectrum
             //  Set up correct window size
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = 304;
-            graphics.PreferredBackBufferWidth = 352;
+            graphics.PreferredBackBufferHeight = 608;
+            graphics.PreferredBackBufferWidth = 704;
             Content.RootDirectory = "Content";
         }
 

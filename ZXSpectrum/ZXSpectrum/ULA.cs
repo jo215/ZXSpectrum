@@ -33,6 +33,7 @@ namespace ZXSpectrum
         int borderWidth = 48;
         int screenHeight = 192;
         int screenWidth = 256;
+        float screenScale = 2.0f;
 
         bool earActive, micActive;
         long framesRendered = 0;
@@ -48,6 +49,7 @@ namespace ZXSpectrum
             //  For drawing the display
             this.spriteBatch = spriteBatch;
             this.device = game.GraphicsDevice;
+            
 
             //  1 pixel texture
             pixel = new Texture2D(device, 1, 1, false, SurfaceFormat.Color);
@@ -237,27 +239,26 @@ namespace ZXSpectrum
                         ink += 8;
                         paper += 8;
                     }
-                    //  Bit 7 sets flashing
-                    if ((attribute & 128) == 128 && framesRendered % 32 <= 15)
-                    {
-                        ink = ink ^ paper;
-                        paper = ink ^ ink;
-                        ink = ink ^ paper;
-                    }
-                    int startX = cha * 8 + borderWidth;
+
+                    //  Starting x-position for each character
+                    float startX = (cha * 8 + borderWidth) * screenScale;
 
                     //  Draw an 8x8 block in current paper color for each character position
-                    spriteBatch.Draw(block, new Vector2(startX + (cha *8), borderHeight + (line * 8)), colors[paper]);
+                    spriteBatch.Draw(block, new Vector2(startX + ((cha * 8) * screenScale), (borderHeight + (line * 8)) * screenScale), colors[paper]);
 
-                    //  Pixel by pixel is very inefficient...
+                    //  Draw each pixel line
                     for (int row = 0; row < 8; row++)
                     {
                         int pixels = Memory[16384 + 2048 * (line / 8) + 32 * (line - 8 * (line / 8)) + 256 * row + cha];
-                        int y = line * 8 + row + borderHeight;
+                        //  Bit 7 sets flashing - invert pixels
+                        if ((attribute & 128) == 128 && framesRendered % 32 <= 15)
+                        {
+                            pixels = 255 - pixels;
+                        }
 
-                        spriteBatch.Draw(patterns[pixels], new Vector2(startX, y), colors[ink]);
-                            
-                        
+                        float y = (line * 8 + row + borderHeight) * screenScale;
+
+                        spriteBatch.Draw(patterns[pixels], new Vector2(startX, y), null, colors[ink], 0F, Vector2.Zero, screenScale, SpriteEffects.None, 0f);                   
                     }
                 }
             }

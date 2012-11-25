@@ -267,42 +267,6 @@ namespace ZXSpectrum
             framesRendered++;
         }
 
-        private void DrawBorder()
-        {
-            //  Top border
-            for (int y = 0; y < borderHeight; y++)
-            {
-                for (int x = 0; x < (borderWidth * 2) + screenWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Bottom border
-            for (int y = borderHeight + screenHeight; y < (borderHeight * 2) + screenHeight; y++)
-            {
-                for (int x = 0; x < (borderWidth * 2) + screenWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Left border
-            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
-            {
-                for (int x = 0; x < borderWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-            //  Right border
-            for (int y = borderHeight; y < borderHeight + screenHeight; y++)
-            {
-                for (int x = borderWidth + screenWidth; x < (borderWidth * 2) + screenWidth; x++)
-                {
-                    spriteBatch.Draw(pixel, new Vector2(x, y), colors[border]);
-                }
-            }
-        }
-
         /// <summary>
         /// An OUT to a port.
         /// </summary>
@@ -416,6 +380,38 @@ namespace ZXSpectrum
                 //  Bits 5 and 7 always 1
                 finalKeys |= 224;
                 return finalKeys;
+            }
+            else if ((port & 0xff) == 0x1f)
+            {
+                //  Kempston Joystick
+                //  Allow for cursor keys and gamepad to simulate joystick control
+                KeyboardState keys = Keyboard.GetState();
+                GamePadState pad =  GamePad.GetState(PlayerIndex.One);
+                MouseState mouse = Mouse.GetState();
+                int joystickState = 0;
+                if (keys.IsKeyDown(Keys.Up) || pad.ThumbSticks.Left.Y > 0.1f)
+                {
+                    joystickState = joystickState | 8;
+                }
+                if (keys.IsKeyDown(Keys.Down) || pad.ThumbSticks.Left.Y < -0.1f)
+                {
+                    joystickState = joystickState | 4;
+                }
+                if (keys.IsKeyDown(Keys.Left) || pad.ThumbSticks.Left.X < -0.1f)
+                {
+                    joystickState = joystickState | 2;
+                }
+                if (keys.IsKeyDown(Keys.Right) || pad.ThumbSticks.Left.X > 0.1f)
+                {
+                    joystickState = joystickState | 1;
+                }
+                if (keys.IsKeyDown(Keys.LeftControl) || pad.IsButtonDown(Buttons.A) || mouse.LeftButton == ButtonState.Pressed)
+                {
+                    joystickState = joystickState | 16;
+                }
+                if (joystickState != 0)
+                    Console.WriteLine(joystickState);
+                return joystickState;
             }
             else
             {

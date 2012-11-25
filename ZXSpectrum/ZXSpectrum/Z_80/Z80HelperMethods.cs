@@ -82,7 +82,7 @@ namespace ZXSpectrum.Z_80
         /// Gets a byte representation of the Flags register.
         /// </summary>
         /// <returns></returns>
-        private int GetFlagsAsByte()
+        internal int GetFlagsAsByte()
         {
             int val = 0;
             if ((F & Flag.Carry) == Flag.Carry) val++;
@@ -101,7 +101,7 @@ namespace ZXSpectrum.Z_80
         /// Gets a byte representation of the Flags register.
         /// </summary>
         /// <returns></returns>
-        private int GetShadowFlagsAsByte()
+        internal int GetShadowFlagsAsByte()
         {
             int val = 0;
             if ((F2 & Flag.Carry) == Flag.Carry) val++;

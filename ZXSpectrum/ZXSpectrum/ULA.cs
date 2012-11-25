@@ -124,7 +124,7 @@ namespace ZXSpectrum
             z80.AddDevice(this);
            
             LoadROM();
-            LoadSNA("JetPac.sna");
+            LoadSNA("test.sna");
         }
 
         /// <summary>
@@ -196,6 +196,61 @@ namespace ZXSpectrum
         }
 
         /// <summary>
+        /// Saves the current state of the emulator in .SNA format.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void SaveSNA(string fileName)
+        {
+            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\" + fileName, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    Memory[--z80.SP] = z80.PC >> 8;
+                    Memory[--z80.SP] = z80.PC & 0xff;
+                    bw.Write((byte)z80.I);
+                    bw.Write((byte)z80.L2);
+                    bw.Write((byte)z80.H2);
+                    bw.Write((byte)z80.E2);
+                    bw.Write((byte)z80.D2);
+                    bw.Write((byte)z80.C2);
+                    bw.Write((byte)z80.B2);
+                    bw.Write((byte)z80.GetShadowFlagsAsByte());
+                    bw.Write((byte)z80.A2);
+                    bw.Write((byte)z80.L);
+                    bw.Write((byte)z80.H);
+                    bw.Write((byte)z80.E);
+                    bw.Write((byte)z80.D);
+                    bw.Write((byte)z80.C);
+                    bw.Write((byte)z80.B);
+                    bw.Write((byte)z80.IYL);
+                    bw.Write((byte)z80.IYH);
+                    bw.Write((byte)z80.IXL);
+                    bw.Write((byte)z80.IXH);
+                    if (z80.IFF2 == true)
+                    {
+                        bw.Write((byte) 4);
+                    }
+                    else
+                    {
+                        bw.Write((byte) 0);
+                    }
+                    bw.Write((byte)z80.R);
+                    bw.Write((byte)z80.GetFlagsAsByte());
+                    bw.Write((byte)z80.A);
+                    bw.Write((byte)(z80.SP & 0xff));
+                    bw.Write((byte)(z80.SP >> 8));
+                    bw.Write((byte)z80.interruptMode);
+                    bw.Write((byte)this.border);
+
+                    for (int i = 16384; i < Memory.Length; i++)
+                    {
+                        bw.Write((byte)Memory[i]);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -205,7 +260,22 @@ namespace ZXSpectrum
             z80.Interrupt();
             //  Run the cpu for a frame's worth of T-states
             z80.Run(false, 69888);
+            //  Check control keys
+            GetUserInput();
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// Gets user input to the emulator (over and above spectrum-routed input)
+        /// </summary>
+        private void GetUserInput()
+        {
+            KeyboardState keys = Keyboard.GetState();
+            if (keys.IsKeyDown(Keys.F5))
+            {
+                //  F5 - Save Snapshot
+                SaveSNA("test.SNA");
+            }
         }
 
         /// <summary>
@@ -244,7 +314,7 @@ namespace ZXSpectrum
                     float startX = (cha * 8 + borderWidth) * screenScale;
 
                     //  Draw an 8x8 block in current paper color for each character position
-                    spriteBatch.Draw(block, new Vector2(startX + ((cha * 8) * screenScale), (borderHeight + (line * 8)) * screenScale), colors[paper]);
+                    spriteBatch.Draw(block, new Vector2(startX, (borderHeight + (line * 8)) * screenScale), null, colors[paper], 0f, Vector2.Zero, screenScale, SpriteEffects.None, 0f);
 
                     //  Draw each pixel line
                     for (int row = 0; row < 8; row++)
@@ -258,7 +328,7 @@ namespace ZXSpectrum
 
                         float y = (line * 8 + row + borderHeight) * screenScale;
 
-                        spriteBatch.Draw(patterns[pixels], new Vector2(startX, y), null, colors[ink], 0F, Vector2.Zero, screenScale, SpriteEffects.None, 0f);                   
+                        spriteBatch.Draw(patterns[pixels], new Vector2(startX, y), null, colors[ink], 0f, Vector2.Zero, screenScale, SpriteEffects.None, 0f);                   
                     }
                 }
             }

@@ -2,6 +2,7 @@
 using ZXSpectrum.Z_80;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using ZXSpectrum;
 
 namespace TestProject2
 {
@@ -15,7 +16,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void FUSETests()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new int[65536]));
+            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             /*
                 tests.in
@@ -102,7 +103,7 @@ namespace TestProject2
                             while (!testIn.EndOfStream)
                             {
 
-                                target.Memory = new int[65536];
+                                target.Memory = new Memory48K();
                                 //  Opcode being tested
                                 string testName = testIn.ReadLine();
                                 int opcode;

@@ -76,7 +76,7 @@ namespace ZXSpectrum
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // GameComponents (ULA) auto-update here
+            // GameComponents (ie the ULA) auto-update here
 
             base.Update(gameTime);
         }

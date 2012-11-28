@@ -21,7 +21,7 @@ namespace ZXSpectrum
         GraphicsDevice device;
         SpriteBatch spriteBatch;
         Z80 z80;
-        int[] Memory;
+        Memory Memory;
 
         Texture2D pixel, block;
         Texture2D[] patterns;
@@ -112,7 +112,7 @@ namespace ZXSpectrum
             Game.TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 20);
 
             //  16K ROM, 48K RAM
-            Memory = new int[65536];
+            Memory = new Memory48K(Game.Content.RootDirectory + "\\48.rom");
 
             //  The Z80
             z80 = new Z80(3.5f, Memory);
@@ -122,24 +122,8 @@ namespace ZXSpectrum
             //  But responds to all even-numbered ports
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
-           
-            LoadROM();
-            LoadSNA("test.sna");
-        }
 
-        /// <summary>
-        /// Loads a rom into low memory.
-        /// </summary>
-        private void LoadROM()
-        {
-            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\48.rom", FileMode.Open, FileAccess.Read))
-            {
-                using (BinaryReader br = new BinaryReader(fs))
-                {
-                    byte[] rom = br.ReadBytes((int)fs.Length);
-                    Array.Copy(rom, Memory, rom.Length);
-                }
-            }
+            LoadSNA("test.sna");
         }
 
         /// <summary>
@@ -189,7 +173,10 @@ namespace ZXSpectrum
                     z80.interruptMode = br.ReadByte();
                     this.border = br.ReadByte();
                     byte[] ram = br.ReadBytes(49152);
-                    Array.Copy(ram, 0, Memory, 16384, ram.Length);
+                    for (int i = 0; i < ram.Length; i++)
+                    {
+                        Memory[i + 16384, true] = ram[i];
+                    }
                     z80.RETN();
                 }
             }
@@ -244,7 +231,7 @@ namespace ZXSpectrum
 
                     for (int i = 16384; i < Memory.Length; i++)
                     {
-                        bw.Write((byte)Memory[i]);
+                        bw.Write((byte)Memory[i, true]);
                     }
                 }
             }
@@ -298,7 +285,7 @@ namespace ZXSpectrum
                 for (int cha = 0; cha < 32; cha++)
                 {
                     //  Attribute (color) map stored from 22528
-                    int attribute = Memory[22528 + 32 * line + cha];
+                    int attribute = Memory[22528 + 32 * line + cha, true];
                     //  Bits 0-2 set ink color
                     int ink = attribute & 7;
                     //  Bits 3-5 set paper (background) color
@@ -319,7 +306,7 @@ namespace ZXSpectrum
                     //  Draw each pixel line
                     for (int row = 0; row < 8; row++)
                     {
-                        int pixels = Memory[16384 + 2048 * (line / 8) + 32 * (line - 8 * (line / 8)) + 256 * row + cha];
+                        int pixels = Memory[16384 + 2048 * (line / 8) + 32 * (line - 8 * (line / 8)) + 256 * row + cha, true];
                         //  Bit 7 sets flashing - invert pixels
                         if ((attribute & 128) == 128 && framesRendered % 32 <= 15)
                         {

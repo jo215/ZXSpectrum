@@ -28,10 +28,10 @@ namespace ZXSpectrum.Z_80
         internal int interruptMode;                  //  Interrupt mode
         internal bool IFF1, IFF2;                    //  Interrupt flip-flops
 
-        internal int[] Memory;                       //  ROM / RAM
+        internal Memory Memory;                            //  ROM / RAM
 
         float MHz;                          //  Clockspeed
-        int tStates;                        //  For measuring T-states
+        internal int tStates;                        //  For measuring T-states
 
         bool isHalted;                      //  True if machine is in the HALT state
         bool ignorePrefix;                  //  Prefixed opcodes which use (HL)
@@ -45,10 +45,12 @@ namespace ZXSpectrum.Z_80
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Z80(float mhz, int[] Memory)
+        public Z80(float mhz, Memory Memory)
         {
             MHz = mhz;
             this.Memory = Memory;
+            //  Set the memory to know about this CPU (for working out contention)
+            Memory.CPU = this;
             io = new MockIODevice();
             Reset();
         }

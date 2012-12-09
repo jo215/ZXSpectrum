@@ -22,6 +22,24 @@ namespace ZXSpectrum
         int Length {get;}
         //  The CPU
         Z80 CPU { get; set; }
+
+        //  For raising events
+        event EventHandler<EventArgs> memEvent;
+    }
+
+    /// <summary>
+    /// Event args for a beep (loudspeaker event)
+    /// </summary>
+    public class BeepEventArgs : EventArgs
+    {
+        public int DE;
+        public int HL;
+
+        public BeepEventArgs(int de, int hl)
+        {
+            DE = de;
+            HL = hl;
+        }
     }
 
     /// <summary>
@@ -35,6 +53,8 @@ namespace ZXSpectrum
         internal int[] mem = new int[65536];
 
         private int romStart = 0, romEnd = 16383, contentionStart = 0x4000, contentionEnd = 0x7fff;
+        
+        public event EventHandler<EventArgs> memEvent;
 
         /// <summary>
         /// Constructor - empty memory (no ROM).
@@ -56,11 +76,16 @@ namespace ZXSpectrum
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public int this[int index, bool ula=false]
+        public int this[int index, bool ulaAccess=false]
         {
             get
             {
-                if (!ula) CorrectForContention(index);
+                if (index == 0x03B5)
+                {
+                    //  The ROM BEEPER subroutine
+                    //memEvent(this, new BeepEventArgs(CPU.Get16BitRegisters(1, true), CPU.Get16BitRegisters(2, true)));
+                }
+                if (!ulaAccess) CorrectForContention(index);
                 return mem[index];
             }
             set
@@ -70,7 +95,7 @@ namespace ZXSpectrum
                 {
                     return;
                 }
-                if (!ula) CorrectForContention(index);
+                if (!ulaAccess) CorrectForContention(index);
                 mem[index] = value;
             }
         }
@@ -83,15 +108,15 @@ namespace ZXSpectrum
         {
             if (contentionStart <= index && index <= contentionEnd)
             {
-                if (CPU.tStates >= 14335 && CPU.tStates < 57343)
+                if (CPU.totalTStates >= 14335 && CPU.totalTStates < 57343)
                 {
-                    int line = (CPU.tStates - 14335) / 224;
+                    int line = (CPU.totalTStates - 14335) / 224;
                     if (line < 192)
                     {
-                        int pos = (CPU.tStates - 14335) % 224;
+                        int pos = (CPU.totalTStates - 14335) % 224;
                         int delay = 6 - (pos % 8);
                         if (delay < 0) delay = 0;
-                        CPU.tStates += delay;
+                        CPU.totalTStates += delay;
                     }
                 }
             }

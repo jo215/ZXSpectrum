@@ -22,6 +22,7 @@ namespace ZXSpectrum
         SpriteBatch spriteBatch;
         Z80 z80;
         Memory Memory;
+        Loudspeaker speaker;
 
         Texture2D pixel, block;
         Texture2D[] patterns;
@@ -36,6 +37,8 @@ namespace ZXSpectrum
         float screenScale = 2.0f;
 
         bool earActive, micActive;
+        List<int> speakerTimings = new List<int>();
+
         long framesRendered = 0;
 
         /// <summary>
@@ -50,6 +53,8 @@ namespace ZXSpectrum
             this.spriteBatch = spriteBatch;
             this.device = game.GraphicsDevice;
             
+            //  Loudspeaker
+            speaker = new Loudspeaker();
 
             //  1 pixel texture
             pixel = new Texture2D(device, 1, 1, false, SurfaceFormat.Color);
@@ -122,8 +127,29 @@ namespace ZXSpectrum
             //  But responds to all even-numbered ports
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
-
+            Memory.memEvent += Handler;
             LoadSNA("test.sna");
+        }
+
+        /// <summary>
+        /// Handles events sent by memory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void Handler(object sender, EventArgs args)
+        {
+            BeepEventArgs ev = args as BeepEventArgs;
+            if (ev != null)
+            {
+                //  Play a beep
+                int frequency = (3500000 / (ev.HL * 4)) / 2;
+                if (ev.DE == 0)
+                {
+                    ev.DE = 1;
+                }
+
+                speaker.Play(frequency, (float)ev.DE  / (float)frequency);
+            }
         }
 
         /// <summary>
@@ -243,10 +269,33 @@ namespace ZXSpectrum
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            speakerTimings.Clear();
             //  Generate the 50Hz clock interrupt
             z80.Interrupt();
             //  Run the cpu for a frame's worth of T-states
             z80.Run(false, 69888);
+            //  Catchup with audio
+            if (speakerTimings.Count > 0)
+            {
+                int total = 0;
+                for (int i = 1; i < speakerTimings.Count; i++)
+                {
+                    total += (speakerTimings[i] - speakerTimings[i - 1]);
+                }
+                float freq, duration;
+                if (speakerTimings.Count == 1)
+                {
+                    freq = 2205;
+                    duration = 1 / freq;
+                }
+                else
+                {
+                    total = total / (speakerTimings.Count - 1);
+                    freq = 3500000.0f / total ;
+                    duration = (speakerTimings.Count / freq) ;
+                }
+                speaker.Play(freq, duration);
+            }
             //  Check control keys
             GetUserInput();
             base.Update(gameTime);
@@ -341,6 +390,10 @@ namespace ZXSpectrum
                 earActive = (dataByte & 16) == 16 ? true : false;
                 //  Apparently if one gets activated they both get activated...
                 //  need to check this behaviour
+                if (micActive || earActive)
+                {
+                    speakerTimings.Add(z80.totalTStates);
+                }
             }
         }
 
@@ -466,8 +519,6 @@ namespace ZXSpectrum
                 {
                     joystickState = joystickState | 16;
                 }
-                if (joystickState != 0)
-                    Console.WriteLine(joystickState);
                 return joystickState;
             }
             else

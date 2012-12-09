@@ -383,11 +383,11 @@ namespace ZXSpectrum.Z_80
                             return L;
                     } 
                 case 6:
-                    tStates += 3;  
+                    totalTStates += 3;  
                     switch (prefix) {
                         case 0xDD:
                         case 0xFD:
-                            tStates += 4; return (Memory[Get16BitRegisters(2) + displacement]);
+                            totalTStates += 4; return (Memory[Get16BitRegisters(2) + displacement]);
                         default:
                             return Memory[Get16BitRegisters(2)];
                     } 
@@ -438,12 +438,12 @@ namespace ZXSpectrum.Z_80
                             L = value; return;
                     }
                 case 6:
-                    tStates += 3; 
+                    totalTStates += 3; 
                     switch (prefix)
                     {
                         case 0xDD:
                         case 0xFD:
-                            tStates +=4; Memory[Get16BitRegisters(2) + displacement] = value; return;
+                            totalTStates +=4; Memory[Get16BitRegisters(2) + displacement] = value; return;
                         default:
                             Memory[Get16BitRegisters(2)] = value; return;
                     }
@@ -494,7 +494,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         /// <param name="registerPair"></param>
         /// <returns></returns>
-        private int Get16BitRegisters(int registerPair)
+        internal int Get16BitRegisters(int registerPair, bool ignorePrefix = false)
         {
             int result;
             switch (registerPair)
@@ -502,6 +502,10 @@ namespace ZXSpectrum.Z_80
                 case 0: result = B; result = (result << 8); result += C; return result;
                 case 1: result = D; result = (result << 8); result += E; return result;
                 case 2:
+                    if (ignorePrefix)
+                    {
+                        result = H; result = (result << 8); result += L; return result;
+                    }
                     switch (prefix)
                     {
                         case 0xDD:

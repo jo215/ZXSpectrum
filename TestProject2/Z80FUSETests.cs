@@ -214,7 +214,7 @@ namespace TestProject2
                                 Assert.IsTrue(target.IFF1 == Convert.ToBoolean(int.Parse(regtemp[2])));
                                 Assert.IsTrue(target.IFF2 == Convert.ToBoolean(int.Parse(regtemp[3])));
                                 Assert.IsTrue(target.isHalted == Convert.ToBoolean(int.Parse(regtemp[5])));
-                                Assert.IsTrue(opcode == 0 || target.tStates == int.Parse(regtemp[6]));
+                                Assert.IsTrue(opcode == 0 || target.totalTStates == int.Parse(regtemp[6]));
 
                                 //  Memory
                                 testInput = testExpected.ReadLine();

@@ -22,9 +22,6 @@ namespace ZXSpectrum
         int Length {get;}
         //  The CPU
         Z80 CPU { get; set; }
-
-        //  For raising events
-        event EventHandler<EventArgs> memEvent;
     }
 
     /// <summary>
@@ -53,8 +50,6 @@ namespace ZXSpectrum
         internal int[] mem = new int[65536];
 
         private int romStart = 0, romEnd = 16383, contentionStart = 0x4000, contentionEnd = 0x7fff;
-        
-        public event EventHandler<EventArgs> memEvent;
 
         /// <summary>
         /// Constructor - empty memory (no ROM).
@@ -90,11 +85,11 @@ namespace ZXSpectrum
             }
             set
             {
-                //  Ignore attempts to write to ROM
-                if (romStart <= index && index <= romEnd)
-                {
-                    return;
-                }
+                ////  Ignore attempts to write to ROM
+                //if (romStart <= index && index <= romEnd)
+                //{
+                //    return;
+                //}
                 if (!ulaAccess) CorrectForContention(index);
                 mem[index] = value;
             }
@@ -106,17 +101,18 @@ namespace ZXSpectrum
         /// <param name="index"></param>
         private void CorrectForContention(int index)
         {
+            if (CPU == null) return;
             if (contentionStart <= index && index <= contentionEnd)
             {
-                if (CPU.totalTStates >= 14335 && CPU.totalTStates < 57343)
+                if (CPU.CycleTStates >= 14335 && CPU.CycleTStates < 57343)
                 {
-                    int line = (CPU.totalTStates - 14335) / 224;
+                    int line = (CPU.CycleTStates - 14335) / 224;
                     if (line < 192)
                     {
-                        int pos = (CPU.totalTStates - 14335) % 224;
+                        int pos = (CPU.CycleTStates - 14335) % 224;
                         int delay = 6 - (pos % 8);
                         if (delay < 0) delay = 0;
-                        CPU.totalTStates += delay;
+                        CPU.CycleTStates += delay;
                     }
                 }
             }

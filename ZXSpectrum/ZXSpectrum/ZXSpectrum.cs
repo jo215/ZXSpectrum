@@ -26,6 +26,8 @@ namespace ZXSpectrum
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 608;
             graphics.PreferredBackBufferWidth = 704;
+            graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
         }
 
@@ -38,7 +40,6 @@ namespace ZXSpectrum
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 

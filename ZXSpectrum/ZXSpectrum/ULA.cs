@@ -30,17 +30,19 @@ namespace ZXSpectrum
         Color[] colors;
         int border;
 
-        int borderHeight = 56;
-        int borderWidth = 48;
-        int screenHeight = 192;
-        int screenWidth = 256;
+        const int borderHeight = 56;
+        const int borderWidth = 48;
+        //int screenHeight = 192;
+        //int screenWidth = 256;
         float screenScale = 2.0f;
 
         bool earActive, micActive;
-        List<int> speakerTimings = new List<int>();
 
-        long framesRendered = 0;
+        List<float> buffer = new List<float>();
 
+        long framesGenerated = 0;
+
+        bool update = true;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -64,7 +66,9 @@ namespace ZXSpectrum
             block = new Texture2D(device, 8, 8, false, SurfaceFormat.Color);
             Color[] temp = new Color[64];
             for (int i = 0; i < 64; i++)
+            {
                 temp[i] = Color.White;
+            }
             block.SetData<Color>(temp);
 
             //  Cache all possible 8-pixel combinations to cut down on draw calls
@@ -104,18 +108,8 @@ namespace ZXSpectrum
             colors[12] = new Color(0, 0xFF, 0);
             colors[13] = new Color(0, 0xFF, 0xFF);
             colors[14] = new Color(0xFF, 0xFF, 0);
-            colors[15] = new Color(0xFF, 0xFF, 0xFF);
-
-            //  The ULA renders a single line of pixels every 224 T-states
-            //  64 lines of which at least 48 are top border
-            //  192 screen + left/right border lines
-            //  56 bottom border lines
-            //  (64+192+56) * 224 = 69888 T-states per frame
-            //  3.5MHz (Z80A) / 69888 = 50.08Hz interrupt
-            //  Update and Draw at 50 fps (every 20 ms) - best equivalent to the Spectrum ULA updating a TV display 
-            Game.IsFixedTimeStep = true;
-            Game.TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 20);
-
+            colors[15] = new Color(0xFF, 0xFF, 0xFF);           
+           
             //  16K ROM, 48K RAM
             Memory = new Memory48K(Game.Content.RootDirectory + "\\48.rom");
 
@@ -127,31 +121,10 @@ namespace ZXSpectrum
             //  But responds to all even-numbered ports
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
-            Memory.memEvent += Handler;
-            LoadSNA("test.sna");
+
+            LoadSNA("miner.sna");
+
         }
-
-        /// <summary>
-        /// Handles events sent by memory.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private void Handler(object sender, EventArgs args)
-        {
-            BeepEventArgs ev = args as BeepEventArgs;
-            if (ev != null)
-            {
-                //  Play a beep
-                int frequency = (3500000 / (ev.HL * 4)) / 2;
-                if (ev.DE == 0)
-                {
-                    ev.DE = 1;
-                }
-
-                speaker.Play(frequency, (float)ev.DE  / (float)frequency);
-            }
-        }
-
         /// <summary>
         /// Loads a .SNA snapshot file.
         /// This is the simplest snapshot format, but corrupts 2 bytes below the stack pointer, and requires a RETN instruction
@@ -265,40 +238,54 @@ namespace ZXSpectrum
 
         /// <summary>
         /// Allows the game component to update itself.
+        /// 
+        //  The ULA renders a single line of pixels to the display every 224 T-states
+        //  64 lines including top border
+        //  192 screen + left/right border lines
+        //  56 bottom border lines
+        //  (64+192+56) * 224 = 69888 T-states per frame
+        //  3.5MHz (Z80A) / 69888 = 50.08Hz interrupt
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            speakerTimings.Clear();
-            //  Generate the 50Hz clock interrupt
-            z80.Interrupt();
-            //  Run the cpu for a frame's worth of T-states
-            z80.Run(false, 69888);
-            //  Catchup with audio
-            if (speakerTimings.Count > 0)
+            //  We sync updates with audio, rather than the other way around
+            if (speaker.sfx.PendingBufferCount > 1)
+                update = false;
+            else
+                update = true;
+
+            if (update)
             {
-                int total = 0;
-                for (int i = 1; i < speakerTimings.Count; i++)
+                //  Generate the 50Hz clock interrupt
+                z80.Interrupt();
+
+                //  Run the cpu for a frame's worth of T-states (69888)
+
+                //  for 44.1KHz audio / 50 frames we require 882 audio samples per frame
+                for (int i = 0; i < 882; i++)
                 {
-                    total += (speakerTimings[i] - speakerTimings[i - 1]);
+                    //  69888 / 882 = 79 TStates per sample
+                    z80.Run(false, 79);
+                    //  we just take the last value sent to the ear output
+                    if (earActive)
+                    {
+                        buffer.Add(1f);
+                    }
+                    else
+                    {
+                        buffer.Add(0f);
+                    }
                 }
-                float freq, duration;
-                if (speakerTimings.Count == 1)
-                {
-                    freq = 2205;
-                    duration = 1 / freq;
-                }
-                else
-                {
-                    total = total / (speakerTimings.Count - 1);
-                    freq = 3500000.0f / total ;
-                    duration = (speakerTimings.Count / freq) ;
-                }
-                speaker.Play(freq, duration);
+                speaker.SendBuffer(buffer);
+                buffer.Clear();
+
+                //  Check control keys
+                GetUserInput();
+
+                framesGenerated++;
+                base.Update(gameTime);
             }
-            //  Check control keys
-            GetUserInput();
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -311,6 +298,11 @@ namespace ZXSpectrum
             {
                 //  F5 - Save Snapshot
                 SaveSNA("test.SNA");
+            }
+            if (keys.IsKeyDown(Keys.Escape))
+            {
+                //  Escape - Quit emulator
+                Game.Exit();
             }
         }
 
@@ -357,7 +349,7 @@ namespace ZXSpectrum
                     {
                         int pixels = Memory[16384 + 2048 * (line / 8) + 32 * (line - 8 * (line / 8)) + 256 * row + cha, true];
                         //  Bit 7 sets flashing - invert pixels
-                        if ((attribute & 128) == 128 && framesRendered % 32 <= 15)
+                        if ((attribute & 128) == 128 && framesGenerated % 32 <= 15)
                         {
                             pixels = 255 - pixels;
                         }
@@ -370,7 +362,6 @@ namespace ZXSpectrum
             }
             
             spriteBatch.End();
-            framesRendered++;
         }
 
         /// <summary>
@@ -390,10 +381,6 @@ namespace ZXSpectrum
                 earActive = (dataByte & 16) == 16 ? true : false;
                 //  Apparently if one gets activated they both get activated...
                 //  need to check this behaviour
-                if (micActive || earActive)
-                {
-                    speakerTimings.Add(z80.totalTStates);
-                }
             }
         }
 
@@ -493,7 +480,7 @@ namespace ZXSpectrum
             }
             else if ((port & 0xff) == 0x1f)
             {
-                //  Kempston Joystick
+                //  Kempston Joystick emulation
                 //  Allow for cursor keys and gamepad to simulate joystick control
                 KeyboardState keys = Keyboard.GetState();
                 GamePadState pad =  GamePad.GetState(PlayerIndex.One);

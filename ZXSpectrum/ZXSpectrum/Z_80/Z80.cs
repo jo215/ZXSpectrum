@@ -32,12 +32,8 @@ namespace ZXSpectrum.Z_80
         internal Memory Memory;                            //  ROM / RAM
 
         float MHz;                                      //  Clockspeed
-        internal int totalTStates;                      //  For counting T-states
+        internal int CycleTStates;                      //  For counting T-states
         int previousTStates;                                
-        int nsPerTState;                                 //  Time taken in nanoseconds for each tState
-        double spinTime;
-
-        Stopwatch stopWatch;                            //  Measuring time
 
         bool isHalted;                      //  True if machine is in the HALT state
         bool ignorePrefix;                  //  Prefixed opcodes which use (HL)
@@ -45,8 +41,6 @@ namespace ZXSpectrum.Z_80
         IOController io;                //  Connected I/O devices
 
         int opcode = 0, prefix = 0, prefix2 = 0, displacement = 0;
-
-        int debug = 0;
 
         /// <summary>
         /// Constructor.
@@ -56,28 +50,9 @@ namespace ZXSpectrum.Z_80
             MHz = mhz;
             this.Memory = Memory;
             //  Set the memory to know about this CPU (for working out contention)
-            Memory.CPU = this;
+            this.Memory.CPU = this;
             io = new MockIODevice();
             Reset();
-            nsPerTState = 1000000000 / (int) (MHz * 1000000);
-            GetSpinFrequency();
-        }
-
-        /// <summary>
-        /// Spins in a tight loop for 10 million iterations, and averages the time taken per spin, in nanoseconds.
-        /// </summary>
-        private void GetSpinFrequency()
-        {
-            int iterations = 100000000;
-            stopWatch = Stopwatch.StartNew();
-
-            for (long l = 0; l < iterations; l++)
-            {
-
-            }
-            stopWatch.Stop();
-            double elapsedNs = 1e9 * stopWatch.ElapsedTicks / (double)Stopwatch.Frequency;
-            spinTime = elapsedNs / (double)iterations;
         }
 
         /// <summary>
@@ -97,10 +72,10 @@ namespace ZXSpectrum.Z_80
         {
             PC = 0;
             //  AF and SP always set to FFFFh after a reset (other registers undefined).
-            A = 0;
+            A = 0xff;
             SP = 0xffff;
             B = 0; C = 0; D = 0; E = 0; H = 0; L = 0; I = 0; R = 0; IXH = 0; IXL = 0; IYH = 0; IYL = 0;
-            SetFlags(0x00);
+            SetFlags(0xff);
             F2 = F2 & 0;
             isHalted = false;
             IFF1 = false;
@@ -160,13 +135,13 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         public void Run(bool exitOnNOP = false, int maxTStates = 0)
         {
-            totalTStates = 0;
+            CycleTStates = 0;
             bool running = true;
             while (running)
             {
                 //  Time every instruction
                 //stopWatch.Restart();
-                previousTStates = totalTStates;
+                previousTStates = CycleTStates;
                 //  Fetch
                 opcode = Memory[PC++];
                 prefix = 0;
@@ -181,7 +156,7 @@ namespace ZXSpectrum.Z_80
                     opcode = Memory[PC++];
                     if (prefix == 0xDD || prefix == 0xFD)
                     {
-                        totalTStates += 4;
+                        CycleTStates += 4;
                         if (opcode == 0xCB)
                         {
                             //  This instruction has 2 prefix bytes and displacement byte
@@ -246,16 +221,16 @@ namespace ZXSpectrum.Z_80
                                     ignorePrefix = true;
                                     SetRegister(z, GetRegister(6));
                                     ignorePrefix = false;
-                                    totalTStates -= 11;
+                                    CycleTStates -= 11;
                                 }
                                 else
                                 {
-                                    totalTStates -= 4;
+                                    CycleTStates -= 4;
                                 }
                                 break;
                             }
                             //  Test bit at memory loc
-                            if (x == 1) { totalTStates -= 8; BIT(y, 6); break; }
+                            if (x == 1) { CycleTStates -= 8; BIT(y, 6); break; }
                             //  Reset bit and copy to register
                             if (x == 2)
                             { 
@@ -266,11 +241,11 @@ namespace ZXSpectrum.Z_80
                                     ignorePrefix = true;
                                     SetRegister(z, GetRegister(6));
                                     ignorePrefix = false;
-                                    totalTStates -= 11;
+                                    CycleTStates -= 11;
                                 }
                                 else
                                 {
-                                    totalTStates -= 4;
+                                    CycleTStates -= 4;
                                 }
                                 break;
                             }
@@ -284,11 +259,11 @@ namespace ZXSpectrum.Z_80
                                     ignorePrefix = true;
                                     SetRegister(z, GetRegister(6));
                                     ignorePrefix = false;
-                                    totalTStates -= 11;
+                                    CycleTStates -= 11;
                                 }
                                 else
                                 {
-                                    totalTStates -= 4;
+                                    CycleTStates -= 4;
                                 }
                                 break;
                             }
@@ -563,7 +538,7 @@ namespace ZXSpectrum.Z_80
                         break;
                 }
 
-                //  Increment r :- twice for prefixed instructions
+                //  Increment r; twice for prefixed instructions
                 R++;
                 if (prefix != 0)
                     R++;
@@ -571,7 +546,7 @@ namespace ZXSpectrum.Z_80
                     R = 0;
 
                 //  If we have defined a max amount of tStates to run for then check if we should return
-                if (maxTStates > 0 && totalTStates >= maxTStates)
+                if (maxTStates > 0 && CycleTStates >= maxTStates)
                 {
                     running = false;
                 }
@@ -600,11 +575,11 @@ namespace ZXSpectrum.Z_80
             if (B != 0)
             {
                 PC -= 2;
-                totalTStates += 21;
+                CycleTStates += 21;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             ModifySignFlag8(B);
             ModifyZeroFlag(B);
@@ -647,11 +622,11 @@ namespace ZXSpectrum.Z_80
             if (B != 0)
             {
                 PC -= 2;
-                totalTStates += 21;
+                CycleTStates += 21;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             ModifySignFlag8(B);
             ModifyZeroFlag(B);
@@ -699,11 +674,11 @@ namespace ZXSpectrum.Z_80
             if (compare != A && Get16BitRegisters(0) != 0)
             {
                 PC -= 2;
-                totalTStates += 21;
+                CycleTStates += 21;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
 
             ModifySignFlag8(A - compare);
@@ -732,11 +707,11 @@ namespace ZXSpectrum.Z_80
 
             if (Get16BitRegisters(0) - 1 == 0)
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             else
             {
-                totalTStates += 21;
+                CycleTStates += 21;
                 PC -= 2;
             }
             Reset(Flag.HalfCarry);
@@ -749,7 +724,7 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(1, Get16BitRegisters(1) - 1);
             Set16BitRegisters(2, Get16BitRegisters(2) - 1);
 
-                Reset(Flag.ParityOverflow);
+            Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -765,12 +740,12 @@ namespace ZXSpectrum.Z_80
             B = (B - 1) & 0xff;
             if (B != 0)
             {
-                totalTStates += 21;
+                CycleTStates += 21;
                 PC -= 2;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             ModifySignFlag8(B);
             ModifyZeroFlag(B);
@@ -813,11 +788,11 @@ namespace ZXSpectrum.Z_80
             if (B != 0)
             {
                 PC -= 2;
-                totalTStates += 21;
+                CycleTStates += 21;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             ModifySignFlag8(B);
             ModifyZeroFlag(B);
@@ -865,11 +840,11 @@ namespace ZXSpectrum.Z_80
             if (compare != A && Get16BitRegisters(0)  != 0)
             {
                 PC -= 2;
-                totalTStates += 21;
+                CycleTStates += 21;
             }
             else
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
 
             ModifySignFlag8(A - compare);
@@ -898,11 +873,11 @@ namespace ZXSpectrum.Z_80
             
             if (Get16BitRegisters(0) -1 == 0)
             {
-                totalTStates += 16;
+                CycleTStates += 16;
             }
             else
             {
-                totalTStates += 21;
+                CycleTStates += 21;
                 PC -= 2;
             }     
        
@@ -917,7 +892,7 @@ namespace ZXSpectrum.Z_80
             Set16BitRegisters(0, Get16BitRegisters(0) - 1);
 
 
-                Reset(Flag.ParityOverflow);
+            Reset(Flag.ParityOverflow);
         }
 
         /// <summary>
@@ -926,7 +901,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void OUTD()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
             int written = Memory[Get16BitRegisters(2)];
             io.Write(Get16BitRegisters(0), written);
             B = (B - 1) & 0xff;
@@ -966,7 +941,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void IND()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
             B = (B - 1) & 0xff;
             
             int read = io.Read(Get16BitRegisters(0));
@@ -1007,7 +982,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CPD()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             var compare = Memory[Get16BitRegisters(2)];
             if (compare == A)
@@ -1042,7 +1017,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LDD()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             Memory[Get16BitRegisters(1)] = Memory[Get16BitRegisters(2)];
 
@@ -1069,7 +1044,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void OUTI()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             int written = Memory[Get16BitRegisters(2)];
 
@@ -1111,7 +1086,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void INI()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             int read = io.Read(Get16BitRegisters(0));
             Memory[Get16BitRegisters(2)] = read;
@@ -1153,7 +1128,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CPI()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             var compare = Memory[Get16BitRegisters(2)];
             if (compare == A)
@@ -1186,7 +1161,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LDI()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
 
             Memory[Get16BitRegisters(1)] = Memory[Get16BitRegisters(2)];
 
@@ -1212,7 +1187,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RLD()
         {
-            totalTStates += 18;
+            CycleTStates += 18;
 
             var loc = Get16BitRegisters(2);
             var mLow = Memory[loc] & 0xf;
@@ -1237,7 +1212,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RRD()
         {
-            totalTStates += 18;
+            CycleTStates += 18;
 
             var loc = Get16BitRegisters(2);
             var mLow = Memory[loc] & 0xf;
@@ -1262,7 +1237,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_A_R()
         {
-            totalTStates += 9;
+            CycleTStates += 9;
 
             A = (R + 2) & 0xff;
             ModifySignFlag8(R);
@@ -1283,7 +1258,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_A_I()
         {
-            totalTStates += 9;
+            CycleTStates += 9;
 
             A = I;
 
@@ -1305,7 +1280,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_R_A()
         {
-            totalTStates += 9;
+            CycleTStates += 9;
             R = A - 2;
         }
 
@@ -1315,7 +1290,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_I_A()
         {
-            totalTStates += 9;
+            CycleTStates += 9;
             I = A;
         }
 
@@ -1326,7 +1301,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="y"></param>
         private void IM(int y)
         {
-            totalTStates += 8;
+            CycleTStates += 8;
 
             if (y == 2 || y == 6)
                 interruptMode = 1;
@@ -1342,7 +1317,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RETI()
         {
-            totalTStates += 14;
+            CycleTStates += 14;
 
             PC = Memory[SP++];
             PC += (Memory[SP++] << 8);
@@ -1354,7 +1329,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         internal void RETN()
         {
-            totalTStates += 14;
+            CycleTStates += 14;
 
             IFF1 = IFF2;
             PC = Memory[SP++];
@@ -1367,7 +1342,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void NEG()
         {
-            totalTStates += 8;
+            CycleTStates += 8;
 
             if (A == 0x80)
                 Set(Flag.ParityOverflow);
@@ -1396,7 +1371,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="dd"></param>
         private void LD_dd_nn2(int dd)
         {
-            totalTStates += 20;
+            CycleTStates += 20;
 
             var address = Memory[PC++] + (Memory[PC++] << 8);
             Set16BitRegisters(dd, Memory[address] + (Memory[address + 1] << 8));
@@ -1409,7 +1384,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="dd"></param>
         private void LD_nn_dd(int dd)
         {
-            totalTStates += 20;
+            CycleTStates += 20;
 
             var address = Memory[PC++] + (Memory[PC++] << 8);
             Memory[address] = Get16BitRegisters(dd) & 0xff;
@@ -1423,7 +1398,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="ss"></param>
         private void ADC_HL(int ss)
         {
-            totalTStates += 15;
+            CycleTStates += 15;
 
             var initial = Get16BitRegisters(2);
             var addition = Get16BitRegisters(ss);
@@ -1455,7 +1430,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="ss"></param>
         private void SBC_HL(int ss)
         {
-            totalTStates += 15;
+            CycleTStates += 15;
 
             var initial = Get16BitRegisters(2);
             var addition = -Get16BitRegisters(ss);
@@ -1488,7 +1463,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void OUT_C_r(int r)
         {
-            totalTStates += 12;
+            CycleTStates += 12;
 
             if (r == 6)
                 io.Write(Get16BitRegisters(0), 0);
@@ -1504,7 +1479,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void IN_r_C(int r)
         {
-            totalTStates += 12;
+            CycleTStates += 12;
 
             var input = io.Read(Get16BitRegisters(0));
             if (r != 6)
@@ -1536,9 +1511,9 @@ namespace ZXSpectrum.Z_80
         private void SET(int b, int r)
         {
             if (r == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             SetRegister(r, (GetRegister(r) | (1 << b)));
         }
@@ -1552,9 +1527,9 @@ namespace ZXSpectrum.Z_80
         private void RES(int b, int r)
         {
             if (r == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             SetRegister(r, (GetRegister(r) & ~(1 << b)));
         }
@@ -1568,9 +1543,9 @@ namespace ZXSpectrum.Z_80
         private void BIT(int b, int r)
         {
             if (r == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             r = GetRegister(r);
 
@@ -1599,7 +1574,7 @@ namespace ZXSpectrum.Z_80
                 ModifyUndocumentedFlags8(r);
             else
             {
-                totalTStates += 8;
+                CycleTStates += 8;
                 ModifyUndocumentedFlags8((Get16BitRegisters(2) + displacement) >> 8);
             }
         }
@@ -1612,9 +1587,9 @@ namespace ZXSpectrum.Z_80
         private void SRL(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
             if ((val & 1) == 1)
@@ -1646,9 +1621,9 @@ namespace ZXSpectrum.Z_80
         private void SLL(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
 
@@ -1677,9 +1652,9 @@ namespace ZXSpectrum.Z_80
         private void SRA(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
 
@@ -1716,9 +1691,9 @@ namespace ZXSpectrum.Z_80
         private void SLA(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
             if ((val & 128) == 128)
@@ -1745,9 +1720,9 @@ namespace ZXSpectrum.Z_80
         private void RR(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
             if ((F & Flag.Carry) == Flag.Carry)
@@ -1779,9 +1754,9 @@ namespace ZXSpectrum.Z_80
         private void RL(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
             if ((F & Flag.Carry) == Flag.Carry)
@@ -1813,9 +1788,9 @@ namespace ZXSpectrum.Z_80
         private void RRC(int m)
         {
             if (m == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else
-                totalTStates += 8;
+                CycleTStates += 8;
 
             var val = GetRegister(m);
             if ((val & 1) == 1)
@@ -1846,9 +1821,9 @@ namespace ZXSpectrum.Z_80
         private void RLC(int r)
         {
             if (r == 6)
-                totalTStates += 9;
+                CycleTStates += 9;
             else 
-                totalTStates += 8;
+                CycleTStates += 8;
             
             var val = GetRegister(r);
             if ((val & 128) == 128)
@@ -1879,7 +1854,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="p"></param>
         private void RST(int p)
         {
-            totalTStates += 11;
+            CycleTStates += 11;
 
             Memory[--SP] = PC >> 8;
             Memory[--SP] = PC & 0xff;
@@ -1893,7 +1868,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CP_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             var initial = A;
             var addition = -Memory[PC++];
@@ -1919,7 +1894,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void OR_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             A = A | Memory[PC++];
 
@@ -1939,7 +1914,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void XOR_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             A = A ^ Memory[PC++];
 
@@ -1959,7 +1934,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void AND_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             A = A & Memory[PC++];
 
@@ -1975,11 +1950,11 @@ namespace ZXSpectrum.Z_80
 
         /// <summary>
         /// SBC A, n
-        /// The contents of the Carry Flag along with operand n are subtracted to the Accumulator.
+        /// The contents of the Carry Flag along with operand n are subtracted from the Accumulator.
         /// </summary>
         private void SBC_A_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             var initial = A;
             var addition = -Memory[PC++];
@@ -2004,7 +1979,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void SUB_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             var initial = A;
             var addition = -Memory[PC++];
@@ -2027,7 +2002,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void ADC_A_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             var initial = A;
             var addition = Memory[PC++];
@@ -2052,7 +2027,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void ADD_A_n()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             var initial = A;
             var addition = Memory[PC++];
@@ -2075,7 +2050,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CALL_nn()
         {
-            totalTStates += 17;
+            CycleTStates += 17;
             Memory[--SP] = (PC+2) >> 8;
             Memory[--SP] = (PC+2) & 0xff;
             PC = Memory[PC++] + (Memory[PC++] << 8);
@@ -2088,8 +2063,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="qq"></param>
         private void PUSH_qq(int qq)
         {
-            //Console.WriteLine(PC.ToString("x") + " " + prefix.ToString("x") + prefix2.ToString("x") + " PUSH " + qq);
-            totalTStates += 11;
+            CycleTStates += 11;
 
             switch (qq)
             {
@@ -2111,14 +2085,14 @@ namespace ZXSpectrum.Z_80
             var high = Memory[PC++];
             if (CheckCondition(cc))
             {
-                totalTStates += 17;
+                CycleTStates += 17;
                 Memory[--SP] = PC >> 8;
                 Memory[--SP] = PC & 0xff;
                 PC = (high << 8) + low;
             }
             else
             {
-                totalTStates += 10;
+                CycleTStates += 10;
             }
         }
 
@@ -2128,7 +2102,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void EI()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
             IFF1 = true;
             IFF2 = true;
         }
@@ -2139,7 +2113,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void DI()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
             IFF1 = false;
             IFF2 = false;
         }
@@ -2151,7 +2125,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void EX_DE_HL()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             D = D ^ H;
             H = D ^ H;
@@ -2168,7 +2142,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void EX_SP_HL()
         {
-            totalTStates += 19;
+            CycleTStates += 19;
 
             var low = Memory[SP];
             var high = Memory[SP + 1];
@@ -2186,7 +2160,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void IN_A_n()
         {
-            totalTStates += 11;
+            CycleTStates += 11;
             var port = Memory[PC++];
             A = io.Read((A << 8) + port);
         }
@@ -2198,7 +2172,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void OUT_n_A()
         {
-            totalTStates += 11;
+            CycleTStates += 11;
             var port = Memory[PC++];
             io.Write((A << 8) + port, A);
         }
@@ -2209,7 +2183,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void JP_nn()
         {
-            totalTStates += 10;
+            CycleTStates += 10;
             PC = Memory[PC++] + (Memory[PC++] << 8);
         }
 
@@ -2220,7 +2194,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="cc"></param>
         private void JP_cc_nn(int cc)
         {
-            totalTStates += 10;
+            CycleTStates += 10;
 
             if (CheckCondition(cc))
                 PC = Memory[PC++] + (Memory[PC++] << 8);
@@ -2234,7 +2208,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_SP_HL()
         {
-            totalTStates += 6;
+            CycleTStates += 6;
             SP = Get16BitRegisters(2);
         }
 
@@ -2244,7 +2218,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void JP_HL()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
             PC = Get16BitRegisters(2);
         }
 
@@ -2255,7 +2229,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void EXX()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             B = B ^ B2;
             B2 = B ^ B2;
@@ -2288,7 +2262,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RET()
         {
-            totalTStates += 10;
+            CycleTStates += 10;
             PC = Memory[SP++];
             PC += (Memory[SP++] << 8);
         }
@@ -2300,8 +2274,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="qq"></param>
         private void POP_qq(int qq)
         {
-            //Console.WriteLine(PC.ToString("x") + " " + prefix.ToString("x") + prefix2.ToString("x") + " POP " + qq);
-            totalTStates += 10;
+            CycleTStates += 10;
             if (qq == 3)
             {
                 //  Pop to AF
@@ -2323,13 +2296,13 @@ namespace ZXSpectrum.Z_80
         {
             if (CheckCondition(cc))
             {
-                totalTStates += 11;
+                CycleTStates += 11;
                 PC = Memory[SP++];
                 PC += (Memory[SP++] << 8);
             }
             else
             {
-                totalTStates += 5;
+                CycleTStates += 5;
             }
         }
 
@@ -2341,12 +2314,12 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void CP_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             var initial = A;
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
             var reg = GetRegister(r);
@@ -2374,11 +2347,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void OR_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2401,11 +2374,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void XOR_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2428,11 +2401,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void AND_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2455,13 +2428,13 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void SBC_A_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             var initial = A;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2490,13 +2463,13 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void SUB_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             var initial = A;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2522,13 +2495,13 @@ namespace ZXSpectrum.Z_80
         /// <param name="z"></param>
         private void ADC_A_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             var initial = A;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2557,13 +2530,13 @@ namespace ZXSpectrum.Z_80
         /// <param name="z"></param>
         private void ADD_A_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             var initial = A;
 
             if (r == 6 && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
             }
 
@@ -2588,7 +2561,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void HALT()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
             isHalted = true;
             PC--;
         }
@@ -2601,11 +2574,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="z"></param>
         private void LD_r_r(int r, int r2)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if ((r == 6 || r2 == 6) && prefix != 0)
             {
-                totalTStates += 4;
+                CycleTStates += 4;
                 ReadDisplacementByte();
                 if (r == 6)
                 {
@@ -2634,7 +2607,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CCF()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             //  Previous carry copied to half-carry?
             if ((F & Flag.Carry) == Flag.Carry)
@@ -2658,7 +2631,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void SCF()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             Set(Flag.Carry);
             Reset(Flag.HalfCarry);
@@ -2672,7 +2645,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void CPL()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             A = (~A) & 0xff;
             Set(Flag.HalfCarry);
@@ -2686,7 +2659,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void DAA()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
             int r = A;
 
             if (!F.HasFlag(Flag.Subtract))
@@ -2741,7 +2714,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RRA()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             bool newCarry;
             if (A % 2 == 1)
@@ -2771,7 +2744,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RLA()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             bool newCarry;
             if (A > 127)
@@ -2801,7 +2774,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RRCA()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (A % 2 == 1)
                 Set(Flag.Carry);
@@ -2825,7 +2798,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void RLCA()
         {
-            totalTStates += 4;           
+            CycleTStates += 4;           
 
             if (A > 127)
                 Set(Flag.Carry);
@@ -2850,11 +2823,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void LD_r_n(int r)
         {
-            totalTStates += 7;
+            CycleTStates += 7;
 
             if (r == 6 && prefix != 0) {
                 ReadDisplacementByte();
-                totalTStates++;          
+                CycleTStates++;          
             }
             SetRegister(r, Memory[PC++]);
         }
@@ -2866,11 +2839,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void DEC_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (r == 6)
             {
-                totalTStates++;
+                CycleTStates++;
                 if (prefix != 0)
                     ReadDisplacementByte();
             }
@@ -2896,11 +2869,11 @@ namespace ZXSpectrum.Z_80
         /// <param name="r"></param>
         private void INC_r(int r)
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             if (r == 6)
             {
-                totalTStates++;
+                CycleTStates++;
                 if (prefix !=0)
                     ReadDisplacementByte();
             }
@@ -2926,7 +2899,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="ss"></param>
         private void DEC_ss(int ss)
         {
-            totalTStates += 6;
+            CycleTStates += 6;
             Set16BitRegisters(ss, (Get16BitRegisters(ss) - 1) & 0xFFFF);
         }
 
@@ -2937,7 +2910,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="ss"></param>
         private void INC_ss(int ss)
         {
-            totalTStates += 6;
+            CycleTStates += 6;
             Set16BitRegisters(ss, (Get16BitRegisters(ss) + 1) & 0xFFFF);
         }
 
@@ -2947,7 +2920,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_A_nn()
         {
-            totalTStates += 13;
+            CycleTStates += 13;
             A = Memory[Memory[PC++] + (Memory[PC++] << 8)];
         }
 
@@ -2957,7 +2930,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_HL_nn()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
             var address = Memory[PC++] + (Memory[PC++] << 8);
             SetRegister(5, Memory[address]);
             SetRegister(4, Memory[address + 1]);
@@ -2969,7 +2942,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_A_BC()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
             A = Memory[Get16BitRegisters(0)];
         }
 
@@ -2979,7 +2952,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_A_DE()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
             A = Memory[Get16BitRegisters(1)];
         }
 
@@ -2988,7 +2961,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_nn_A()
         {
-            totalTStates += 13;
+            CycleTStates += 13;
             Memory[Memory[PC++] + (Memory[PC++] << 8)] = A;
         }
 
@@ -2998,7 +2971,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_nn_HL()
         {
-            totalTStates += 16;
+            CycleTStates += 16;
             var address = Memory[PC++] + (Memory[PC++] << 8);
             Memory[address] = GetRegister(5);
             Memory[address + 1] = GetRegister(4);
@@ -3010,7 +2983,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_DE_A()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
             Memory[Get16BitRegisters(1)] = A;
         }
 
@@ -3020,7 +2993,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void LD_BC_A()
         {
-            totalTStates += 7;
+            CycleTStates += 7;
             Memory[Get16BitRegisters(0)] = A;
         }
 
@@ -3031,7 +3004,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="ss"></param>
         private void ADD_HL_ss(int ss)
         {
-            totalTStates += 11;
+            CycleTStates += 11;
 
             var HL = Get16BitRegisters(2);
             var SS = Get16BitRegisters(ss);
@@ -3056,7 +3029,7 @@ namespace ZXSpectrum.Z_80
         private void LD_dd_nn(int dd)
         {
             Set16BitRegisters(dd, Memory[PC++], Memory[PC++]);
-            totalTStates += 10;
+            CycleTStates += 10;
         }
 
         /// <summary>
@@ -3070,13 +3043,13 @@ namespace ZXSpectrum.Z_80
         {
             if (CheckCondition(condition))
             {
-                totalTStates += 12;
+                CycleTStates += 12;
                 PC += ((sbyte)Memory[PC] + 1);
             }
             else
             {
                 PC++;
-                totalTStates += 7;
+                CycleTStates += 7;
             }
             PC = PC & 0xffff;
         }
@@ -3091,13 +3064,13 @@ namespace ZXSpectrum.Z_80
             B = (B - 1) & 0xff;
             if (B != 0)
             {
-                totalTStates += 13;
+                CycleTStates += 13;
                 PC += ((sbyte)Memory[PC]) + 1;
             }
             else
             {
                 PC++;
-                totalTStates += 8;
+                CycleTStates += 8;
             }
             PC = PC & 0xffff;
         }
@@ -3108,7 +3081,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void EX_AF_AF2()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
 
             A = A ^ A2;
             A2 = A ^ A2;
@@ -3125,7 +3098,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         private void NOP()
         {
-            totalTStates += 4;
+            CycleTStates += 4;
         }
     }
 }

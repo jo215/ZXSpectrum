@@ -228,7 +228,6 @@ namespace ZXSpectrum.Z_80
         /// <param name="addition"></param>
         private void ModifyOverflowFlag8(int initial, int addition, int result)
         {
-
             if ((initial & 0x80) == (addition & 0x80) && (initial & 0x80) != (result & 0x80))
                 Set(Flag.ParityOverflow);
             else
@@ -383,11 +382,11 @@ namespace ZXSpectrum.Z_80
                             return L;
                     } 
                 case 6:
-                    totalTStates += 3;  
+                    CycleTStates += 3;  
                     switch (prefix) {
                         case 0xDD:
                         case 0xFD:
-                            totalTStates += 4; return (Memory[Get16BitRegisters(2) + displacement]);
+                            CycleTStates += 4; return (Memory[Get16BitRegisters(2) + displacement]);
                         default:
                             return Memory[Get16BitRegisters(2)];
                     } 
@@ -438,12 +437,12 @@ namespace ZXSpectrum.Z_80
                             L = value; return;
                     }
                 case 6:
-                    totalTStates += 3; 
+                    CycleTStates += 3; 
                     switch (prefix)
                     {
                         case 0xDD:
                         case 0xFD:
-                            totalTStates +=4; Memory[Get16BitRegisters(2) + displacement] = value; return;
+                            CycleTStates +=4; Memory[Get16BitRegisters(2) + displacement] = value; return;
                         default:
                             Memory[Get16BitRegisters(2)] = value; return;
                     }

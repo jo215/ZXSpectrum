@@ -1,0 +1,1268 @@
+﻿00 NOP
+01 LD BC, ?(?<nn>\d+)
+02 LD \(BC\), ?A
+03 INC BC
+04 INC B
+05 DEC B
+06 LD B, ?(?<n>\d+)
+07 RLCA
+08 EX AF, ?AF'
+09 ADD HL, ?BC
+0A LD A, ?\(BC\)
+0B DEC BC
+0C INC C
+0D DEC C
+0E LD C, ?(?<n>\d+)
+0F RRCA
+10 DJNZ \((?<e>\w+)\)
+11 LD DE, ?(?<nn>\d+)
+12 LD \(DE\), A
+13 INC DE
+14 INC D
+15 DEC D
+16 LD D, ?(?<n>\d+)
+17 RLA
+18 JR (?<e>\w+)
+19 ADD HL, ?DE
+1A LD A, ?\(DE\)
+1B DEC DE
+1C INC E
+1D DEC E
+1E LD E, ?(?<n>\d+)
+1F RRA
+20 JR NZ, ?(?<e>\w+)
+21 LD HL, ?(?<nn>\d+)
+22 LD \((?<nn>\d+)\), ?HL
+23 INC HL
+24 INC H
+25 DEC H
+26 LD H, ?(?<n>\d+)
+27 DAA
+28 JR Z, ?(?<e>\w+)
+29 ADD HL, HL
+2A LD HL, ?\((?<nn>\d+)\)
+2B DEC HL
+2C INC L
+2D DEC L
+2E LD L, ?(?<n>\d+)
+2F CPL
+30 JR NC, ?(?<e>\w+)
+31 LD SP, (?<nn>\d+)
+32 LD \((?<nn>\d+)\), ?A
+33 INC SP
+34 INC \(HL\)
+35 DEC \(HL\)
+36 LD \(HL\), ?(?<n>\d+)
+37 SCF
+38 JR C, ?(?<e>\w+)
+39 ADD HL, ?SP
+3A LD A, ?\((?<nn>\d+)\)
+3B DEC SP
+3C INC A
+3D DEC A
+3E LD A, ?(?<n>\d+)
+3F CCF
+40 LD B, ?B
+41 LD B, ?C
+42 LD B, ?D
+43 LD B, ?E
+44 LD B, ?H
+45 LD B, ?L
+46 LD B, ?\(HL\)
+47 LD B, ?A
+48 LD C, ?B
+49 LD C, ?C
+4A LD C, ?D
+4B LD C, ?E
+4C LD C, ?H
+4D LD C, ?L
+4E LD C, ?\(HL\)
+4F LD C, ?A
+50 LD D, ?B
+51 LD D, ?C
+52 LD D, ?D
+53 LD D, ?E
+54 LD D, ?H
+55 LD D, ?L
+56 LD D, ?\(HL\)
+57 LD D, ?A
+58 LD E, ?B
+59 LD E, ?C
+5A LD E, ?D
+5B LD E, ?E
+5C LD E, ?H
+5D LD E, ?L
+5E LD E, ?\(HL\)
+5F LD E, ?A
+60 LD H, ?B
+61 LD H, ?C
+62 LD H, ?D
+63 LD H, ?E
+64 LD H, ?H
+65 LD H, ?L
+66 LD H, ?\(HL\)
+67 LD H, ?A
+68 LD L, ?B
+69 LD L, ?C
+6A LD L, ?D
+6B LD L, ?E
+6C LD L, ?H
+6D LD L, ?L
+6E LD L, ?\(HL\)
+6F LD L, ?A
+70 LD \(HL\), ? B
+71 LD \(HL\), ? C
+72 LD \(HL\), ? D
+73 LD \(HL\), ? E
+74 LD \(HL\), ? H
+75 LD \(HL\), ? L
+76 HALT
+77 LD \(HL\), ? A
+78 LD A, ?B
+79 LD A, ?C
+7A LD A, ?D
+7B LD A, ?E
+7C LD A, ?H
+7D LD A, ?L
+7E LD A, ?\(HL\)
+7F LD A, ?A
+80 ADD A, ?B
+81 ADD A, ?C
+82 ADD A, ?D
+83 ADD A, ?E
+84 ADD A, ?H
+85 ADD A, ?L
+86 ADD A, ?\(HL\)
+87 ADD A, ?A
+88 ADC A, ?B
+89 ADC A, ?C
+8A ADC A, ?D
+8B ADC A, ?E
+8C ADC A, ?H
+8D ADC A, ?L
+8E ADC A, ?\(HL\)
+8F ADC A, ?A
+90 SUB B
+91 SUB C
+92 SUB D
+93 SUB E
+94 SUB H
+95 SUB L
+96 SUB \(HL\)
+97 SUB A
+98 SBC B
+99 SBC C
+9A SBC D
+9B SBC E
+9C SBC H
+9D SBC L
+9E SBC \(HL\)
+9F SBC A
+A0 AND B
+A1 AND C
+A2 AND D
+A3 AND E
+A4 AND H
+A5 AND L
+A6 AND \(HL\)
+A7 AND A
+A8 XOR B
+A9 XOR C
+AA XOR D
+AB XOR E
+AC XOR H
+AD XOR L
+AE XOR \(HL\)
+AF XOR A
+B0 OR B
+B1 OR C
+B2 OR D
+B3 OR E
+B4 OR H
+B5 OR L
+B6 OR \(HL\)
+B7 OR A
+B8 CP B
+B9 CP C
+BA CP D
+BB CP E
+BC CP H
+BD CP L
+BE CP \(HL\)
+BF CP A
+C0 RET NZ
+C1 POP BC
+C2 JP NZ, ?(?<nn>\d+)
+C3 JP (?<nn>\d+)
+C4 CALL NZ, ?(?<nn>\d+)
+C5 PUSH BC
+C6 ADD A, ?(?<n>\d+)
+C7 RST 0H
+C8 RET Z
+C9 RET
+CA JP Z, ?(?<nn>\d+)
+CB00 RLC B
+CB01 RLC C
+CB02 RLC D
+CB03 RLC E
+CB04 RLC H
+CB05 RLC L
+CB06 RLC \(HL\)
+CB07 RLC A
+CB08 RRC B
+CB09 RRC C
+CB0A RRC D
+CB0B RRC E
+CB0C RRC H
+CB0D RRC L
+CB0E RRC \(HL\)
+CB0F RRC A
+CB10 RL B
+CB11 RL C
+CB12 RL D
+CB13 RL E
+CB14 RL H
+CB15 RL L
+CB16 RL \(HL\)
+CB17 RL A
+CB18 RR B
+CB19 RR C
+CB1A RR D
+CB1B RR E
+CB1C RR H
+CB1D RR L
+CB1E RR \(HL\)
+CB1F RR A
+CB20 SLA B
+CB21 SLA C
+CB22 SLA D
+CB23 SLA E
+CB24 SLA H
+CB25 SLA L
+CB26 SLA \(HL\)
+CB27 SLA A
+CB28 SRA B
+CB29 SRA C
+CB2A SRA D
+CB2B SRA E
+CB2C SRA H
+CB2D SRA L
+CB2E SRA \(HL\)
+CB2F SRA A
+CB30 SLL B
+CB31 SLL C
+CB32 SLL D
+CB33 SLL E
+CB34 SLL H
+CB35 SLL L
+CB36 SLL \(HL\)
+CB37 SLL A
+CB38 SRL B
+CB39 SRL C
+CB3A SRL D
+CB3B SRL E
+CB3C SRL H
+CB3D SRL L
+CB3E SRL \(HL\)
+CB3F SRL A
+CB40 BIT 0, ?B
+CB41 BIT 0, ?C
+CB42 BIT 0, ?D
+CB43 BIT 0, ?E
+CB44 BIT 0, ?H
+CB45 BIT 0, ?L
+CB46 BIT 0, ?\(HL\)
+CB47 BIT 0, ?A
+CB48 BIT 1, ?B
+CB49 BIT 1, ?C
+CB4A BIT 1, ?D
+CB4B BIT 1, ?E
+CB4C BIT 1, ?H
+CB4D BIT 1, ?L
+CB4E BIT 1, ?\(HL\)
+CB4F BIT 1, ?A
+CB50 BIT 2, ?B
+CB51 BIT 2, ?C
+CB52 BIT 2, ?D
+CB53 BIT 2, ?E
+CB54 BIT 2, ?H
+CB55 BIT 2, ?L
+CB56 BIT 2, ?\(HL\)
+CB57 BIT 2, ?A
+CB58 BIT 3, ?B
+CB59 BIT 3, ?C
+CB5A BIT 3, ?D
+CB5B BIT 3, ?E
+CB5C BIT 3, ?H
+CB5D BIT 3, ?L
+CB5E BIT 3, ?\(HL\)
+CB5F BIT 3, ?A
+CB60 BIT 4, ?B
+CB61 BIT 4, ?C
+CB62 BIT 4, ?D
+CB63 BIT 4, ?E
+CB64 BIT 4, ?H
+CB65 BIT 4, ?L
+CB66 BIT 4, ?\(HL\)
+CB67 BIT 4, ?A
+CB68 BIT 5, ?B
+CB69 BIT 5, ?C
+CB6A BIT 5, ?D
+CB6B BIT 5, ?E
+CB6C BIT 5, ?H
+CB6D BIT 5, ?L
+CB6E BIT 5, ?\(HL\)
+CB6F BIT 5, ?A
+CB70 BIT 6, ?B
+CB71 BIT 6, ?C
+CB72 BIT 6, ?D
+CB73 BIT 6, ?E
+CB74 BIT 6, ?H
+CB75 BIT 6, ?L
+CB76 BIT 6, ?\(HL\)
+CB77 BIT 6, ?A
+CB78 BIT 7, ?B
+CB79 BIT 7, ?C
+CB7A BIT 7, ?D
+CB7B BIT 7, ?E
+CB7C BIT 7, ?H
+CB7D BIT 7, ?L
+CB7E BIT 7, ?\(HL\)
+CB7F BIT 7, ?A
+CB80 RES 0, ?B
+CB81 RES 0, ?C
+CB82 RES 0, ?D
+CB83 RES 0, ?E
+CB84 RES 0, ?H
+CB85 RES 0, ?L
+CB86 RES 0, ?\(HL\)
+CB87 RES 0, ?A
+CB88 RES 1, ?B
+CB89 RES 1, ?C
+CB8A RES 1, ?D
+CB8B RES 1, ?E
+CB8C RES 1, ?H
+CB8D RES 1, ?L
+CB8E RES 1, ?\(HL\)
+CB8F RES 1, ?A
+CB90 RES 2, ?B
+CB91 RES 2, ?C
+CB92 RES 2, ?D
+CB93 RES 2, ?E
+CB94 RES 2, ?H
+CB95 RES 2, ?L
+CB96 RES 2, ?\(HL\)
+CB97 RES 2, ?A
+CB98 RES 3, ?B
+CB99 RES 3, ?C
+CB9A RES 3, ?D
+CB9B RES 3, ?E
+CB9C RES 3, ?H
+CB9D RES 3, ?L
+CB9E RES 3, ?\(HL\)
+CB9F RES 3, ?A
+CBA0 RES 4, ?B
+CBA1 RES 4, ?C
+CBA2 RES 4, ?D
+CBA3 RES 4, ?E
+CBA4 RES 4, ?H
+CBA5 RES 4, ?L
+CBA6 RES 4, ?\(HL\)
+CBA7 RES 4, ?A
+CBA8 RES 5, ?B
+CBA9 RES 5, ?C
+CBAA RES 5, ?D
+CBAB RES 5, ?E
+CBAC RES 5, ?H
+CBAD RES 5, ?L
+CBAE RES 5, ?\(HL\)
+CBAF RES 5, ?A
+CBB0 RES 6, ?B
+CBB1 RES 6, ?C
+CBB2 RES 6, ?D
+CBB3 RES 6, ?E
+CBB4 RES 6, ?H
+CBB5 RES 6, ?L
+CBB6 RES 6, ?\(HL\)
+CBB7 RES 6, ?A
+CBB8 RES 7, ?B
+CBB9 RES 7, ?C
+CBBA RES 7, ?D
+CBBB RES 7, ?E
+CBBC RES 7, ?H
+CBBD RES 7, ?L
+CBBE RES 7, ?\(HL\)
+CBBF RES 7, ?A
+CBC0 SET 0, ?B
+CBC1 SET 0, ?C
+CBC2 SET 0, ?D
+CBC3 SET 0, ?E
+CBC4 SET 0, ?H
+CBC5 SET 0, ?L
+CBC6 SET 0, ?\(HL\)
+CBC7 SET 0, ?A
+CBC8 SET 1, ?B
+CBC9 SET 1, ?C
+CBCA SET 1, ?D
+CBCB SET 1, ?E
+CBCC SET 1, ?H
+CBCD SET 1, ?L
+CBCE SET 1, ?\(HL\)
+CBCF SET 1, ?A
+CBD0 SET 2, ?B
+CBD1 SET 2, ?C
+CBD2 SET 2, ?D
+CBD3 SET 2, ?E
+CBD4 SET 2, ?H
+CBD5 SET 2, ?L
+CBD6 SET 2, ?\(HL\)
+CBD7 SET 2, ?A
+CBD8 SET 3, ?B
+CBD9 SET 3, ?C
+CBDA SET 3, ?D
+CBDB SET 3, ?E
+CBDC SET 3, ?H
+CBDD SET 3, ?L
+CBDE SET 3, ?\(HL\)
+CBDF SET 3, ?A
+CBE0 SET 4, ?B
+CBE1 SET 4, ?C
+CBE2 SET 4, ?D
+CBE3 SET 4, ?E
+CBE4 SET 4, ?H
+CBE5 SET 4, ?L
+CBE6 SET 4, ?\(HL\)
+CBE7 SET 4, ?A
+CBE8 SET 5, ?B
+CBE9 SET 5, ?C
+CBEA SET 5, ?D
+CBEB SET 5, ?E
+CBEC SET 5, ?H
+CBED SET 5, ?L
+CBEE SET 5, ?\(HL\)
+CBEF SET 5, ?A
+CBF0 SET 6, ?B
+CBF1 SET 6, ?C
+CBF2 SET 6, ?D
+CBF3 SET 6, ?E
+CBF4 SET 6, ?H
+CBF5 SET 6, ?L
+CBF6 SET 6, ?\(HL\)
+CBF7 SET 6, ?A
+CBF8 SET 7, ?B
+CBF9 SET 7, ?C
+CBFA SET 7, ?D
+CBFB SET 7, ?E
+CBFC SET 7, ?H
+CBFD SET 7, ?L
+CBFE SET 7, ?\(HL\)
+CBFF SET 7, ?A
+CC CALL Z, ?(?<nn>\d+)
+CD CALL (?<nn>\d+)
+CE ADC A, ?(?<n>\d+)
+CF RST 8H
+D0 RET NC
+D1 POP DE
+D2 JP NC, ?(?<nn>\d+)
+D3 OUT \((?<n>\d+)\), ?A
+D4 CALL NC, ?(?<nn>\d+)
+D5 PUSH DE
+D6 SUB (?<n>\d+)
+D7 RST 10H
+D8 RET C
+D9 EXX
+DA JP C, ?(?<nn>\d+)
+DB IN A, ?\((?<n>\d+)\)
+DC CALL C, ?(?<nn>\d+)
+DD09 ADD IX, ?BC
+DD19 ADD IX, ?DE
+DD21 LD IX, ?(?<nn>\d+)
+DD22 LD \((?<nn>\d+)\), ?IX
+DD23 INC IX
+DD24 INC IXH
+DD25 DEC IXH
+DD26 LD IXH, ?(?<n>\d+)
+DD29 ADD IX, ?IX
+DD2A LD IX, ?\((?<nn>\d+)\)
+DD2B DEC IX
+DD2C INC IXL
+DD2D DEC IXL
+DD2E LD IXL, ?(?<n>\d+)
+DD34 INC \(IX\+(?<d>\d+)\)
+DD35 DEC \(IX\+(?<d>\d+)\)
+DD36 LD \(IX\+(?<d>\d+)\), ?(?<n>\d+)
+DD39 ADD IX, ?SP
+DD44 LD B, ?IXH
+DD45 LD B, ?IXL
+DD46 LD B, ?\(IX\+(?<d>\d+)\)
+DD4C LD C, ?IXH
+DD4D LD C, ?IXL
+DD4E LD C, ?\(IX\+(?<d>\d+)\)
+DD54 LD D, ?IXH
+DD55 LD D, ?IXL
+DD56 LD D, ?\(IX\+(?<d>\d+)\)
+DD5C LD E, ?IXH
+DD5D LD E, ?IXL
+DD5E LD E, ?\(IX\+(?<d>\d+)\)
+DD60 LD IXH, ?B
+DD61 LD IXH, ?C
+DD62 LD IXH, ?D
+DD63 LD IXH, ?E
+DD64 LD IXH, ?IXH
+DD65 LD IXH, ?IXL
+DD66 LD H, ?\(IX\+(?<d>\d+)\)
+DD67 LD IXH, ?A
+DD68 LD IXL, ?B
+DD69 LD IXL, ?C
+DD6A LD IXL, ?D
+DD6B LD IXL, ?E
+DD6C LD IXL, ?IXH
+DD6D LD IXL, ?IXL
+DD6E LD L, ?\(IX\+(?<d>\d+)\)
+DD6F LD IXL, ?A
+DD70 LD \(IX\+(?<d>\d+)\), ?B
+DD71 LD \(IX\+(?<d>\d+)\), ?C
+DD72 LD \(IX\+(?<d>\d+)\), ?D
+DD73 LD \(IX\+(?<d>\d+)\), ?E
+DD74 LD \(IX\+(?<d>\d+)\), ?H
+DD75 LD \(IX\+(?<d>\d+)\), ?L
+DD77 LD \(IX\+(?<d>\d+)\), ?A
+DD7C LD A, ?IXH
+DD7D LD A, ?IXL
+DD7E LD A, ?\(IX\+(?<d>\d+)\)
+DD84 ADD A, ?IXH
+DD85 ADD A, ?IXL
+DD86 ADD A, ?\(IX\+(?<d>\d+)\)
+DD8C ADC A, ?IXH
+DD8D ADC A, ?IXL
+DD8E ADC A, ?\(IX\+(?<d>\d+)\)
+DD94 SUB IXH
+DD95 SUB IXL
+DD96 SUB \(IX\+(?<d>\d+)\)
+DD9C SBC A, ?IXH
+DD9D SBC A, ?IXL
+DD9E SBC A, ?\(IX\+(?<d>\d+)\)
+DDA4 AND IXH
+DDA5 AND IXL
+DDA6 AND \(IX\+(?<d>\d+)\)
+DDAC XOR IXH
+DDAD XOR IXL
+DDAE XOR \(IX\+(?<d>\d+)\)
+DDB4 OR IXH
+DDB5 OR IXL
+DDB6 OR \(IX\+(?<d>\d+)\)
+DDBC CP IXH
+DDBD CP IXL
+DDBE CP \(IX\+(?<d>\d+)\)
+DDCB00 RLC \(IX\+(?<d>\d+)\), ?B
+DDCB01 RLC \(IX\+(?<d>\d+)\), ?C
+DDCB02 RLC \(IX\+(?<d>\d+)\), ?D
+DDCB03 RLC \(IX\+(?<d>\d+)\), ?E
+DDCB04 RLC \(IX\+(?<d>\d+)\), ?H
+DDCB05 RLC \(IX\+(?<d>\d+)\), ?L
+DDCB06 RLC \(IX\+(?<d>\d+)\)
+DDCB07 RLC \(IX\+(?<d>\d+)\), ?A
+DDCB08 RRC \(IX\+(?<d>\d+)\), ?B
+DDCB09 RRC \(IX\+(?<d>\d+)\), ?C
+DDCB0A RRC \(IX\+(?<d>\d+)\), ?D
+DDCB0B RRC \(IX\+(?<d>\d+)\), ?E
+DDCB0C RRC \(IX\+(?<d>\d+)\), ?H
+DDCB0D RRC \(IX\+(?<d>\d+)\), ?L
+DDCB0E RRC \(IX\+(?<d>\d+)\)
+DDCB0F RRC \(IX\+(?<d>\d+)\), ?A
+DDCB10 RL \(IX\+(?<d>\d+)\), ?B
+DDCB11 RL \(IX\+(?<d>\d+)\), ?C
+DDCB12 RL \(IX\+(?<d>\d+)\), ?D
+DDCB13 RL \(IX\+(?<d>\d+)\), ?E
+DDCB14 RL \(IX\+(?<d>\d+)\), ?H
+DDCB15 RL \(IX\+(?<d>\d+)\), ?L
+DDCB16 RL \(IX\+(?<d>\d+)\)
+DDCB17 RL \(IX\+(?<d>\d+)\), ?A
+DDCB18 RR \(IX\+(?<d>\d+)\), ?B
+DDCB19 RR \(IX\+(?<d>\d+)\), ?C
+DDCB1A RR \(IX\+(?<d>\d+)\), ?D
+DDCB1B RR \(IX\+(?<d>\d+)\), ?E
+DDCB1C RR \(IX\+(?<d>\d+)\), ?H
+DDCB1D RR \(IX\+(?<d>\d+)\), ?L
+DDCB1E RR \(IX\+(?<d>\d+)\)
+DDCB1F RR \(IX\+(?<d>\d+)\), ?A
+DDCB20 SLA \(IX\+(?<d>\d+)\), ?B
+DDCB21 SLA \(IX\+(?<d>\d+)\), ?C
+DDCB22 SLA \(IX\+(?<d>\d+)\), ?D
+DDCB23 SLA \(IX\+(?<d>\d+)\), ?E
+DDCB24 SLA \(IX\+(?<d>\d+)\), ?H
+DDCB25 SLA \(IX\+(?<d>\d+)\), ?L
+DDCB26 SLA \(IX\+(?<d>\d+)\)
+DDCB27 SLA \(IX\+(?<d>\d+)\), ?A
+DDCB28 SRA \(IX\+(?<d>\d+)\), ?B
+DDCB29 SRA \(IX\+(?<d>\d+)\), ?C
+DDCB2A SRA \(IX\+(?<d>\d+)\), ?D
+DDCB2B SRA \(IX\+(?<d>\d+)\), ?E
+DDCB2C SRA \(IX\+(?<d>\d+)\), ?H
+DDCB2D SRA \(IX\+(?<d>\d+)\), ?L
+DDCB2E SRA \(IX\+(?<d>\d+)\)
+DDCB2F SRA \(IX\+(?<d>\d+)\), ?A
+DDCB30 SLL \(IX\+(?<d>\d+)\), ?B
+DDCB31 SLL \(IX\+(?<d>\d+)\), ?C
+DDCB32 SLL \(IX\+(?<d>\d+)\), ?D
+DDCB33 SLL \(IX\+(?<d>\d+)\), ?E
+DDCB34 SLL \(IX\+(?<d>\d+)\), ?H
+DDCB35 SLL \(IX\+(?<d>\d+)\), ?L
+DDCB36 SLL \(IX\+(?<d>\d+)\)
+DDCB37 SLL \(IX\+(?<d>\d+)\), ?A
+DDCB38 SRL \(IX\+(?<d>\d+)\), ?B
+DDCB39 SRL \(IX\+(?<d>\d+)\), ?C
+DDCB3A SRL \(IX\+(?<d>\d+)\), ?D
+DDCB3B SRL \(IX\+(?<d>\d+)\), ?E
+DDCB3C SRL \(IX\+(?<d>\d+)\), ?H
+DDCB3D SRL \(IX\+(?<d>\d+)\), ?L
+DDCB3E SRL \(IX\+(?<d>\d+)\)
+DDCB3F SRL \(IX\+(?<d>\d+)\), ?A
+DDCB40 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB41 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB42 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB43 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB44 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB45 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB46 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB47 BIT 0, ?\(IX\+(?<d>\d+)\)
+DDCB48 BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB49 BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4A BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4B BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4C BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4D BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4E BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB4F BIT 1, ?\(IX\+(?<d>\d+)\)
+DDCB50 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB51 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB52 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB53 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB54 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB55 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB56 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB57 BIT 2, ?\(IX\+(?<d>\d+)\)
+DDCB58 BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB59 BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5A BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5B BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5C BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5D BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5E BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB5F BIT 3, ?\(IX\+(?<d>\d+)\)
+DDCB60 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB61 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB62 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB63 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB64 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB65 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB66 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB67 BIT 4, ?\(IX\+(?<d>\d+)\)
+DDCB68 BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB69 BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6A BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6B BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6C BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6D BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6E BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB6F BIT 5, ?\(IX\+(?<d>\d+)\)
+DDCB70 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB71 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB72 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB73 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB74 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB75 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB76 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB77 BIT 6, ?\(IX\+(?<d>\d+)\)
+DDCB78 BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB79 BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7A BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7B BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7C BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7D BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7E BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB7F BIT 7, ?\(IX\+(?<d>\d+)\)
+DDCB80 RES 0, ?\(IX\+(?<d>\d+)\), ?B
+DDCB81 RES 0, ?\(IX\+(?<d>\d+)\), ?C
+DDCB82 RES 0, ?\(IX\+(?<d>\d+)\), ?D
+DDCB83 RES 0, ?\(IX\+(?<d>\d+)\), ?E
+DDCB84 RES 0, ?\(IX\+(?<d>\d+)\), ?H
+DDCB85 RES 0, ?\(IX\+(?<d>\d+)\), ?L
+DDCB86 RES 0, ?\(IX\+(?<d>\d+)\)
+DDCB87 RES 0, ?\(IX\+(?<d>\d+)\), ?A
+DDCB88 RES 1, ?\(IX\+(?<d>\d+)\), ?B
+DDCB89 RES 1, ?\(IX\+(?<d>\d+)\), ?C
+DDCB8A RES 1, ?\(IX\+(?<d>\d+)\), ?D
+DDCB8B RES 1, ?\(IX\+(?<d>\d+)\), ?E
+DDCB8C RES 1, ?\(IX\+(?<d>\d+)\), ?H
+DDCB8D RES 1, ?\(IX\+(?<d>\d+)\), ?L
+DDCB8E RES 1, ?\(IX\+(?<d>\d+)\)
+DDCB8F RES 1, ?\(IX\+(?<d>\d+)\), ?A
+DDCB90 RES 2, ?\(IX\+(?<d>\d+)\), ?B
+DDCB91 RES 2, ?\(IX\+(?<d>\d+)\), ?C
+DDCB92 RES 2, ?\(IX\+(?<d>\d+)\), ?D
+DDCB93 RES 2, ?\(IX\+(?<d>\d+)\), ?E
+DDCB94 RES 2, ?\(IX\+(?<d>\d+)\), ?H
+DDCB95 RES 2, ?\(IX\+(?<d>\d+)\), ?L
+DDCB96 RES 2, ?\(IX\+(?<d>\d+)\)
+DDCB97 RES 2, ?\(IX\+(?<d>\d+)\), ?A
+DDCB98 RES 3, ?\(IX\+(?<d>\d+)\), ?B
+DDCB99 RES 3, ?\(IX\+(?<d>\d+)\), ?C
+DDCB9A RES 3, ?\(IX\+(?<d>\d+)\), ?D
+DDCB9B RES 3, ?\(IX\+(?<d>\d+)\), ?E
+DDCB9C RES 3, ?\(IX\+(?<d>\d+)\), ?H
+DDCB9D RES 3, ?\(IX\+(?<d>\d+)\), ?L
+DDCB9E RES 3, ?\(IX\+(?<d>\d+)\)
+DDCB9F RES 3, ?\(IX\+(?<d>\d+)\), ?A
+DDCBA0 RES 4, ?\(IX\+(?<d>\d+)\), ?B
+DDCBA1 RES 4, ?\(IX\+(?<d>\d+)\), ?C
+DDCBA2 RES 4, ?\(IX\+(?<d>\d+)\), ?D
+DDCBA3 RES 4, ?\(IX\+(?<d>\d+)\), ?E
+DDCBA4 RES 4, ?\(IX\+(?<d>\d+)\), ?H
+DDCBA5 RES 4, ?\(IX\+(?<d>\d+)\), ?L
+DDCBA6 RES 4, ?\(IX\+(?<d>\d+)\)
+DDCBA7 RES 4, ?\(IX\+(?<d>\d+)\), ?A
+DDCBA8 RES 5, ?\(IX\+(?<d>\d+)\), ?B
+DDCBA9 RES 5, ?\(IX\+(?<d>\d+)\), ?C
+DDCBAA RES 5, ?\(IX\+(?<d>\d+)\), ?D
+DDCBAB RES 5, ?\(IX\+(?<d>\d+)\), ?E
+DDCBAC RES 5, ?\(IX\+(?<d>\d+)\), ?H
+DDCBAD RES 5, ?\(IX\+(?<d>\d+)\), ?L
+DDCBAE RES 5, ?\(IX\+(?<d>\d+)\)
+DDCBAF RES 5, ?\(IX\+(?<d>\d+)\), ?A
+DDCBB0 RES 6, ?\(IX\+(?<d>\d+)\), ?B
+DDCBB1 RES 6, ?\(IX\+(?<d>\d+)\), ?C
+DDCBB2 RES 6, ?\(IX\+(?<d>\d+)\), ?D
+DDCBB3 RES 6, ?\(IX\+(?<d>\d+)\), ?E
+DDCBB4 RES 6, ?\(IX\+(?<d>\d+)\), ?H
+DDCBB5 RES 6, ?\(IX\+(?<d>\d+)\), ?L
+DDCBB6 RES 6, ?\(IX\+(?<d>\d+)\)
+DDCBB7 RES 6, ?\(IX\+(?<d>\d+)\), ?A
+DDCBB8 RES 7, ?\(IX\+(?<d>\d+)\), ?B
+DDCBB9 RES 7, ?\(IX\+(?<d>\d+)\), ?C
+DDCBBA RES 7, ?\(IX\+(?<d>\d+)\), ?D
+DDCBBB RES 7, ?\(IX\+(?<d>\d+)\), ?E
+DDCBBC RES 7, ?\(IX\+(?<d>\d+)\), ?H
+DDCBBD RES 7, ?\(IX\+(?<d>\d+)\), ?L
+DDCBBE RES 7, ?\(IX\+(?<d>\d+)\)
+DDCBBF RES 7, ?\(IX\+(?<d>\d+)\), ?A
+DDCBC0 SET 0, ?\(IX\+(?<d>\d+)\), ?B
+DDCBC1 SET 0, ?\(IX\+(?<d>\d+)\), ?C
+DDCBC2 SET 0, ?\(IX\+(?<d>\d+)\), ?D
+DDCBC3 SET 0, ?\(IX\+(?<d>\d+)\), ?E
+DDCBC4 SET 0, ?\(IX\+(?<d>\d+)\), ?H
+DDCBC5 SET 0, ?\(IX\+(?<d>\d+)\), ?L
+DDCBC6 SET 0, ?\(IX\+(?<d>\d+)\)
+DDCBC7 SET 0, ?\(IX\+(?<d>\d+)\), ?A
+DDCBC8 SET 1, ?\(IX\+(?<d>\d+)\), ?B
+DDCBC9 SET 1, ?\(IX\+(?<d>\d+)\), ?C
+DDCBCA SET 1, ?\(IX\+(?<d>\d+)\), ?D
+DDCBCB SET 1, ?\(IX\+(?<d>\d+)\), ?E
+DDCBCC SET 1, ?\(IX\+(?<d>\d+)\), ?H
+DDCBCD SET 1, ?\(IX\+(?<d>\d+)\), ?L
+DDCBCE SET 1, ?\(IX\+(?<d>\d+)\)
+DDCBCF SET 1, ?\(IX\+(?<d>\d+)\), ?A
+DDCBD0 SET 2, ?\(IX\+(?<d>\d+)\), ?B
+DDCBD1 SET 2, ?\(IX\+(?<d>\d+)\), ?C
+DDCBD2 SET 2, ?\(IX\+(?<d>\d+)\), ?D
+DDCBD3 SET 2, ?\(IX\+(?<d>\d+)\), ?E
+DDCBD4 SET 2, ?\(IX\+(?<d>\d+)\), ?H
+DDCBD5 SET 2, ?\(IX\+(?<d>\d+)\), ?L
+DDCBD6 SET 2, ?\(IX\+(?<d>\d+)\)
+DDCBD7 SET 2, ?\(IX\+(?<d>\d+)\), ?A
+DDCBD8 SET 3, ?\(IX\+(?<d>\d+)\), ?B
+DDCBD9 SET 3, ?\(IX\+(?<d>\d+)\), ?C
+DDCBDA SET 3, ?\(IX\+(?<d>\d+)\), ?D
+DDCBDB SET 3, ?\(IX\+(?<d>\d+)\), ?E
+DDCBDC SET 3, ?\(IX\+(?<d>\d+)\), ?H
+DDCBDD SET 3, ?\(IX\+(?<d>\d+)\), ?L
+DDCBDE SET 3, ?\(IX\+(?<d>\d+)\)
+DDCBDF SET 3, ?\(IX\+(?<d>\d+)\), ?A
+DDCBE0 SET 4, ?\(IX\+(?<d>\d+)\), ?B
+DDCBE1 SET 4, ?\(IX\+(?<d>\d+)\), ?C
+DDCBE2 SET 4, ?\(IX\+(?<d>\d+)\), ?D
+DDCBE3 SET 4, ?\(IX\+(?<d>\d+)\), ?E
+DDCBE4 SET 4, ?\(IX\+(?<d>\d+)\), ?H
+DDCBE5 SET 4, ?\(IX\+(?<d>\d+)\), ?L
+DDCBE6 SET 4, ?\(IX\+(?<d>\d+)\)
+DDCBE7 SET 4, ?\(IX\+(?<d>\d+)\), ?A
+DDCBE8 SET 5, ?\(IX\+(?<d>\d+)\), ?B
+DDCBE9 SET 5, ?\(IX\+(?<d>\d+)\), ?C
+DDCBEA SET 5, ?\(IX\+(?<d>\d+)\), ?D
+DDCBEB SET 5, ?\(IX\+(?<d>\d+)\), ?E
+DDCBEC SET 5, ?\(IX\+(?<d>\d+)\), ?H
+DDCBED SET 5, ?\(IX\+(?<d>\d+)\), ?L
+DDCBEE SET 5, ?\(IX\+(?<d>\d+)\)
+DDCBEF SET 5, ?\(IX\+(?<d>\d+)\), ?A
+DDCBF0 SET 6, ?\(IX\+(?<d>\d+)\), ?B
+DDCBF1 SET 6, ?\(IX\+(?<d>\d+)\), ?C
+DDCBF2 SET 6, ?\(IX\+(?<d>\d+)\), ?D
+DDCBF3 SET 6, ?\(IX\+(?<d>\d+)\), ?E
+DDCBF4 SET 6, ?\(IX\+(?<d>\d+)\), ?H
+DDCBF5 SET 6, ?\(IX\+(?<d>\d+)\), ?L
+DDCBF6 SET 6, ?\(IX\+(?<d>\d+)\)
+DDCBF7 SET 6, ?\(IX\+(?<d>\d+)\), ?A
+DDCBF8 SET 7, ?\(IX\+(?<d>\d+)\), ?B
+DDCBF9 SET 7, ?\(IX\+(?<d>\d+)\), ?C
+DDCBFA SET 7, ?\(IX\+(?<d>\d+)\), ?D
+DDCBFB SET 7, ?\(IX\+(?<d>\d+)\), ?E
+DDCBFC SET 7, ?\(IX\+(?<d>\d+)\), ?H
+DDCBFD SET 7, ?\(IX\+(?<d>\d+)\), ?L
+DDCBFE SET 7, ?\(IX\+(?<d>\d+)\)
+DDCBFF SET 7, ?\(IX\+(?<d>\d+)\), ?A
+DDE1 POP IX
+DDE3 EX \(SP\), ?IX
+DDE5 PUSH IX
+DDE9 JP \(IX\)
+DDF9 LD SP, ?IX
+DE SBC A, ?(?<n>\d+)
+DF RST 18H
+E0 RET PO
+E1 POP HL
+E2 JP PO, ?(?<nn>\d+)
+E3 EX \(SP\), ?HL
+E4 CALL PO, ?(?<nn>\d+)
+E5 PUSH HL
+E6 AND (?<n>\d+)
+E7 RST 20H
+E8 RET PE
+E9 JP \(HL\)
+EA JP PE, ?(?<nn>\d+)
+EB EX DE, ?HL
+EC CALL PE, ?(?<nn>\d+)
+ED40 IN B, ?\(C\)
+ED41 OUT \(C\), ?B
+ED42 SBC HL, ?BC
+ED43 LD \((?<nn>\d+)\), ?BC
+ED44 NEG
+ED45 RETN
+ED46 IM 0
+ED47 LD I, ?A
+ED48 IN C, ?\(C\)
+ED49 OUT \(C\), ?C
+ED4A ADC HL, ?BC
+ED4B LD BC, ?\((?<nn>\d+)\)
+ED4C NEG
+ED4D RETI
+ED4E IM 0
+ED4F LD R, ?A
+ED50 IN D, ?\(C\)
+ED51 OUT \(C\), ?D
+ED52 SBC HL, ?DE
+ED53 LD \((?<nn>\d+)\), ?DE
+ED54 NEG
+ED55 RETN
+ED56 IM 1
+ED57 LD A, ?I
+ED58 IN E, ?\(C\)
+ED59 OUT \(C\), ?E
+ED5A ADC HL, ?DE
+ED5B LD DE, ?\((?<nn>\d+)\)
+ED5C NEG
+ED5D RETN
+ED5E IM 2
+ED5F LD A, ?R
+ED60 IN H, ?\(C\)
+ED61 OUT \(C\), ?H
+ED62 SBC HL, ?HL
+ED63 LD \((?<nn>\d+)\), ?HL
+ED64 NEG
+ED65 RETN
+ED66 IM 0
+ED67 RRD
+ED68 IN L, ?\(C\)
+ED69 OUT \(C\), ?L
+ED6A ADC HL, ?HL
+ED6B LD HL, ?\((?<nn>\d+)\)
+ED6C NEG
+ED6D RETN
+ED6E IM 0
+ED6F RLD
+ED70 IN \(C\)
+ED71 OUT \(C\), 0
+ED72 SBC HL, ?SP
+ED73 LD \((?<nn>\d+)\), ?SP
+ED74 NEG
+ED75 RETN
+ED76 IM 1
+ED78 IN A, ?\(C\)
+ED79 OUT \(C\), ?A
+ED7A ADC HL, ?SP
+ED7B LD SP, ?\((?<nn>\d+)\)
+ED7C NEG
+ED7D RETN
+ED7E IM 2
+EDA0 LDI
+EDA1 CPI
+EDA2 INI
+EDA3 OUTI
+EDA8 LDD
+EDA9 CPD
+EDAA IND
+EDAB OUTD
+EDB0 LDIR
+EDB1 CPIR
+EDB2 INIR
+EDB3 OTIR
+EDB8 LDDR
+EDB9 CPDR
+EDBA INDR
+EDBB OTDR
+EE XOR (?<n>\d+)
+EF RST 28H
+F0 RET P
+F1 POP AF
+F2 JP P, ?(?<nn>\d+)
+F3 DI
+F4 CALL P, ?(?<nn>\d+)
+F5 PUSH AF
+F6 OR (?<n>\d+)
+F7 RST 30H
+F8 RET M
+F9 LD SP, ?HL
+FA JP M, ?(?<nn>\d+)
+FB EI
+FC CALL M, ?(?<nn>\d+)
+FD09 ADD IY, ?BC
+FD19 ADD IY, ?DE
+FD21 LD IY, ?(?<nn>\d+)
+FD22 LD \((?<nn>\d+)\), ?IY
+FD23 INC IY
+FD24 INC IYH
+FD25 DEC IYH
+FD26 LD IYH, ?(?<n>\d+)
+FD29 ADD IY, ?IY
+FD2A LD IY, ?\((?<nn>\d+)\)
+FD2B DEC IY
+FD2C INC IYL
+FD2D DEC IYL
+FD2E LD IYL, ?(?<n>\d+)
+FD34 INC \(IY\+(?<d>\d+)\)
+FD35 DEC \(IY\+(?<d>\d+)\)
+FD36 LD \(IY\+(?<d>\d+)\), ?(?<n>\d+)
+FD39 ADD IY, ?SP
+FD44 LD B, ?IYH
+FD45 LD B, ?IYL
+FD46 LD B, ?\(IY\+(?<d>\d+)\)
+FD4C LD C, ?IYH
+FD4D LD C, ?IYL
+FD4E LD C, ?\(IY\+(?<d>\d+)\)
+FD54 LD D, ?IYH
+FD55 LD D, ?IYL
+FD56 LD D, ?\(IY\+(?<d>\d+)\)
+FD5C LD E, ?IYH
+FD5D LD E, ?IYL
+FD5E LD E, ?\(IY\+(?<d>\d+)\)
+FD60 LD IYH, ?B
+FD61 LD IYH, ?C
+FD62 LD IYH, ?D
+FD63 LD IYH, ?E
+FD64 LD IYH, ?IYH
+FD65 LD IYH, ?IYL
+FD66 LD H, ?\(IY\+(?<d>\d+)\)
+FD67 LD IYH, ?A
+FD68 LD IYL, ?B
+FD69 LD IYL, ?C
+FD6A LD IYL, ?D
+FD6B LD IYL, ?E
+FD6C LD IYL, ?IYH
+FD6D LD IYL, ?IYL
+FD6E LD L, ?\(IY\+(?<d>\d+)\)
+FD6F LD IYL, ?A
+FD70 LD \(IY\+(?<d>\d+)\), ?B
+FD71 LD \(IY\+(?<d>\d+)\), ?C
+FD72 LD \(IY\+(?<d>\d+)\), ?D
+FD73 LD \(IY\+(?<d>\d+)\), ?E
+FD74 LD \(IY\+(?<d>\d+)\), ?H
+FD75 LD \(IY\+(?<d>\d+)\), ?L
+FD77 LD \(IY\+(?<d>\d+)\), ?A
+FD7C LD A, ?IYH
+FD7D LD A, ?IYL
+FD7E LD A, ?\(IY\+(?<d>\d+)\)
+FD84 ADD A, ?IYH
+FD85 ADD A, ?IYL
+FD86 ADD A, ?\(IY\+(?<d>\d+)\)
+FD8C ADC A, ?IYH
+FD8D ADC A, ?IYL
+FD8E ADC A, ?\(IY\+(?<d>\d+)\)
+FD94 SUB IYH
+FD95 SUB IYL
+FD96 SUB \(IY\+(?<d>\d+)\)
+FD9C SBC A, ?IYH
+FD9D SBC A, ?IYL
+FD9E SBC A, ?\(IY\+(?<d>\d+)\)
+FDA4 AND IYH
+FDA5 AND IYL
+FDA6 AND \(IY\+(?<d>\d+)\)
+FDAC XOR IYH
+FDAD XOR IYL
+FDAE XOR \(IY\+(?<d>\d+)\)
+FDB4 OR IYH
+FDB5 OR IYL
+FDB6 OR \(IY\+(?<d>\d+)\)
+FDBC CP IYH
+FDBD CP IYL
+FDBE CP \(IY\+(?<d>\d+)\)
+FDCB00 RLC \(IY\+(?<d>\d+)\), ?B
+FDCB01 RLC \(IY\+(?<d>\d+)\), ?C
+FDCB02 RLC \(IY\+(?<d>\d+)\), ?D
+FDCB03 RLC \(IY\+(?<d>\d+)\), ?E
+FDCB04 RLC \(IY\+(?<d>\d+)\), ?H
+FDCB05 RLC \(IY\+(?<d>\d+)\), ?L
+FDCB06 RLC \(IY\+(?<d>\d+)\)
+FDCB07 RLC \(IY\+(?<d>\d+)\), ?A
+FDCB08 RRC \(IY\+(?<d>\d+)\), ?B
+FDCB09 RRC \(IY\+(?<d>\d+)\), ?C
+FDCB0A RRC \(IY\+(?<d>\d+)\), ?D
+FDCB0B RRC \(IY\+(?<d>\d+)\), ?E
+FDCB0C RRC \(IY\+(?<d>\d+)\), ?H
+FDCB0D RRC \(IY\+(?<d>\d+)\), ?L
+FDCB0E RRC \(IY\+(?<d>\d+)\)
+FDCB0F RRC \(IY\+(?<d>\d+)\), ?A
+FDCB10 RL \(IY\+(?<d>\d+)\), ?B
+FDCB11 RL \(IY\+(?<d>\d+)\), ?C
+FDCB12 RL \(IY\+(?<d>\d+)\), ?D
+FDCB13 RL \(IY\+(?<d>\d+)\), ?E
+FDCB14 RL \(IY\+(?<d>\d+)\), ?H
+FDCB15 RL \(IY\+(?<d>\d+)\), ?L
+FDCB16 RL \(IY\+(?<d>\d+)\)
+FDCB17 RL \(IY\+(?<d>\d+)\), ?A
+FDCB18 RR \(IY\+(?<d>\d+)\), ?B
+FDCB19 RR \(IY\+(?<d>\d+)\), ?C
+FDCB1A RR \(IY\+(?<d>\d+)\), ?D
+FDCB1B RR \(IY\+(?<d>\d+)\), ?E
+FDCB1C RR \(IY\+(?<d>\d+)\), ?H
+FDCB1D RR \(IY\+(?<d>\d+)\), ?L
+FDCB1E RR \(IY\+(?<d>\d+)\)
+FDCB1F RR \(IY\+(?<d>\d+)\), ?A
+FDCB20 SLA \(IY\+(?<d>\d+)\), ?B
+FDCB21 SLA \(IY\+(?<d>\d+)\), ?C
+FDCB22 SLA \(IY\+(?<d>\d+)\), ?D
+FDCB23 SLA \(IY\+(?<d>\d+)\), ?E
+FDCB24 SLA \(IY\+(?<d>\d+)\), ?H
+FDCB25 SLA \(IY\+(?<d>\d+)\), ?L
+FDCB26 SLA \(IY\+(?<d>\d+)\)
+FDCB27 SLA \(IY\+(?<d>\d+)\), ?A
+FDCB28 SRA \(IY\+(?<d>\d+)\), ?B
+FDCB29 SRA \(IY\+(?<d>\d+)\), ?C
+FDCB2A SRA \(IY\+(?<d>\d+)\), ?D
+FDCB2B SRA \(IY\+(?<d>\d+)\), ?E
+FDCB2C SRA \(IY\+(?<d>\d+)\), ?H
+FDCB2D SRA \(IY\+(?<d>\d+)\), ?L
+FDCB2E SRA \(IY\+(?<d>\d+)\)
+FDCB2F SRA \(IY\+(?<d>\d+)\), ?A
+FDCB30 SLL \(IY\+(?<d>\d+)\), ?B
+FDCB31 SLL \(IY\+(?<d>\d+)\), ?C
+FDCB32 SLL \(IY\+(?<d>\d+)\), ?D
+FDCB33 SLL \(IY\+(?<d>\d+)\), ?E
+FDCB34 SLL \(IY\+(?<d>\d+)\), ?H
+FDCB35 SLL \(IY\+(?<d>\d+)\), ?L
+FDCB36 SLL \(IY\+(?<d>\d+)\)
+FDCB37 SLL \(IY\+(?<d>\d+)\), ?A
+FDCB38 SRL \(IY\+(?<d>\d+)\), ?B
+FDCB39 SRL \(IY\+(?<d>\d+)\), ?C
+FDCB3A SRL \(IY\+(?<d>\d+)\), ?D
+FDCB3B SRL \(IY\+(?<d>\d+)\), ?E
+FDCB3C SRL \(IY\+(?<d>\d+)\), ?H
+FDCB3D SRL \(IY\+(?<d>\d+)\), ?L
+FDCB3E SRL \(IY\+(?<d>\d+)\)
+FDCB3F SRL \(IY\+(?<d>\d+)\), ?A
+FDCB40 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB41 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB42 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB43 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB44 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB45 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB46 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB47 BIT 0, ?\(IY\+(?<d>\d+)\)
+FDCB48 BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB49 BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4A BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4B BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4C BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4D BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4E BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB4F BIT 1, ?\(IY\+(?<d>\d+)\)
+FDCB50 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB51 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB52 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB53 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB54 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB55 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB56 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB57 BIT 2, ?\(IY\+(?<d>\d+)\)
+FDCB58 BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB59 BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5A BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5B BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5C BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5D BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5E BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB5F BIT 3, ?\(IY\+(?<d>\d+)\)
+FDCB60 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB61 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB62 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB63 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB64 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB65 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB66 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB67 BIT 4, ?\(IY\+(?<d>\d+)\)
+FDCB68 BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB69 BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6A BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6B BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6C BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6D BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6E BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB6F BIT 5, ?\(IY\+(?<d>\d+)\)
+FDCB70 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB71 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB72 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB73 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB74 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB75 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB76 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB77 BIT 6, ?\(IY\+(?<d>\d+)\)
+FDCB78 BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB79 BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7A BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7B BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7C BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7D BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7E BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB7F BIT 7, ?\(IY\+(?<d>\d+)\)
+FDCB80 RES 0, ?\(IY\+(?<d>\d+)\), ?B
+FDCB81 RES 0, ?\(IY\+(?<d>\d+)\), ?C
+FDCB82 RES 0, ?\(IY\+(?<d>\d+)\), ?D
+FDCB83 RES 0, ?\(IY\+(?<d>\d+)\), ?E
+FDCB84 RES 0, ?\(IY\+(?<d>\d+)\), ?H
+FDCB85 RES 0, ?\(IY\+(?<d>\d+)\), ?L
+FDCB86 RES 0, ?\(IY\+(?<d>\d+)\)
+FDCB87 RES 0, ?\(IY\+(?<d>\d+)\), ?A
+FDCB88 RES 1, ?\(IY\+(?<d>\d+)\), ?B
+FDCB89 RES 1, ?\(IY\+(?<d>\d+)\), ?C
+FDCB8A RES 1, ?\(IY\+(?<d>\d+)\), ?D
+FDCB8B RES 1, ?\(IY\+(?<d>\d+)\), ?E
+FDCB8C RES 1, ?\(IY\+(?<d>\d+)\), ?H
+FDCB8D RES 1, ?\(IY\+(?<d>\d+)\), ?L
+FDCB8E RES 1, ?\(IY\+(?<d>\d+)\)
+FDCB8F RES 1, ?\(IY\+(?<d>\d+)\), ?A
+FDCB90 RES 2, ?\(IY\+(?<d>\d+)\), ?B
+FDCB91 RES 2, ?\(IY\+(?<d>\d+)\), ?C
+FDCB92 RES 2, ?\(IY\+(?<d>\d+)\), ?D
+FDCB93 RES 2, ?\(IY\+(?<d>\d+)\), ?E
+FDCB94 RES 2, ?\(IY\+(?<d>\d+)\), ?H
+FDCB95 RES 2, ?\(IY\+(?<d>\d+)\), ?L
+FDCB96 RES 2, ?\(IY\+(?<d>\d+)\)
+FDCB97 RES 2, ?\(IY\+(?<d>\d+)\), ?A
+FDCB98 RES 3, ?\(IY\+(?<d>\d+)\), ?B
+FDCB99 RES 3, ?\(IY\+(?<d>\d+)\), ?C
+FDCB9A RES 3, ?\(IY\+(?<d>\d+)\), ?D
+FDCB9B RES 3, ?\(IY\+(?<d>\d+)\), ?E
+FDCB9C RES 3, ?\(IY\+(?<d>\d+)\), ?H
+FDCB9D RES 3, ?\(IY\+(?<d>\d+)\), ?L
+FDCB9E RES 3, ?\(IY\+(?<d>\d+)\)
+FDCB9F RES 3, ?\(IY\+(?<d>\d+)\), ?A
+FDCBA0 RES 4, ?\(IY\+(?<d>\d+)\), ?B
+FDCBA1 RES 4, ?\(IY\+(?<d>\d+)\), ?C
+FDCBA2 RES 4, ?\(IY\+(?<d>\d+)\), ?D
+FDCBA3 RES 4, ?\(IY\+(?<d>\d+)\), ?E
+FDCBA4 RES 4, ?\(IY\+(?<d>\d+)\), ?H
+FDCBA5 RES 4, ?\(IY\+(?<d>\d+)\), ?L
+FDCBA6 RES 4, ?\(IY\+(?<d>\d+)\)
+FDCBA7 RES 4, ?\(IY\+(?<d>\d+)\), ?A
+FDCBA8 RES 5, ?\(IY\+(?<d>\d+)\), ?B
+FDCBA9 RES 5, ?\(IY\+(?<d>\d+)\), ?C
+FDCBAA RES 5, ?\(IY\+(?<d>\d+)\), ?D
+FDCBAB RES 5, ?\(IY\+(?<d>\d+)\), ?E
+FDCBAC RES 5, ?\(IY\+(?<d>\d+)\), ?H
+FDCBAD RES 5, ?\(IY\+(?<d>\d+)\), ?L
+FDCBAE RES 5, ?\(IY\+(?<d>\d+)\)
+FDCBAF RES 5, ?\(IY\+(?<d>\d+)\), ?A
+FDCBB0 RES 6, ?\(IY\+(?<d>\d+)\), ?B
+FDCBB1 RES 6, ?\(IY\+(?<d>\d+)\), ?C
+FDCBB2 RES 6, ?\(IY\+(?<d>\d+)\), ?D
+FDCBB3 RES 6, ?\(IY\+(?<d>\d+)\), ?E
+FDCBB4 RES 6, ?\(IY\+(?<d>\d+)\), ?H
+FDCBB5 RES 6, ?\(IY\+(?<d>\d+)\), ?L
+FDCBB6 RES 6, ?\(IY\+(?<d>\d+)\)
+FDCBB7 RES 6, ?\(IY\+(?<d>\d+)\), ?A
+FDCBB8 RES 7, ?\(IY\+(?<d>\d+)\), ?B
+FDCBB9 RES 7, ?\(IY\+(?<d>\d+)\), ?C
+FDCBBA RES 7, ?\(IY\+(?<d>\d+)\), ?D
+FDCBBB RES 7, ?\(IY\+(?<d>\d+)\), ?E
+FDCBBC RES 7, ?\(IY\+(?<d>\d+)\), ?H
+FDCBBD RES 7, ?\(IY\+(?<d>\d+)\), ?L
+FDCBBE RES 7, ?\(IY\+(?<d>\d+)\)
+FDCBBF RES 7, ?\(IY\+(?<d>\d+)\), ?A
+FDCBC0 SET 0, ?\(IY\+(?<d>\d+)\), ?B
+FDCBC1 SET 0, ?\(IY\+(?<d>\d+)\), ?C
+FDCBC2 SET 0, ?\(IY\+(?<d>\d+)\), ?D
+FDCBC3 SET 0, ?\(IY\+(?<d>\d+)\), ?E
+FDCBC4 SET 0, ?\(IY\+(?<d>\d+)\), ?H
+FDCBC5 SET 0, ?\(IY\+(?<d>\d+)\), ?L
+FDCBC6 SET 0, ?\(IY\+(?<d>\d+)\)
+FDCBC7 SET 0, ?\(IY\+(?<d>\d+)\), ?A
+FDCBC8 SET 1, ?\(IY\+(?<d>\d+)\), ?B
+FDCBC9 SET 1, ?\(IY\+(?<d>\d+)\), ?C
+FDCBCA SET 1, ?\(IY\+(?<d>\d+)\), ?D
+FDCBCB SET 1, ?\(IY\+(?<d>\d+)\), ?E
+FDCBCC SET 1, ?\(IY\+(?<d>\d+)\), ?H
+FDCBCD SET 1, ?\(IY\+(?<d>\d+)\), ?L
+FDCBCE SET 1, ?\(IY\+(?<d>\d+)\)
+FDCBCF SET 1, ?\(IY\+(?<d>\d+)\), ?A
+FDCBD0 SET 2, ?\(IY\+(?<d>\d+)\), ?B
+FDCBD1 SET 2, ?\(IY\+(?<d>\d+)\), ?C
+FDCBD2 SET 2, ?\(IY\+(?<d>\d+)\), ?D
+FDCBD3 SET 2, ?\(IY\+(?<d>\d+)\), ?E
+FDCBD4 SET 2, ?\(IY\+(?<d>\d+)\), ?H
+FDCBD5 SET 2, ?\(IY\+(?<d>\d+)\), ?L
+FDCBD6 SET 2, ?\(IY\+(?<d>\d+)\)
+FDCBD7 SET 2, ?\(IY\+(?<d>\d+)\), ?A
+FDCBD8 SET 3, ?\(IY\+(?<d>\d+)\), ?B
+FDCBD9 SET 3, ?\(IY\+(?<d>\d+)\), ?C
+FDCBDA SET 3, ?\(IY\+(?<d>\d+)\), ?D
+FDCBDB SET 3, ?\(IY\+(?<d>\d+)\), ?E
+FDCBDC SET 3, ?\(IY\+(?<d>\d+)\), ?H
+FDCBDD SET 3, ?\(IY\+(?<d>\d+)\), ?L
+FDCBDE SET 3, ?\(IY\+(?<d>\d+)\)
+FDCBDF SET 3, ?\(IY\+(?<d>\d+)\), ?A
+FDCBE0 SET 4, ?\(IY\+(?<d>\d+)\), ?B
+FDCBE1 SET 4, ?\(IY\+(?<d>\d+)\), ?C
+FDCBE2 SET 4, ?\(IY\+(?<d>\d+)\), ?D
+FDCBE3 SET 4, ?\(IY\+(?<d>\d+)\), ?E
+FDCBE4 SET 4, ?\(IY\+(?<d>\d+)\), ?H
+FDCBE5 SET 4, ?\(IY\+(?<d>\d+)\), ?L
+FDCBE6 SET 4, ?\(IY\+(?<d>\d+)\)
+FDCBE7 SET 4, ?\(IY\+(?<d>\d+)\), ?A
+FDCBE8 SET 5, ?\(IY\+(?<d>\d+)\), ?B
+FDCBE9 SET 5, ?\(IY\+(?<d>\d+)\), ?C
+FDCBEA SET 5, ?\(IY\+(?<d>\d+)\), ?D
+FDCBEB SET 5, ?\(IY\+(?<d>\d+)\), ?E
+FDCBEC SET 5, ?\(IY\+(?<d>\d+)\), ?H
+FDCBED SET 5, ?\(IY\+(?<d>\d+)\), ?L
+FDCBEE SET 5, ?\(IY\+(?<d>\d+)\)
+FDCBEF SET 5, ?\(IY\+(?<d>\d+)\), ?A
+FDCBF0 SET 6, ?\(IY\+(?<d>\d+)\), ?B
+FDCBF1 SET 6, ?\(IY\+(?<d>\d+)\), ?C
+FDCBF2 SET 6, ?\(IY\+(?<d>\d+)\), ?D
+FDCBF3 SET 6, ?\(IY\+(?<d>\d+)\), ?E
+FDCBF4 SET 6, ?\(IY\+(?<d>\d+)\), ?H
+FDCBF5 SET 6, ?\(IY\+(?<d>\d+)\), ?L
+FDCBF6 SET 6, ?\(IY\+(?<d>\d+)\)
+FDCBF7 SET 6, ?\(IY\+(?<d>\d+)\), ?A
+FDCBF8 SET 7, ?\(IY\+(?<d>\d+)\), ?B
+FDCBF9 SET 7, ?\(IY\+(?<d>\d+)\), ?C
+FDCBFA SET 7, ?\(IY\+(?<d>\d+)\), ?D
+FDCBFB SET 7, ?\(IY\+(?<d>\d+)\), ?E
+FDCBFC SET 7, ?\(IY\+(?<d>\d+)\), ?H
+FDCBFD SET 7, ?\(IY\+(?<d>\d+)\), ?L
+FDCBFE SET 7, ?\(IY\+(?<d>\d+)\)
+FDCBFF SET 7, ?\(IY\+(?<d>\d+)\), ?A
+FDE1 POP IY
+FDE3 EX \(SP\), ?IY
+FDE5 PUSH IY
+FDE9 JP \(IY\)
+FDF9 LD SP, ?IY
+FE CP (?<n>\d+)
+FF RST 38H

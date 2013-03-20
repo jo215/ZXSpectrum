@@ -40,7 +40,9 @@ namespace ZXSpectrum.Z_80
 
         IOController io;                //  Connected I/O devices
 
-        int opcode = 0, prefix = 0, prefix2 = 0, displacement = 0;
+        internal int opcode = 0, prefix = 0, prefix2 = 0, displacement = 0;
+
+        internal bool fastLoad = false;
 
         /// <summary>
         /// Constructor.
@@ -71,11 +73,11 @@ namespace ZXSpectrum.Z_80
         public void Reset()
         {
             PC = 0;
-            //  AF and SP always set to FFFFh after a reset (other registers undefined).
-            A = 0xff;
+            //  SP always set to FFFFh after a reset (other registers undefined).
+            A = 0;
             SP = 0xffff;
             B = 0; C = 0; D = 0; E = 0; H = 0; L = 0; I = 0; R = 0; IXH = 0; IXL = 0; IYH = 0; IYL = 0;
-            SetFlags(0xff);
+            SetFlags(0);
             F2 = F2 & 0;
             isHalted = false;
             IFF1 = false;
@@ -139,9 +141,16 @@ namespace ZXSpectrum.Z_80
             bool running = true;
             while (running)
             {
-                //  Time every instruction
-                //stopWatch.Restart();
+
                 previousTStates = CycleTStates;
+
+                //  Trap tape load
+                if (PC == 0x056c || PC == 0x0112)
+                {
+                    fastLoad = true;
+                    return;
+                }
+
                 //  Fetch
                 opcode = Memory[PC++];
                 prefix = 0;
@@ -1403,7 +1412,9 @@ namespace ZXSpectrum.Z_80
             var initial = Get16BitRegisters(2);
             var addition = Get16BitRegisters(ss);
             if ((F & Flag.Carry) == Flag.Carry)
+            {
                 addition++;
+            }
 
             var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
@@ -1435,8 +1446,9 @@ namespace ZXSpectrum.Z_80
             var initial = Get16BitRegisters(2);
             var addition = -Get16BitRegisters(ss);
             if ((F & Flag.Carry) == Flag.Carry)
-                addition--;
-
+            {
+                addition--;            
+            }
 
             var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
@@ -1872,6 +1884,32 @@ namespace ZXSpectrum.Z_80
 
             var initial = A;
             var addition = -Memory[PC++];
+
+            A = (A + addition) & 0xff;
+
+            ModifySignFlag8(A);
+            ModifyZeroFlag(A);
+
+            ModifyHalfCarryFlag8(initial, addition);
+            ModifyCarryFlag8(initial, addition);
+            ModifyOverflowFlag8(initial, addition, A);
+            Set(Flag.Subtract);
+
+            A = initial;
+
+            ModifyUndocumentedFlags8(-addition);
+        }
+
+        /// <summary>
+        /// CP n
+        /// If there is a true compare between operand n and the Accumulator, the Z flag is set.
+        /// CP is just SUB with the result thrown away.
+        /// </summary>
+        internal void CP_n(int addition)
+        {
+            CycleTStates += 7;
+
+            var initial = A;
 
             A = (A + addition) & 0xff;
 
@@ -2698,6 +2736,7 @@ namespace ZXSpectrum.Z_80
             {
                 Reset(Flag.Carry);
             }
+
             ModifyParityFlagLogical(r);
             
             ModifySignFlag8(r);
@@ -2867,7 +2906,7 @@ namespace ZXSpectrum.Z_80
         /// Register r is incremented.
         /// </summary>
         /// <param name="r"></param>
-        private void INC_r(int r)
+        internal void INC_r(int r)
         {
             CycleTStates += 4;
 

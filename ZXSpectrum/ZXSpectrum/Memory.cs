@@ -75,11 +75,6 @@ namespace ZXSpectrum
         {
             get
             {
-                if (index == 0x03B5)
-                {
-                    //  The ROM BEEPER subroutine
-                    //memEvent(this, new BeepEventArgs(CPU.Get16BitRegisters(1, true), CPU.Get16BitRegisters(2, true)));
-                }
                 if (!ulaAccess) CorrectForContention(index);
                 return mem[index];
             }

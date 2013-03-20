@@ -28,7 +28,7 @@ namespace ZXSpectrum.Z_80
         /// Sets the specified flag.
         /// </summary>
         /// <param name="flag"></param>
-        private void Set(Flag flag)
+        internal void Set(Flag flag)
         {
             F = F | flag;
         }
@@ -37,7 +37,7 @@ namespace ZXSpectrum.Z_80
         /// Unsets the specified flag.
         /// </summary>
         /// <param name="f"></param>
-        private void Reset(Flag flag)
+        internal void Reset(Flag flag)
         {
             F = F & ~flag;
         }
@@ -193,7 +193,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="result"></param>
         private void ModifySignFlag8(int result)
         {
-            if (result > 127 && result < 256)
+            if (result > 127)
                 Set(Flag.Sign);
             else
                 Reset(Flag.Sign);
@@ -456,7 +456,7 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         /// <param name="registerPair"></param>
         /// <param name="value"></param>
-        private void Set16BitRegisters(int registerPair, int value)
+        internal void Set16BitRegisters(int registerPair, int value)
         {
             Set16BitRegisters(registerPair, value & 0xFF, (value & 0xFFFF) >> 8);
         }
@@ -467,7 +467,7 @@ namespace ZXSpectrum.Z_80
         /// <param name="registerPair"></param>
         /// <param name="lowByte"></param>
         /// <param name="highByte"></param>
-        private void Set16BitRegisters(int registerPair, int lowByte, int highByte)
+        internal void Set16BitRegisters(int registerPair, int lowByte, int highByte)
         {
             switch (registerPair)
             {

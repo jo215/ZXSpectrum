@@ -40,6 +40,9 @@ namespace ZXSpectrum
 
         List<float> buffer = new List<float>();
 
+        List<List<byte>> tapeBlocks = new List<List<byte>>();
+        int nextBlock = 0;
+
         long framesGenerated = 0;
 
         bool update = true;
@@ -122,9 +125,86 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
-            LoadSNA("miner.sna");
+            LoadTAP("findkeep.tap");
 
         }
+
+        /// <summary>
+        /// Loads a .TAP file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void LoadTAP(string fileName)
+        {
+            //  Read in all blocks
+            tapeBlocks = new List<List<byte>>();
+            nextBlock = 0;
+            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\" + fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+                    while (fs.Position < fs.Length)
+                    {
+                        //  2-byte header gives block data length
+                        int low = br.ReadByte();
+                        int high = br.ReadByte();
+                        int blockLength = low + (high << 8);
+                        //  Read block data
+                        byte[] block = br.ReadBytes(blockLength);
+                        tapeBlocks.Add(block.ToList());
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reads the next unprocessed block from a pre-loaded .TAP file.
+        /// </summary>
+        public void LoadBlock()
+        {
+            List<byte> tapeBlock = tapeBlocks[nextBlock];
+            nextBlock = (nextBlock + 1) % tapeBlocks.Count;
+
+            if ((z80.GetShadowFlagsAsByte() & 0x01) == 0x01)
+            {
+                //  Load command
+                if (z80.A2 == tapeBlock[0])
+                {
+                    int blockLength = z80.E + (z80.D << 8);
+                    int address = z80.IXL + (z80.IXH << 8);
+                    for (int i = 0; i < Math.Min(blockLength, tapeBlock.Count - 1); i++)
+                    {
+                        if (address >= 0x4000)
+                        {
+                            Memory[address] = tapeBlock[i + 1];
+                        }
+                        address = (address + 1) & 0xffff;
+                    }
+
+                    if (blockLength > tapeBlock.Count - 1)
+                    {
+                        //  R: tape Load error
+                        z80.Reset(Flag.Carry);
+                    }
+                    else
+                    {
+                        //  Success!
+                        z80.Set(Flag.Carry);
+                    }
+                }
+                else
+                {
+                    //  R: tape Load error
+                    z80.Reset(Flag.Carry);
+                }
+            }
+            else
+            {
+                //  Verify command
+                z80.Set(Flag.Carry);
+            }
+            z80.PC = 0x05e2;
+        }
+
         /// <summary>
         /// Loads a .SNA snapshot file.
         /// This is the simplest snapshot format, but corrupts 2 bytes below the stack pointer, and requires a RETN instruction
@@ -158,11 +238,13 @@ namespace ZXSpectrum
                     z80.IXH = br.ReadByte();
                     if ((br.ReadByte() & 4) == 4)
                     {
+                        z80.IFF1 = true;
                         z80.IFF2 = true;
                     }
                     else
                     {
                         z80.IFF2 = false;
+                        z80.IFF1 = false;
                     }
                     z80.R = br.ReadByte();
                     z80.SetFlags(br.ReadByte());
@@ -176,6 +258,7 @@ namespace ZXSpectrum
                     {
                         Memory[i + 16384, true] = ram[i];
                     }
+
                     z80.RETN();
                 }
             }
@@ -275,6 +358,12 @@ namespace ZXSpectrum
                     else
                     {
                         buffer.Add(0f);
+                    }
+                    //  Check for LOAD
+                    if (z80.fastLoad)
+                    {
+                        LoadBlock();
+                        z80.fastLoad = false;
                     }
                 }
                 speaker.SendBuffer(buffer);
@@ -433,16 +522,16 @@ namespace ZXSpectrum
                     if (keys.IsKeyDown(Keys.D2)) keyLine -= 2;
                     if (keys.IsKeyDown(Keys.D3)) keyLine -= 4;
                     if (keys.IsKeyDown(Keys.D4)) keyLine -= 8;
-                    if (keys.IsKeyDown(Keys.D5)) keyLine -= 16;
+                    if (keys.IsKeyDown(Keys.D5) || keys.IsKeyDown(Keys.Left)) keyLine -= 16;
                     finalKeys &= keyLine;
                 }
                 if ((high & 16) == 0)
                 {
                     if (keys.IsKeyDown(Keys.D0)) keyLine -= 1;
                     if (keys.IsKeyDown(Keys.D9)) keyLine -= 2;
-                    if (keys.IsKeyDown(Keys.D8)) keyLine -= 4;
-                    if (keys.IsKeyDown(Keys.D7)) keyLine -= 8;
-                    if (keys.IsKeyDown(Keys.D6)) keyLine -= 16;
+                    if (keys.IsKeyDown(Keys.D8) || keys.IsKeyDown(Keys.Right)) keyLine -= 4;
+                    if (keys.IsKeyDown(Keys.D7) || keys.IsKeyDown(Keys.Up)) keyLine -= 8;
+                    if (keys.IsKeyDown(Keys.D6) || keys.IsKeyDown(Keys.Down)) keyLine -= 16;
                     finalKeys &= keyLine;
                 }
                 if ((high & 32) == 0)

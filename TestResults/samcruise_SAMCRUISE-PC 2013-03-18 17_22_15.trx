@@ -1,0 +1,1146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="8a58f6e0-998b-4d9a-8d91-37c275f14919" name="samcruise@SAMCRUISE-PC 2013-03-18 17:22:15" runUser="samcruise-PC\samcruise" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="65a1706e-8b80-420d-8876-f80050a1a2ce">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="samcruise_SAMCRUISE-PC 2013-03-18 17_22_15">
+      <DeploymentItem filename="C:\Users\samcruise\Documents\Visual Studio 2010\Projects\ZXSpectrum\ZXSpectrum\ZXSpectrum\bin\x86\Release\ZXSpectrum.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-03-18T17:22:15.0199427+00:00" queuing="2013-03-18T17:22:15.6659796+00:00" start="2013-03-18T17:22:15.7189827+00:00" finish="2013-03-18T17:22:18.8411612+00:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="111" executed="29" passed="28" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="82" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="SAMCRUISE-PC" outcome="Warning" timestamp="2013-03-18T17:22:15.0729457+00:00">
+        <Text>Deployment is currently disabled. The deployment item 'EmuTest.exe' on test 'TestProject2.Z80Test.SETTest' was not deployed.</Text>
+      </RunInfo>
+      <RunInfo computerName="SAMCRUISE-PC" outcome="Error" timestamp="2013-03-18T17:22:18.8341608+00:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SETTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="9577c4f7-7003-b9c5-163a-7c5efd62ae51">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="38eacfea-46e7-4a29-962c-a5743ca2bbb6" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SETTest" />
+    </UnitTest>
+    <UnitTest name="LD_nn_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="5fd1f04b-dac6-41bb-9db7-15f63c1db9f6">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="9495c3d6-d3f4-4467-a15c-4296970f2507" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_nn_HLTest" />
+    </UnitTest>
+    <UnitTest name="RETNTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="7a3748d0-d7ac-0d6f-14be-1f126ae99321">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="977b56b8-ae88-4aa9-acd1-ea15434d2226" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RETNTest" />
+    </UnitTest>
+    <UnitTest name="SUB_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="55171caa-19dd-2ede-1df5-fba7324e3535">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="4e4c6ef1-c5b1-4754-90db-10502041a4e6" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SUB_rTest" />
+    </UnitTest>
+    <UnitTest name="CPITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="e8d906d9-8fb1-1c4e-04ae-14b5b043e77e">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b71319ce-adbe-46cd-bd12-cefa0be598e1" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CPITest" />
+    </UnitTest>
+    <UnitTest name="RLCATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="eb8ea76d-8f52-861c-adb1-87727b91e8dc">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="08b5f576-829c-4c35-96be-99ee320b438d" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RLCATest" />
+    </UnitTest>
+    <UnitTest name="OUT_C_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="00f0e72d-0ee9-884c-1553-d761223ad003">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="52135674-303a-4a7d-bc05-a3a2f91596ef" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OUT_C_rTest" />
+    </UnitTest>
+    <UnitTest name="OUTITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="e500e466-400d-7a9d-97dd-2a6998d88e4b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="f0324d4f-cf30-43c8-8639-d2d4e7839dba" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OUTITest" />
+    </UnitTest>
+    <UnitTest name="LD_A_ITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="77ea9ad2-e5e0-4a61-f03a-bc81b141b08e">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="08e519aa-1a00-4e0c-9ca2-074bd62488c2" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_A_ITest" />
+    </UnitTest>
+    <UnitTest name="JP_cc_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="2a561a82-d650-4928-a63a-372019177aa0">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="7d001005-eba6-4f51-98f0-c681199af915" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JP_cc_nnTest" />
+    </UnitTest>
+    <UnitTest name="RET_ccTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="3a2e5b08-4e06-5e86-1556-043e5a55d63f">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="dea984af-9753-49fc-9987-c977c48ff9b4" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RET_ccTest" />
+    </UnitTest>
+    <UnitTest name="INC_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d16ad0a6-d821-4cca-9aac-518623adb362">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="ff3f2ca5-8f9e-49c8-b42f-60f7a6304f1f" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INC_rTest" />
+    </UnitTest>
+    <UnitTest name="ADD_A_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="61cf7fd2-4675-4774-43a6-1058ba4d6886">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b3a25da6-b912-464f-bcb9-4e4834b44cce" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADD_A_rTest" />
+    </UnitTest>
+    <UnitTest name="RLATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4a4a0e75-24b0-83d9-8bf1-cffe9a6c30c7">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="02bf006a-2b0f-44a8-acfb-67dc20d2450b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RLATest" />
+    </UnitTest>
+    <UnitTest name="OTIRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="613249bd-4594-d153-ca2b-015a8a45b6a0">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="c02254d3-a26c-4797-96c0-7eb668edcb5a" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OTIRTest" />
+    </UnitTest>
+    <UnitTest name="LDITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="26cfd68c-0b2b-b154-5fee-9a7274b0546f">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="8eeaf7f8-a0fa-444b-8dd9-c57607e71950" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LDITest" />
+    </UnitTest>
+    <UnitTest name="DAATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="8e0d0db1-8d33-69b8-381b-66e942894b60">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="4d67272e-425e-4eb7-8915-c3e4da42388d" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DAATest" />
+    </UnitTest>
+    <UnitTest name="CALL_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="fa3e44b0-1a68-2b54-c8d6-5cd6535068e5">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="e249163d-9f2f-4b8d-896f-c2ae1eddab64" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CALL_nnTest" />
+    </UnitTest>
+    <UnitTest name="LD_nn_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="9f97dc1f-2483-ec75-3db2-8e92253870cb">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="1d2fcaab-e0e8-4568-8b8c-87461c6cf9d7" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_nn_ATest" />
+    </UnitTest>
+    <UnitTest name="SUB_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="46c0ea6c-7511-1a43-1027-23d83e8af062">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="a9b60a16-8f6b-4be2-a7b4-42827f707abf" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SUB_nTest" />
+    </UnitTest>
+    <UnitTest name="INITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="663717dd-e6fb-6ae6-4ed1-26415e1cd665">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="bbfe2bcb-f35f-4f2a-8f69-eb48adda47bb" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INITest" />
+    </UnitTest>
+    <UnitTest name="ADD_A_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="0ebca460-c35e-fb90-0af2-4327104b42ae">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="d92ddf15-3be1-43a3-8674-d878caf8c6c0" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADD_A_nTest" />
+    </UnitTest>
+    <UnitTest name="INDRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="0eef37c0-80da-2b47-8f3e-2850bbdef705">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="8a22f1e8-3824-4b47-85b0-531a153ce6c7" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INDRTest" />
+    </UnitTest>
+    <UnitTest name="OR_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="429a8c32-55b7-bbd1-b067-032d95921b55">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="f87bead8-eda8-46e0-91ce-5e89c6a56a7f" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OR_rTest" />
+    </UnitTest>
+    <UnitTest name="OUTDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="1e0740c8-2234-8fea-75be-3168c953cfa8">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="8df27113-607e-46fb-91ed-81bac9a7788e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OUTDTest" />
+    </UnitTest>
+    <UnitTest name="LD_A_DETest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="dedf675d-4710-3439-30c1-2b6f394221dd">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="10ae46b8-87e2-466a-ade1-74a2b29329c7" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_A_DETest" />
+    </UnitTest>
+    <UnitTest name="LD_dd_nn2Test" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="531135d4-b324-d795-f9f5-d51886e82803">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="abe14337-07da-457b-adfe-77a9317c1c7f" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_dd_nn2Test" />
+    </UnitTest>
+    <UnitTest name="LDDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="2725660c-204c-cdd3-cc38-c8cb0969f291">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="d1569169-c7bc-44e1-9dbc-64794b0e269a" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LDDTest" />
+    </UnitTest>
+    <UnitTest name="LD_HL_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="7a984ac0-e42a-474e-dd34-f1980e6732d9">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="9fc17bff-c236-4929-ab10-f3079f14c059" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_HL_nnTest" />
+    </UnitTest>
+    <UnitTest name="LD_SP_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="408ed624-5685-2cc2-3b5f-b6dc3f3441bf">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="811ef44b-4322-49ce-93ad-8cc04758b6d9" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_SP_HLTest" />
+    </UnitTest>
+    <UnitTest name="LD_A_RTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d6f365f5-4679-7038-6450-481adfa7d5c7">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="056df8b5-cd37-45c7-a92b-f49da59d83ba" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_A_RTest" />
+    </UnitTest>
+    <UnitTest name="Arithmetic8BitTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="fa282fd8-ace3-314b-bdaa-b68c035c8013">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="95933224-c788-4e3a-aa34-788ef46aab74" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Arithmetic8BitTest" />
+    </UnitTest>
+    <UnitTest name="LD_DE_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="231bd03e-0d38-6cc5-0783-b65ae0f853d9">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b44757af-b5bc-4fe8-83d7-cc5746cb88d8" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_DE_ATest" />
+    </UnitTest>
+    <UnitTest name="ADC_A_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="7fa090f1-d9a9-3de8-1087-2d0b0717201b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="ea2dadd7-0076-4683-b3e5-1206ac8832c9" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADC_A_rTest" />
+    </UnitTest>
+    <UnitTest name="CP_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="6b710965-1677-6f38-b88e-91e3b8a9332f">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="f2e6bd25-15c5-4f6c-9207-e85cd057bc1e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CP_rTest" />
+    </UnitTest>
+    <UnitTest name="LD_nn_ddTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="f9126364-3831-3363-8188-a09b575bcf73">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5b88e21e-5f2d-419e-bc50-b33aaaa6c971" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_nn_ddTest" />
+    </UnitTest>
+    <UnitTest name="ADC_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="0b4144dd-a347-7b17-997b-3df3b8ff73bd">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="985fc9dc-c2fe-4e43-8ac6-5da7c2c79339" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADC_HLTest" />
+    </UnitTest>
+    <UnitTest name="IMTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="6993b04e-0773-c13a-ebf9-79006fbce62b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="a13d1699-3734-4324-bedd-fd3e56c08644" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="IMTest" />
+    </UnitTest>
+    <UnitTest name="JP_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="644506c2-c887-ef59-e127-65e89db16cbc">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="691a16eb-efa3-40ec-927a-d6494799456e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JP_HLTest" />
+    </UnitTest>
+    <UnitTest name="RLCTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="5b87d4fd-91a2-2ead-ea51-310966889653">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="55b5124d-feb3-4877-b3d3-1cf75b66c7fb" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RLCTest" />
+    </UnitTest>
+    <UnitTest name="RLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="8d11f4ff-16dc-c6dd-67b2-df83947219f7">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="1df8db22-767a-4372-a7a2-5cb36f7c47ea" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RLTest" />
+    </UnitTest>
+    <UnitTest name="SRATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d576b2e9-18ab-4c39-22d6-660b702088a3">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="859d0ad9-9943-4a63-ae9d-9dccffde3192" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SRATest" />
+    </UnitTest>
+    <UnitTest name="DEC_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="64f3a371-75dd-ff36-2172-a082a1bb01a7">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="d94de690-1304-423a-8440-a9cff7d1b913" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DEC_rTest" />
+    </UnitTest>
+    <UnitTest name="AND_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="7769ab53-4bf0-a65b-8187-75daf24d1434">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="0a5b8c93-6213-4d6a-b171-f620b84620dc" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AND_rTest" />
+    </UnitTest>
+    <UnitTest name="CarryTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="6ea371f5-9713-1500-34a7-78647e13da18">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="66f07b3d-51c5-44f6-8cf0-156c6e9bc107" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CarryTest" />
+    </UnitTest>
+    <UnitTest name="BITTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="7976e622-0553-0c71-cbd8-e8577be21b5d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="1075ecff-cd6e-4843-92fd-a8d363643d46" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="BITTest" />
+    </UnitTest>
+    <UnitTest name="CPDRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="225c05c4-9748-a7c6-e24e-08b5a00f73ff">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="9d7e1c0a-ae38-4c51-be08-6bfbde346ff1" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CPDRTest" />
+    </UnitTest>
+    <UnitTest name="SBC_A_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="f27d20d8-0856-98b6-055e-c7e96212608b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="1a2bbcb5-0858-47a4-8d1a-1c666c282ecb" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SBC_A_nTest" />
+    </UnitTest>
+    <UnitTest name="EXXTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4362f3ce-6bef-c806-ed6a-f9a0e3284ef0">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b39c2532-c0b8-4923-b5a5-3e994a5da79c" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="EXXTest" />
+    </UnitTest>
+    <UnitTest name="IN_A_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="cb76c32f-1004-2d6e-4048-b5467b53a179">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="e64f1650-d779-41f3-9ebf-b0bc424679cb" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="IN_A_nTest" />
+    </UnitTest>
+    <UnitTest name="RRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="c00d5263-9362-91d8-9786-3cf7ff9338c7">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="d14b2408-2a8c-4805-8602-14d44f3bb82c" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RRTest" />
+    </UnitTest>
+    <UnitTest name="SRLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="a281a993-54ac-242d-6e81-bd7ca5969d50">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="43517e46-0001-4a83-b9a9-d4c5aa207bfa" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SRLTest" />
+    </UnitTest>
+    <UnitTest name="XOR_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="436605de-6d1c-4402-615f-0938ced05851">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="c0632fe4-8cba-4869-af6d-61fd4015ab6b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="XOR_rTest" />
+    </UnitTest>
+    <UnitTest name="RESTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="ec8889aa-5c28-4621-dc4c-a1bae4f864b3">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="17ce029b-b4ca-448e-bb77-b61dd4afa622" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RESTest" />
+    </UnitTest>
+    <UnitTest name="AND_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="9f6c528b-5fee-7f40-d59f-122c6aa17338">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="fef09fbb-0d98-470d-b829-1bfa0bdd1356" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AND_nTest" />
+    </UnitTest>
+    <UnitTest name="RRCATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="947b96e5-70b2-89ca-d911-83455c83ccaf">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="57ec7f94-c3e5-464d-ac93-85cd520108b3" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RRCATest" />
+    </UnitTest>
+    <UnitTest name="EX_SP_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="5ffd0124-37d8-11bf-fa8d-5062ee6afc91">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5eed7571-e4b7-4781-9c3d-e65a38e4a149" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="EX_SP_HLTest" />
+    </UnitTest>
+    <UnitTest name="LD_A_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="3910ea2e-3d0e-baae-5cb5-ee5255a7ee35">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5652c911-2828-47ed-abfe-f6c72d7fd98b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_A_nnTest" />
+    </UnitTest>
+    <UnitTest name="XOR_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="2d6e4e36-5fe1-42c4-5c13-c7a8f483806d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="6547c657-b951-44a4-8f96-c9075219a77b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="XOR_nTest" />
+    </UnitTest>
+    <UnitTest name="DNJZTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="a5b3e069-d5dc-aae1-dab1-7ba2da7e0884">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="a15c562a-8807-4879-add5-e8e3c01adaf6" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DNJZTest" />
+    </UnitTest>
+    <UnitTest name="OUT_n_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="ec3dceb2-7476-60e7-45c6-cb4ca611c1fd">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="674b994d-4aa4-4206-a316-f5721de0f312" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OUT_n_ATest" />
+    </UnitTest>
+    <UnitTest name="LD_r_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4e29e539-acb7-4fe7-b58a-ad776d59b1bb">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="7803886c-fa1a-43d5-bdee-f1e841ec2dc8" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_r_rTest" />
+    </UnitTest>
+    <UnitTest name="JRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d987caa4-b236-d3ff-cce6-1360da40887d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="0e9afab7-52b5-4f3d-b902-de8815aef06b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JRTest" />
+    </UnitTest>
+    <UnitTest name="OR_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="ef38ddd6-7755-2790-0e1b-b39d5b54c463">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="7249c763-3de9-408e-8fe6-b773474f9ff4" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OR_nTest" />
+    </UnitTest>
+    <UnitTest name="INIRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="accb7fb6-557d-89fd-8c02-43ad3120a4e4">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="c658b499-2ba9-412e-b731-d23f9db40a3a" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INIRTest" />
+    </UnitTest>
+    <UnitTest name="SBC_A_rTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="3c62e18b-0679-84be-4297-06f24bddccec">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="30948055-bb15-494b-9d8c-1d776a39336e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SBC_A_rTest" />
+    </UnitTest>
+    <UnitTest name="SBC_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="395f2e6e-8b8a-dab4-6961-5d67ff30ad80">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5bb6af88-f914-406d-930c-2bab4bdaf05e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SBC_HLTest" />
+    </UnitTest>
+    <UnitTest name="LDDRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="fbf61387-acd6-ad6e-d454-963c3b13209e">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="60f188e1-d46e-4c73-afb3-334813f28e1e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LDDRTest" />
+    </UnitTest>
+    <UnitTest name="SLLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="3f3d6718-39ff-7fa1-2efb-6ac794445b3b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="796d4e50-6213-4477-a91a-3c76a7bb0b5c" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SLLTest" />
+    </UnitTest>
+    <UnitTest name="INC_ssTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d80f292a-b4c2-4be9-b82a-b5573e9be6f2">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="43c922f6-eb30-4c95-9f39-50a39a71c1b8" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INC_ssTest" />
+    </UnitTest>
+    <UnitTest name="JP_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="3cdbe969-b2db-38d4-00ab-7c7380efb3ba">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="de8af7f3-00b2-48a8-82ed-2c953b6df810" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JP_nnTest" />
+    </UnitTest>
+    <UnitTest name="CPIRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="1a60954a-838a-08ce-4a89-0464a13b3a93">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="bc83634f-b36d-4ec3-a06f-5f5671a16142" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CPIRTest" />
+    </UnitTest>
+    <UnitTest name="LD_R_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="02081afb-f4e4-3f4d-8158-5c914990d541">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5f7ce464-904d-4b7e-9689-962853a6f02f" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_R_ATest" />
+    </UnitTest>
+    <UnitTest name="ADD_HL_ssTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="77c6ab54-7ca3-396b-513b-a14bf6be574c">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="90bbec83-2f28-415c-868a-f6630fbdf469" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADD_HL_ssTest" />
+    </UnitTest>
+    <UnitTest name="INDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="aece9089-8fd9-3739-7b3a-72bcdb4cb138">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="ad01fea1-8933-426b-a754-92d61c59d090" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="INDTest" />
+    </UnitTest>
+    <UnitTest name="LD_I_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="8419ae4f-e0d9-7a9f-7f37-e3a84733904b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="4019afa0-9706-4d20-a307-d448004b6ed7" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_I_ATest" />
+    </UnitTest>
+    <UnitTest name="OTDRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="6582c566-3514-80d9-5e8b-746b8c877c02">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="8962b3f3-572c-46e7-b613-ef484b101b38" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OTDRTest" />
+    </UnitTest>
+    <UnitTest name="EX_AF_AF2Test" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="a99ddd4b-7030-4db6-9934-7cc5773a9396">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="8b04b6a4-86f6-44e9-ad14-2baecb6008d3" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="EX_AF_AF2Test" />
+    </UnitTest>
+    <UnitTest name="DEC_ssTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d40644e9-e5a2-7e4e-64e2-b6d9ec18d899">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="a1241b65-5dbc-4f3b-8bcd-85a963bcdd38" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DEC_ssTest" />
+    </UnitTest>
+    <UnitTest name="EX_DE_HLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="c6073ad2-1dfd-1823-7f61-0e4d779c6b0f">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="35e6e61e-4077-441a-949e-5e0f208196e5" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="EX_DE_HLTest" />
+    </UnitTest>
+    <UnitTest name="ADC_A_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="a4ae135f-c523-9f9f-d27b-4db4e5509e94">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b43465d8-d989-44d8-9a15-ab9838ce03d8" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ADC_A_nTest" />
+    </UnitTest>
+    <UnitTest name="RETITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="1a78406e-fc9c-f400-96bf-e6409042a51b">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="accafc8e-0f34-489a-906b-c2e4aa0af2f4" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RETITest" />
+    </UnitTest>
+    <UnitTest name="RRATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="2fe7eb0b-f938-cdd3-52dd-f930c2ebb2b1">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="93874039-892a-4dab-b102-93ecb9292002" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RRATest" />
+    </UnitTest>
+    <UnitTest name="EITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="cbf56f62-df39-1b79-4acc-e7326d9dc27c">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="6e3858c2-189a-4fce-989d-a22dae883a3e" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="EITest" />
+    </UnitTest>
+    <UnitTest name="CP_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="f418ccbd-868f-1cb5-4064-c312acb76e89">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b35aafbe-56d2-4867-ad56-bf73d099e269" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CP_nTest" />
+    </UnitTest>
+    <UnitTest name="RRCTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4bbbd8b9-6ef7-b020-fb32-ef276dcf5e16">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="7e46fb89-e267-4ade-a21e-c8d3ace8b2fa" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RRCTest" />
+    </UnitTest>
+    <UnitTest name="CPDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4618a85c-6917-6864-cac1-68e9f062489d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="de4d9f48-0ae4-4c49-8093-ea78913b2df3" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CPDTest" />
+    </UnitTest>
+    <UnitTest name="ZeroTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="d4004087-56d4-1d0e-14c6-9815e660af61">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="53d737ea-8846-40af-827d-3ef006c261a5" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ZeroTest" />
+    </UnitTest>
+    <UnitTest name="PUSH_qqTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="9084bd1d-64fc-c645-d3ae-df82e73934b3">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="de0c132d-f3a5-443a-a518-4bf9254f9a15" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PUSH_qqTest" />
+    </UnitTest>
+    <UnitTest name="StackTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="942a0380-d590-7e7a-6851-2cdf34dc5ff1">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="f20ed80b-89a5-4c2a-90ac-eba959b6e937" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="StackTest" />
+    </UnitTest>
+    <UnitTest name="SLATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="fd05f8bb-7e5b-6c74-7d40-9b6b3ce48014">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="f0ae9013-c2e7-424d-babd-ac052243031f" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SLATest" />
+    </UnitTest>
+    <UnitTest name="SCFTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="95637e7c-0e69-a183-b60b-a7b697c7d16d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="e08e910f-cdd4-4b76-9a3a-b1a34085d56c" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SCFTest" />
+    </UnitTest>
+    <UnitTest name="NEGTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="efeb0611-e5d6-72cb-f153-edd9546c4863">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="fcfe5153-18e5-4c69-9f4c-fdb1417ff115" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NEGTest" />
+    </UnitTest>
+    <UnitTest name="LD_BC_ATest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="82c0cf7c-d6a8-c070-d23c-58c9b55e047a">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="4e7fcfe0-6a09-4c6b-a3c6-519f7384aa31" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_BC_ATest" />
+    </UnitTest>
+    <UnitTest name="RETTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="fbc81c52-7315-1e7c-4d04-ddf848c918c9">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="c6d5f0c4-0e19-43b6-92f9-6a4da883e8d2" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RETTest" />
+    </UnitTest>
+    <UnitTest name="RLDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="0804b260-48c2-c53d-e9c8-4cb6d080560a">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="fc60f1de-3f82-4758-9414-705756172c82" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RLDTest" />
+    </UnitTest>
+    <UnitTest name="RRDTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="90d80866-ad2b-eaca-8eb7-479ef25dc5d4">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="25bcd7b5-2945-42b8-9c04-648f725fcf37" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RRDTest" />
+    </UnitTest>
+    <UnitTest name="IN_r_CTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="6af126f8-3922-fbad-35b8-bf549d275e90">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="5dc5cb50-4b69-4163-b705-6cb5e0394b36" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="IN_r_CTest" />
+    </UnitTest>
+    <UnitTest name="CPLTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="f8babc50-25ce-9eb4-fa02-2679067db866">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="aabffcd1-14af-400e-a529-8cc08ab7b3b8" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CPLTest" />
+    </UnitTest>
+    <UnitTest name="CALL_cc_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="320aa1ed-8916-5804-9751-99d2b2fcbc6a">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="eb8767f1-f459-43d5-aabd-452e6a8dea81" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CALL_cc_nnTest" />
+    </UnitTest>
+    <UnitTest name="LDIRTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="c6014464-c5a6-fa24-8780-9b58004c3f58">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="48bd76ae-ae6e-4e7c-8124-58c888e0beda" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LDIRTest" />
+    </UnitTest>
+    <UnitTest name="DITest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="e92b5c19-a5d8-72ee-80c0-df041dccc0be">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="19f00f76-7644-4309-b514-7e0af174bef5" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DITest" />
+    </UnitTest>
+    <UnitTest name="POP_qqTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="1fa28479-68b5-6739-9382-2a843d130358">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="63f561c2-a142-444a-840e-6958b944afcd" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="POP_qqTest" />
+    </UnitTest>
+    <UnitTest name="RSTTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="ea7626fe-75bd-bf00-5a86-b04022167316">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="a89649ec-dbb0-44de-978f-600cfbf69876" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="RSTTest" />
+    </UnitTest>
+    <UnitTest name="CCFTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="da8af087-df0c-8562-0b18-6cdda3360a1f">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="918ab229-a99e-4cdf-80a6-5f9aa2ec1781" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CCFTest" />
+    </UnitTest>
+    <UnitTest name="LD_r_nTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="4ca40fc0-23e6-fedb-25b7-f0ba20aa5cc5">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="396c6aeb-13f8-4efb-9aef-5a1684248e19" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_r_nTest" />
+    </UnitTest>
+    <UnitTest name="FUSETests" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="06cdd2b0-2e57-8d8b-04bb-80519a9fcc34">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="89fd9d6a-631b-4597-ba70-fb8ce5eb41d9" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FUSETests" />
+    </UnitTest>
+    <UnitTest name="HALTTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="cc8e988e-fc66-7582-921e-6f44ee2d4fb1">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="b6758a8f-7ba8-4014-997c-39f49b0c7503" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="HALTTest" />
+    </UnitTest>
+    <UnitTest name="LD_dd_nnTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="9693f54a-8e39-e20e-ac44-1452f0049c4d">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="766cfc5f-4271-47df-907b-eb7ca7c40386" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_dd_nnTest" />
+    </UnitTest>
+    <UnitTest name="LD_A_BCTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="1098bc54-92c2-3c91-e91e-8afcd496d21e">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="2822f9a5-72b0-4a21-b7e0-f2a90c50415b" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LD_A_BCTest" />
+    </UnitTest>
+    <UnitTest name="JimmyTest" storage="c:\users\samcruise\documents\visual studio 2010\projects\zxspectrum\testproject2\bin\release\testproject2.dll" id="068cdc8e-c9bd-de02-b833-b329ffaf1fd2">
+      <DeploymentItems>
+        <DeploymentItem filename="EmuTest.exe" />
+      </DeploymentItems>
+      <Execution id="169314a8-bb54-4cf4-a839-1d5038d49948" />
+      <TestMethod codeBase="C:/Users/samcruise/Documents/Visual Studio 2010/Projects/ZXSpectrum/TestProject2/bin/Release/TestProject2.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject2.Z80Test, TestProject2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="JimmyTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="fbc81c52-7315-1e7c-4d04-ddf848c918c9" executionId="c6d5f0c4-0e19-43b6-92f9-6a4da883e8d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a78406e-fc9c-f400-96bf-e6409042a51b" executionId="accafc8e-0f34-489a-906b-c2e4aa0af2f4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a3748d0-d7ac-0d6f-14be-1f126ae99321" executionId="977b56b8-ae88-4aa9-acd1-ea15434d2226" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3a2e5b08-4e06-5e86-1556-043e5a55d63f" executionId="dea984af-9753-49fc-9987-c977c48ff9b4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8d11f4ff-16dc-c6dd-67b2-df83947219f7" executionId="1df8db22-767a-4372-a7a2-5cb36f7c47ea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a4a0e75-24b0-83d9-8bf1-cffe9a6c30c7" executionId="02bf006a-2b0f-44a8-acfb-67dc20d2450b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5b87d4fd-91a2-2ead-ea51-310966889653" executionId="55b5124d-feb3-4877-b3d3-1cf75b66c7fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eb8ea76d-8f52-861c-adb1-87727b91e8dc" executionId="08b5f576-829c-4c35-96be-99ee320b438d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0804b260-48c2-c53d-e9c8-4cb6d080560a" executionId="fc60f1de-3f82-4758-9414-705756172c82" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c00d5263-9362-91d8-9786-3cf7ff9338c7" executionId="d14b2408-2a8c-4805-8602-14d44f3bb82c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2fe7eb0b-f938-cdd3-52dd-f930c2ebb2b1" executionId="93874039-892a-4dab-b102-93ecb9292002" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4bbbd8b9-6ef7-b020-fb32-ef276dcf5e16" executionId="7e46fb89-e267-4ade-a21e-c8d3ace8b2fa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="947b96e5-70b2-89ca-d911-83455c83ccaf" executionId="57ec7f94-c3e5-464d-ac93-85cd520108b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="90d80866-ad2b-eaca-8eb7-479ef25dc5d4" executionId="25bcd7b5-2945-42b8-9c04-648f725fcf37" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ea7626fe-75bd-bf00-5a86-b04022167316" executionId="a89649ec-dbb0-44de-978f-600cfbf69876" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f27d20d8-0856-98b6-055e-c7e96212608b" executionId="1a2bbcb5-0858-47a4-8d1a-1c666c282ecb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3c62e18b-0679-84be-4297-06f24bddccec" executionId="30948055-bb15-494b-9d8c-1d776a39336e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="395f2e6e-8b8a-dab4-6961-5d67ff30ad80" executionId="5bb6af88-f914-406d-930c-2bab4bdaf05e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="95637e7c-0e69-a183-b60b-a7b697c7d16d" executionId="e08e910f-cdd4-4b76-9a3a-b1a34085d56c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9577c4f7-7003-b9c5-163a-7c5efd62ae51" executionId="38eacfea-46e7-4a29-962c-a5743ca2bbb6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fd05f8bb-7e5b-6c74-7d40-9b6b3ce48014" executionId="f0ae9013-c2e7-424d-babd-ac052243031f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3f3d6718-39ff-7fa1-2efb-6ac794445b3b" executionId="796d4e50-6213-4477-a91a-3c76a7bb0b5c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d576b2e9-18ab-4c39-22d6-660b702088a3" executionId="859d0ad9-9943-4a63-ae9d-9dccffde3192" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a281a993-54ac-242d-6e81-bd7ca5969d50" executionId="43517e46-0001-4a83-b9a9-d4c5aa207bfa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46c0ea6c-7511-1a43-1027-23d83e8af062" executionId="a9b60a16-8f6b-4be2-a7b4-42827f707abf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55171caa-19dd-2ede-1df5-fba7324e3535" executionId="4e4c6ef1-c5b1-4754-90db-10502041a4e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d6e4e36-5fe1-42c4-5c13-c7a8f483806d" executionId="6547c657-b951-44a4-8f96-c9075219a77b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="436605de-6d1c-4402-615f-0938ced05851" executionId="c0632fe4-8cba-4869-af6d-61fd4015ab6b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="06cdd2b0-2e57-8d8b-04bb-80519a9fcc34" executionId="89fd9d6a-631b-4597-ba70-fb8ce5eb41d9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="068cdc8e-c9bd-de02-b833-b329ffaf1fd2" executionId="169314a8-bb54-4cf4-a839-1d5038d49948" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="942a0380-d590-7e7a-6851-2cdf34dc5ff1" executionId="f20ed80b-89a5-4c2a-90ac-eba959b6e937" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6ea371f5-9713-1500-34a7-78647e13da18" executionId="66f07b3d-51c5-44f6-8cf0-156c6e9bc107" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa282fd8-ace3-314b-bdaa-b68c035c8013" executionId="95933224-c788-4e3a-aa34-788ef46aab74" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d4004087-56d4-1d0e-14c6-9815e660af61" executionId="53d737ea-8846-40af-827d-3ef006c261a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4ae135f-c523-9f9f-d27b-4db4e5509e94" executionId="b43465d8-d989-44d8-9a15-ab9838ce03d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7fa090f1-d9a9-3de8-1087-2d0b0717201b" executionId="ea2dadd7-0076-4683-b3e5-1206ac8832c9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0b4144dd-a347-7b17-997b-3df3b8ff73bd" executionId="985fc9dc-c2fe-4e43-8ac6-5da7c2c79339" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0ebca460-c35e-fb90-0af2-4327104b42ae" executionId="d92ddf15-3be1-43a3-8674-d878caf8c6c0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="61cf7fd2-4675-4774-43a6-1058ba4d6886" executionId="b3a25da6-b912-464f-bcb9-4e4834b44cce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="77c6ab54-7ca3-396b-513b-a14bf6be574c" executionId="90bbec83-2f28-415c-868a-f6630fbdf469" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f6c528b-5fee-7f40-d59f-122c6aa17338" executionId="fef09fbb-0d98-470d-b829-1bfa0bdd1356" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7769ab53-4bf0-a65b-8187-75daf24d1434" executionId="0a5b8c93-6213-4d6a-b171-f620b84620dc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7976e622-0553-0c71-cbd8-e8577be21b5d" executionId="1075ecff-cd6e-4843-92fd-a8d363643d46" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="320aa1ed-8916-5804-9751-99d2b2fcbc6a" executionId="eb8767f1-f459-43d5-aabd-452e6a8dea81" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa3e44b0-1a68-2b54-c8d6-5cd6535068e5" executionId="e249163d-9f2f-4b8d-896f-c2ae1eddab64" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="da8af087-df0c-8562-0b18-6cdda3360a1f" executionId="918ab229-a99e-4cdf-80a6-5f9aa2ec1781" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4618a85c-6917-6864-cac1-68e9f062489d" executionId="de4d9f48-0ae4-4c49-8093-ea78913b2df3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="225c05c4-9748-a7c6-e24e-08b5a00f73ff" executionId="9d7e1c0a-ae38-4c51-be08-6bfbde346ff1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e8d906d9-8fb1-1c4e-04ae-14b5b043e77e" executionId="b71319ce-adbe-46cd-bd12-cefa0be598e1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a60954a-838a-08ce-4a89-0464a13b3a93" executionId="bc83634f-b36d-4ec3-a06f-5f5671a16142" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f8babc50-25ce-9eb4-fa02-2679067db866" executionId="aabffcd1-14af-400e-a529-8cc08ab7b3b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f418ccbd-868f-1cb5-4064-c312acb76e89" executionId="b35aafbe-56d2-4867-ad56-bf73d099e269" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6b710965-1677-6f38-b88e-91e3b8a9332f" executionId="f2e6bd25-15c5-4f6c-9207-e85cd057bc1e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8e0d0db1-8d33-69b8-381b-66e942894b60" executionId="4d67272e-425e-4eb7-8915-c3e4da42388d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="64f3a371-75dd-ff36-2172-a082a1bb01a7" executionId="d94de690-1304-423a-8440-a9cff7d1b913" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d40644e9-e5a2-7e4e-64e2-b6d9ec18d899" executionId="a1241b65-5dbc-4f3b-8bcd-85a963bcdd38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e92b5c19-a5d8-72ee-80c0-df041dccc0be" executionId="19f00f76-7644-4309-b514-7e0af174bef5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5b3e069-d5dc-aae1-dab1-7ba2da7e0884" executionId="a15c562a-8807-4879-add5-e8e3c01adaf6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cbf56f62-df39-1b79-4acc-e7326d9dc27c" executionId="6e3858c2-189a-4fce-989d-a22dae883a3e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4362f3ce-6bef-c806-ed6a-f9a0e3284ef0" executionId="b39c2532-c0b8-4923-b5a5-3e994a5da79c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a99ddd4b-7030-4db6-9934-7cc5773a9396" executionId="8b04b6a4-86f6-44e9-ad14-2baecb6008d3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c6073ad2-1dfd-1823-7f61-0e4d779c6b0f" executionId="35e6e61e-4077-441a-949e-5e0f208196e5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ffd0124-37d8-11bf-fa8d-5062ee6afc91" executionId="5eed7571-e4b7-4781-9c3d-e65a38e4a149" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cc8e988e-fc66-7582-921e-6f44ee2d4fb1" executionId="b6758a8f-7ba8-4014-997c-39f49b0c7503" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6993b04e-0773-c13a-ebf9-79006fbce62b" executionId="a13d1699-3734-4324-bedd-fd3e56c08644" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d16ad0a6-d821-4cca-9aac-518623adb362" executionId="ff3f2ca5-8f9e-49c8-b42f-60f7a6304f1f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d80f292a-b4c2-4be9-b82a-b5573e9be6f2" executionId="43c922f6-eb30-4c95-9f39-50a39a71c1b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aece9089-8fd9-3739-7b3a-72bcdb4cb138" executionId="ad01fea1-8933-426b-a754-92d61c59d090" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0eef37c0-80da-2b47-8f3e-2850bbdef705" executionId="8a22f1e8-3824-4b47-85b0-531a153ce6c7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="663717dd-e6fb-6ae6-4ed1-26415e1cd665" executionId="bbfe2bcb-f35f-4f2a-8f69-eb48adda47bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="accb7fb6-557d-89fd-8c02-43ad3120a4e4" executionId="c658b499-2ba9-412e-b731-d23f9db40a3a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cb76c32f-1004-2d6e-4048-b5467b53a179" executionId="e64f1650-d779-41f3-9ebf-b0bc424679cb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6af126f8-3922-fbad-35b8-bf549d275e90" executionId="5dc5cb50-4b69-4163-b705-6cb5e0394b36" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="644506c2-c887-ef59-e127-65e89db16cbc" executionId="691a16eb-efa3-40ec-927a-d6494799456e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2a561a82-d650-4928-a63a-372019177aa0" executionId="7d001005-eba6-4f51-98f0-c681199af915" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3cdbe969-b2db-38d4-00ab-7c7380efb3ba" executionId="de8af7f3-00b2-48a8-82ed-2c953b6df810" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d987caa4-b236-d3ff-cce6-1360da40887d" executionId="0e9afab7-52b5-4f3d-b902-de8815aef06b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2725660c-204c-cdd3-cc38-c8cb0969f291" executionId="d1569169-c7bc-44e1-9dbc-64794b0e269a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fbf61387-acd6-ad6e-d454-963c3b13209e" executionId="60f188e1-d46e-4c73-afb3-334813f28e1e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="26cfd68c-0b2b-b154-5fee-9a7274b0546f" executionId="8eeaf7f8-a0fa-444b-8dd9-c57607e71950" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c6014464-c5a6-fa24-8780-9b58004c3f58" executionId="48bd76ae-ae6e-4e7c-8124-58c888e0beda" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1098bc54-92c2-3c91-e91e-8afcd496d21e" executionId="2822f9a5-72b0-4a21-b7e0-f2a90c50415b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dedf675d-4710-3439-30c1-2b6f394221dd" executionId="10ae46b8-87e2-466a-ade1-74a2b29329c7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="77ea9ad2-e5e0-4a61-f03a-bc81b141b08e" executionId="08e519aa-1a00-4e0c-9ca2-074bd62488c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d6f365f5-4679-7038-6450-481adfa7d5c7" executionId="056df8b5-cd37-45c7-a92b-f49da59d83ba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3910ea2e-3d0e-baae-5cb5-ee5255a7ee35" executionId="5652c911-2828-47ed-abfe-f6c72d7fd98b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="82c0cf7c-d6a8-c070-d23c-58c9b55e047a" executionId="4e7fcfe0-6a09-4c6b-a3c6-519f7384aa31" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="231bd03e-0d38-6cc5-0783-b65ae0f853d9" executionId="b44757af-b5bc-4fe8-83d7-cc5746cb88d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a984ac0-e42a-474e-dd34-f1980e6732d9" executionId="9fc17bff-c236-4929-ab10-f3079f14c059" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8419ae4f-e0d9-7a9f-7f37-e3a84733904b" executionId="4019afa0-9706-4d20-a307-d448004b6ed7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="02081afb-f4e4-3f4d-8158-5c914990d541" executionId="5f7ce464-904d-4b7e-9689-962853a6f02f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="408ed624-5685-2cc2-3b5f-b6dc3f3441bf" executionId="811ef44b-4322-49ce-93ad-8cc04758b6d9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9693f54a-8e39-e20e-ac44-1452f0049c4d" executionId="766cfc5f-4271-47df-907b-eb7ca7c40386" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="531135d4-b324-d795-f9f5-d51886e82803" executionId="abe14337-07da-457b-adfe-77a9317c1c7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f97dc1f-2483-ec75-3db2-8e92253870cb" executionId="1d2fcaab-e0e8-4568-8b8c-87461c6cf9d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5fd1f04b-dac6-41bb-9db7-15f63c1db9f6" executionId="9495c3d6-d3f4-4467-a15c-4296970f2507" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9126364-3831-3363-8188-a09b575bcf73" executionId="5b88e21e-5f2d-419e-bc50-b33aaaa6c971" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4ca40fc0-23e6-fedb-25b7-f0ba20aa5cc5" executionId="396c6aeb-13f8-4efb-9aef-5a1684248e19" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e29e539-acb7-4fe7-b58a-ad776d59b1bb" executionId="7803886c-fa1a-43d5-bdee-f1e841ec2dc8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="efeb0611-e5d6-72cb-f153-edd9546c4863" executionId="fcfe5153-18e5-4c69-9f4c-fdb1417ff115" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef38ddd6-7755-2790-0e1b-b39d5b54c463" executionId="7249c763-3de9-408e-8fe6-b773474f9ff4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="429a8c32-55b7-bbd1-b067-032d95921b55" executionId="f87bead8-eda8-46e0-91ce-5e89c6a56a7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6582c566-3514-80d9-5e8b-746b8c877c02" executionId="8962b3f3-572c-46e7-b613-ef484b101b38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="613249bd-4594-d153-ca2b-015a8a45b6a0" executionId="c02254d3-a26c-4797-96c0-7eb668edcb5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1e0740c8-2234-8fea-75be-3168c953cfa8" executionId="8df27113-607e-46fb-91ed-81bac9a7788e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e500e466-400d-7a9d-97dd-2a6998d88e4b" executionId="f0324d4f-cf30-43c8-8639-d2d4e7839dba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00f0e72d-0ee9-884c-1553-d761223ad003" executionId="52135674-303a-4a7d-bc05-a3a2f91596ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec3dceb2-7476-60e7-45c6-cb4ca611c1fd" executionId="674b994d-4aa4-4206-a316-f5721de0f312" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1fa28479-68b5-6739-9382-2a843d130358" executionId="63f561c2-a142-444a-840e-6958b944afcd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9084bd1d-64fc-c645-d3ae-df82e73934b3" executionId="de0c132d-f3a5-443a-a518-4bf9254f9a15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec8889aa-5c28-4621-dc4c-a1bae4f864b3" executionId="17ce029b-b4ca-448e-bb77-b61dd4afa622" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="c6d5f0c4-0e19-43b6-92f9-6a4da883e8d2" testId="fbc81c52-7315-1e7c-4d04-ddf848c918c9" testName="RETTest" computerName="SAMCRUISE-PC" duration="00:00:00.0270168" startTime="2013-03-18T17:22:15.7419840+00:00" endTime="2013-03-18T17:22:16.5070277+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6d5f0c4-0e19-43b6-92f9-6a4da883e8d2">
+    </UnitTestResult>
+    <UnitTestResult executionId="accafc8e-0f34-489a-906b-c2e4aa0af2f4" testId="1a78406e-fc9c-f400-96bf-e6409042a51b" testName="RETITest" computerName="SAMCRUISE-PC" duration="00:00:00.0005637" startTime="2013-03-18T17:22:16.5130281+00:00" endTime="2013-03-18T17:22:16.5170283+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="accafc8e-0f34-489a-906b-c2e4aa0af2f4">
+    </UnitTestResult>
+    <UnitTestResult executionId="977b56b8-ae88-4aa9-acd1-ea15434d2226" testId="7a3748d0-d7ac-0d6f-14be-1f126ae99321" testName="RETNTest" computerName="SAMCRUISE-PC" duration="00:00:00.0005518" startTime="2013-03-18T17:22:16.5230287+00:00" endTime="2013-03-18T17:22:16.5270289+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="977b56b8-ae88-4aa9-acd1-ea15434d2226">
+    </UnitTestResult>
+    <UnitTestResult executionId="dea984af-9753-49fc-9987-c977c48ff9b4" testId="3a2e5b08-4e06-5e86-1556-043e5a55d63f" testName="RET_ccTest" computerName="SAMCRUISE-PC" duration="00:00:00.0012334" startTime="2013-03-18T17:22:16.5310291+00:00" endTime="2013-03-18T17:22:16.5350293+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dea984af-9753-49fc-9987-c977c48ff9b4">
+    </UnitTestResult>
+    <UnitTestResult executionId="1df8db22-767a-4372-a7a2-5cb36f7c47ea" testId="8d11f4ff-16dc-c6dd-67b2-df83947219f7" testName="RLTest" computerName="SAMCRUISE-PC" duration="00:00:00.0021826" startTime="2013-03-18T17:22:16.5390296+00:00" endTime="2013-03-18T17:22:16.5440299+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1df8db22-767a-4372-a7a2-5cb36f7c47ea">
+    </UnitTestResult>
+    <UnitTestResult executionId="02bf006a-2b0f-44a8-acfb-67dc20d2450b" testId="4a4a0e75-24b0-83d9-8bf1-cffe9a6c30c7" testName="RLATest" computerName="SAMCRUISE-PC" duration="00:00:00.0007942" startTime="2013-03-18T17:22:16.5480301+00:00" endTime="2013-03-18T17:22:16.5520303+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="02bf006a-2b0f-44a8-acfb-67dc20d2450b">
+    </UnitTestResult>
+    <UnitTestResult executionId="55b5124d-feb3-4877-b3d3-1cf75b66c7fb" testId="5b87d4fd-91a2-2ead-ea51-310966889653" testName="RLCTest" computerName="SAMCRUISE-PC" duration="00:00:00.0013499" startTime="2013-03-18T17:22:16.5550305+00:00" endTime="2013-03-18T17:22:16.5600308+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="55b5124d-feb3-4877-b3d3-1cf75b66c7fb">
+    </UnitTestResult>
+    <UnitTestResult executionId="08b5f576-829c-4c35-96be-99ee320b438d" testId="eb8ea76d-8f52-861c-adb1-87727b91e8dc" testName="RLCATest" computerName="SAMCRUISE-PC" duration="00:00:00.0005387" startTime="2013-03-18T17:22:16.5640310+00:00" endTime="2013-03-18T17:22:16.5670312+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08b5f576-829c-4c35-96be-99ee320b438d">
+    </UnitTestResult>
+    <UnitTestResult executionId="fc60f1de-3f82-4758-9414-705756172c82" testId="0804b260-48c2-c53d-e9c8-4cb6d080560a" testName="RLDTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006497" startTime="2013-03-18T17:22:16.5710314+00:00" endTime="2013-03-18T17:22:16.5750316+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fc60f1de-3f82-4758-9414-705756172c82">
+    </UnitTestResult>
+    <UnitTestResult executionId="d14b2408-2a8c-4805-8602-14d44f3bb82c" testId="c00d5263-9362-91d8-9786-3cf7ff9338c7" testName="RRTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006859" startTime="2013-03-18T17:22:16.5780318+00:00" endTime="2013-03-18T17:22:16.5820320+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d14b2408-2a8c-4805-8602-14d44f3bb82c">
+    </UnitTestResult>
+    <UnitTestResult executionId="93874039-892a-4dab-b102-93ecb9292002" testId="2fe7eb0b-f938-cdd3-52dd-f930c2ebb2b1" testName="RRATest" computerName="SAMCRUISE-PC" duration="00:00:00.0005579" startTime="2013-03-18T17:22:16.5860323+00:00" endTime="2013-03-18T17:22:16.5890324+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="93874039-892a-4dab-b102-93ecb9292002">
+    </UnitTestResult>
+    <UnitTestResult executionId="7e46fb89-e267-4ade-a21e-c8d3ace8b2fa" testId="4bbbd8b9-6ef7-b020-fb32-ef276dcf5e16" testName="RRCTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006071" startTime="2013-03-18T17:22:16.5930327+00:00" endTime="2013-03-18T17:22:16.5960328+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e46fb89-e267-4ade-a21e-c8d3ace8b2fa">
+    </UnitTestResult>
+    <UnitTestResult executionId="57ec7f94-c3e5-464d-ac93-85cd520108b3" testId="947b96e5-70b2-89ca-d911-83455c83ccaf" testName="RRCATest" computerName="SAMCRUISE-PC" duration="00:00:00.0005272" startTime="2013-03-18T17:22:16.6010331+00:00" endTime="2013-03-18T17:22:16.6040333+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57ec7f94-c3e5-464d-ac93-85cd520108b3">
+    </UnitTestResult>
+    <UnitTestResult executionId="25bcd7b5-2945-42b8-9c04-648f725fcf37" testId="90d80866-ad2b-eaca-8eb7-479ef25dc5d4" testName="RRDTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006332" startTime="2013-03-18T17:22:16.6080335+00:00" endTime="2013-03-18T17:22:16.6110337+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="25bcd7b5-2945-42b8-9c04-648f725fcf37">
+    </UnitTestResult>
+    <UnitTestResult executionId="a89649ec-dbb0-44de-978f-600cfbf69876" testId="ea7626fe-75bd-bf00-5a86-b04022167316" testName="RSTTest" computerName="SAMCRUISE-PC" duration="00:00:00.0005810" startTime="2013-03-18T17:22:16.6150339+00:00" endTime="2013-03-18T17:22:16.6180341+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a89649ec-dbb0-44de-978f-600cfbf69876">
+    </UnitTestResult>
+    <UnitTestResult executionId="1a2bbcb5-0858-47a4-8d1a-1c666c282ecb" testId="f27d20d8-0856-98b6-055e-c7e96212608b" testName="SBC_A_nTest" computerName="SAMCRUISE-PC" duration="00:00:00.0008688" startTime="2013-03-18T17:22:16.6220343+00:00" endTime="2013-03-18T17:22:16.6260345+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a2bbcb5-0858-47a4-8d1a-1c666c282ecb">
+    </UnitTestResult>
+    <UnitTestResult executionId="30948055-bb15-494b-9d8c-1d776a39336e" testId="3c62e18b-0679-84be-4297-06f24bddccec" testName="SBC_A_rTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006478" startTime="2013-03-18T17:22:16.6290347+00:00" endTime="2013-03-18T17:22:16.6330349+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="30948055-bb15-494b-9d8c-1d776a39336e">
+    </UnitTestResult>
+    <UnitTestResult executionId="5bb6af88-f914-406d-930c-2bab4bdaf05e" testId="395f2e6e-8b8a-dab4-6961-5d67ff30ad80" testName="SBC_HLTest" computerName="SAMCRUISE-PC" duration="00:00:00.0012542" startTime="2013-03-18T17:22:16.6370352+00:00" endTime="2013-03-18T17:22:16.6410354+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5bb6af88-f914-406d-930c-2bab4bdaf05e">
+    </UnitTestResult>
+    <UnitTestResult executionId="e08e910f-cdd4-4b76-9a3a-b1a34085d56c" testId="95637e7c-0e69-a183-b60b-a7b697c7d16d" testName="SCFTest" computerName="SAMCRUISE-PC" duration="00:00:00.0004684" startTime="2013-03-18T17:22:16.6450356+00:00" endTime="2013-03-18T17:22:16.6480358+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e08e910f-cdd4-4b76-9a3a-b1a34085d56c">
+    </UnitTestResult>
+    <UnitTestResult executionId="38eacfea-46e7-4a29-962c-a5743ca2bbb6" testId="9577c4f7-7003-b9c5-163a-7c5efd62ae51" testName="SETTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006025" startTime="2013-03-18T17:22:16.6520360+00:00" endTime="2013-03-18T17:22:16.6550362+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="38eacfea-46e7-4a29-962c-a5743ca2bbb6">
+    </UnitTestResult>
+    <UnitTestResult executionId="f0ae9013-c2e7-424d-babd-ac052243031f" testId="fd05f8bb-7e5b-6c74-7d40-9b6b3ce48014" testName="SLATest" computerName="SAMCRUISE-PC" duration="00:00:00.0008857" startTime="2013-03-18T17:22:16.6590364+00:00" endTime="2013-03-18T17:22:16.6630367+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0ae9013-c2e7-424d-babd-ac052243031f">
+    </UnitTestResult>
+    <UnitTestResult executionId="796d4e50-6213-4477-a91a-3c76a7bb0b5c" testId="3f3d6718-39ff-7fa1-2efb-6ac794445b3b" testName="SLLTest" computerName="SAMCRUISE-PC" duration="00:00:00.0008365" startTime="2013-03-18T17:22:16.6680370+00:00" endTime="2013-03-18T17:22:16.6720372+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="796d4e50-6213-4477-a91a-3c76a7bb0b5c">
+    </UnitTestResult>
+    <UnitTestResult executionId="859d0ad9-9943-4a63-ae9d-9dccffde3192" testId="d576b2e9-18ab-4c39-22d6-660b702088a3" testName="SRATest" computerName="SAMCRUISE-PC" duration="00:00:00.0009356" startTime="2013-03-18T17:22:16.6760374+00:00" endTime="2013-03-18T17:22:16.6800376+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="859d0ad9-9943-4a63-ae9d-9dccffde3192">
+    </UnitTestResult>
+    <UnitTestResult executionId="43517e46-0001-4a83-b9a9-d4c5aa207bfa" testId="a281a993-54ac-242d-6e81-bd7ca5969d50" testName="SRLTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006032" startTime="2013-03-18T17:22:16.6840379+00:00" endTime="2013-03-18T17:22:16.6870380+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43517e46-0001-4a83-b9a9-d4c5aa207bfa">
+    </UnitTestResult>
+    <UnitTestResult executionId="a9b60a16-8f6b-4be2-a7b4-42827f707abf" testId="46c0ea6c-7511-1a43-1027-23d83e8af062" testName="SUB_nTest" computerName="SAMCRUISE-PC" duration="00:00:00.0005533" startTime="2013-03-18T17:22:16.6910383+00:00" endTime="2013-03-18T17:22:16.6950385+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a9b60a16-8f6b-4be2-a7b4-42827f707abf">
+    </UnitTestResult>
+    <UnitTestResult executionId="4e4c6ef1-c5b1-4754-90db-10502041a4e6" testId="55171caa-19dd-2ede-1df5-fba7324e3535" testName="SUB_rTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006328" startTime="2013-03-18T17:22:16.7000388+00:00" endTime="2013-03-18T17:22:16.7030390+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e4c6ef1-c5b1-4754-90db-10502041a4e6">
+    </UnitTestResult>
+    <UnitTestResult executionId="6547c657-b951-44a4-8f96-c9075219a77b" testId="2d6e4e36-5fe1-42c4-5c13-c7a8f483806d" testName="XOR_nTest" computerName="SAMCRUISE-PC" duration="00:00:00.0005418" startTime="2013-03-18T17:22:16.7070392+00:00" endTime="2013-03-18T17:22:16.7110394+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6547c657-b951-44a4-8f96-c9075219a77b">
+    </UnitTestResult>
+    <UnitTestResult executionId="c0632fe4-8cba-4869-af6d-61fd4015ab6b" testId="436605de-6d1c-4402-615f-0938ced05851" testName="XOR_rTest" computerName="SAMCRUISE-PC" duration="00:00:00.0006017" startTime="2013-03-18T17:22:16.7140396+00:00" endTime="2013-03-18T17:22:16.7180398+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c0632fe4-8cba-4869-af6d-61fd4015ab6b">
+    </UnitTestResult>
+    <UnitTestResult executionId="89fd9d6a-631b-4597-ba70-fb8ce5eb41d9" testId="06cdd2b0-2e57-8d8b-04bb-80519a9fcc34" testName="FUSETests" computerName="SAMCRUISE-PC" duration="00:00:02.1121208" startTime="2013-03-18T17:22:16.7230401+00:00" endTime="2013-03-18T17:22:18.8351609+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="89fd9d6a-631b-4597-ba70-fb8ce5eb41d9">
+    </UnitTestResult>
+    <UnitTestResult executionId="169314a8-bb54-4cf4-a839-1d5038d49948" testId="068cdc8e-c9bd-de02-b833-b329ffaf1fd2" testName="JimmyTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="169314a8-bb54-4cf4-a839-1d5038d49948">
+    </UnitTestResult>
+    <UnitTestResult executionId="f20ed80b-89a5-4c2a-90ac-eba959b6e937" testId="942a0380-d590-7e7a-6851-2cdf34dc5ff1" testName="StackTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f20ed80b-89a5-4c2a-90ac-eba959b6e937">
+    </UnitTestResult>
+    <UnitTestResult executionId="66f07b3d-51c5-44f6-8cf0-156c6e9bc107" testId="6ea371f5-9713-1500-34a7-78647e13da18" testName="CarryTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66f07b3d-51c5-44f6-8cf0-156c6e9bc107">
+    </UnitTestResult>
+    <UnitTestResult executionId="95933224-c788-4e3a-aa34-788ef46aab74" testId="fa282fd8-ace3-314b-bdaa-b68c035c8013" testName="Arithmetic8BitTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="95933224-c788-4e3a-aa34-788ef46aab74">
+    </UnitTestResult>
+    <UnitTestResult executionId="53d737ea-8846-40af-827d-3ef006c261a5" testId="d4004087-56d4-1d0e-14c6-9815e660af61" testName="ZeroTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="53d737ea-8846-40af-827d-3ef006c261a5">
+    </UnitTestResult>
+    <UnitTestResult executionId="b43465d8-d989-44d8-9a15-ab9838ce03d8" testId="a4ae135f-c523-9f9f-d27b-4db4e5509e94" testName="ADC_A_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b43465d8-d989-44d8-9a15-ab9838ce03d8">
+    </UnitTestResult>
+    <UnitTestResult executionId="ea2dadd7-0076-4683-b3e5-1206ac8832c9" testId="7fa090f1-d9a9-3de8-1087-2d0b0717201b" testName="ADC_A_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea2dadd7-0076-4683-b3e5-1206ac8832c9">
+    </UnitTestResult>
+    <UnitTestResult executionId="985fc9dc-c2fe-4e43-8ac6-5da7c2c79339" testId="0b4144dd-a347-7b17-997b-3df3b8ff73bd" testName="ADC_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="985fc9dc-c2fe-4e43-8ac6-5da7c2c79339">
+    </UnitTestResult>
+    <UnitTestResult executionId="d92ddf15-3be1-43a3-8674-d878caf8c6c0" testId="0ebca460-c35e-fb90-0af2-4327104b42ae" testName="ADD_A_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d92ddf15-3be1-43a3-8674-d878caf8c6c0">
+    </UnitTestResult>
+    <UnitTestResult executionId="b3a25da6-b912-464f-bcb9-4e4834b44cce" testId="61cf7fd2-4675-4774-43a6-1058ba4d6886" testName="ADD_A_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3a25da6-b912-464f-bcb9-4e4834b44cce">
+    </UnitTestResult>
+    <UnitTestResult executionId="90bbec83-2f28-415c-868a-f6630fbdf469" testId="77c6ab54-7ca3-396b-513b-a14bf6be574c" testName="ADD_HL_ssTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90bbec83-2f28-415c-868a-f6630fbdf469">
+    </UnitTestResult>
+    <UnitTestResult executionId="fef09fbb-0d98-470d-b829-1bfa0bdd1356" testId="9f6c528b-5fee-7f40-d59f-122c6aa17338" testName="AND_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fef09fbb-0d98-470d-b829-1bfa0bdd1356">
+    </UnitTestResult>
+    <UnitTestResult executionId="0a5b8c93-6213-4d6a-b171-f620b84620dc" testId="7769ab53-4bf0-a65b-8187-75daf24d1434" testName="AND_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a5b8c93-6213-4d6a-b171-f620b84620dc">
+    </UnitTestResult>
+    <UnitTestResult executionId="1075ecff-cd6e-4843-92fd-a8d363643d46" testId="7976e622-0553-0c71-cbd8-e8577be21b5d" testName="BITTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1075ecff-cd6e-4843-92fd-a8d363643d46">
+    </UnitTestResult>
+    <UnitTestResult executionId="eb8767f1-f459-43d5-aabd-452e6a8dea81" testId="320aa1ed-8916-5804-9751-99d2b2fcbc6a" testName="CALL_cc_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb8767f1-f459-43d5-aabd-452e6a8dea81">
+    </UnitTestResult>
+    <UnitTestResult executionId="e249163d-9f2f-4b8d-896f-c2ae1eddab64" testId="fa3e44b0-1a68-2b54-c8d6-5cd6535068e5" testName="CALL_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e249163d-9f2f-4b8d-896f-c2ae1eddab64">
+    </UnitTestResult>
+    <UnitTestResult executionId="918ab229-a99e-4cdf-80a6-5f9aa2ec1781" testId="da8af087-df0c-8562-0b18-6cdda3360a1f" testName="CCFTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="918ab229-a99e-4cdf-80a6-5f9aa2ec1781">
+    </UnitTestResult>
+    <UnitTestResult executionId="de4d9f48-0ae4-4c49-8093-ea78913b2df3" testId="4618a85c-6917-6864-cac1-68e9f062489d" testName="CPDTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de4d9f48-0ae4-4c49-8093-ea78913b2df3">
+    </UnitTestResult>
+    <UnitTestResult executionId="9d7e1c0a-ae38-4c51-be08-6bfbde346ff1" testId="225c05c4-9748-a7c6-e24e-08b5a00f73ff" testName="CPDRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d7e1c0a-ae38-4c51-be08-6bfbde346ff1">
+    </UnitTestResult>
+    <UnitTestResult executionId="b71319ce-adbe-46cd-bd12-cefa0be598e1" testId="e8d906d9-8fb1-1c4e-04ae-14b5b043e77e" testName="CPITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b71319ce-adbe-46cd-bd12-cefa0be598e1">
+    </UnitTestResult>
+    <UnitTestResult executionId="bc83634f-b36d-4ec3-a06f-5f5671a16142" testId="1a60954a-838a-08ce-4a89-0464a13b3a93" testName="CPIRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc83634f-b36d-4ec3-a06f-5f5671a16142">
+    </UnitTestResult>
+    <UnitTestResult executionId="aabffcd1-14af-400e-a529-8cc08ab7b3b8" testId="f8babc50-25ce-9eb4-fa02-2679067db866" testName="CPLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aabffcd1-14af-400e-a529-8cc08ab7b3b8">
+    </UnitTestResult>
+    <UnitTestResult executionId="b35aafbe-56d2-4867-ad56-bf73d099e269" testId="f418ccbd-868f-1cb5-4064-c312acb76e89" testName="CP_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b35aafbe-56d2-4867-ad56-bf73d099e269">
+    </UnitTestResult>
+    <UnitTestResult executionId="f2e6bd25-15c5-4f6c-9207-e85cd057bc1e" testId="6b710965-1677-6f38-b88e-91e3b8a9332f" testName="CP_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f2e6bd25-15c5-4f6c-9207-e85cd057bc1e">
+    </UnitTestResult>
+    <UnitTestResult executionId="4d67272e-425e-4eb7-8915-c3e4da42388d" testId="8e0d0db1-8d33-69b8-381b-66e942894b60" testName="DAATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d67272e-425e-4eb7-8915-c3e4da42388d">
+    </UnitTestResult>
+    <UnitTestResult executionId="d94de690-1304-423a-8440-a9cff7d1b913" testId="64f3a371-75dd-ff36-2172-a082a1bb01a7" testName="DEC_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d94de690-1304-423a-8440-a9cff7d1b913">
+    </UnitTestResult>
+    <UnitTestResult executionId="a1241b65-5dbc-4f3b-8bcd-85a963bcdd38" testId="d40644e9-e5a2-7e4e-64e2-b6d9ec18d899" testName="DEC_ssTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a1241b65-5dbc-4f3b-8bcd-85a963bcdd38">
+    </UnitTestResult>
+    <UnitTestResult executionId="19f00f76-7644-4309-b514-7e0af174bef5" testId="e92b5c19-a5d8-72ee-80c0-df041dccc0be" testName="DITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="19f00f76-7644-4309-b514-7e0af174bef5">
+    </UnitTestResult>
+    <UnitTestResult executionId="a15c562a-8807-4879-add5-e8e3c01adaf6" testId="a5b3e069-d5dc-aae1-dab1-7ba2da7e0884" testName="DNJZTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a15c562a-8807-4879-add5-e8e3c01adaf6">
+    </UnitTestResult>
+    <UnitTestResult executionId="6e3858c2-189a-4fce-989d-a22dae883a3e" testId="cbf56f62-df39-1b79-4acc-e7326d9dc27c" testName="EITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e3858c2-189a-4fce-989d-a22dae883a3e">
+    </UnitTestResult>
+    <UnitTestResult executionId="b39c2532-c0b8-4923-b5a5-3e994a5da79c" testId="4362f3ce-6bef-c806-ed6a-f9a0e3284ef0" testName="EXXTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b39c2532-c0b8-4923-b5a5-3e994a5da79c">
+    </UnitTestResult>
+    <UnitTestResult executionId="8b04b6a4-86f6-44e9-ad14-2baecb6008d3" testId="a99ddd4b-7030-4db6-9934-7cc5773a9396" testName="EX_AF_AF2Test" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b04b6a4-86f6-44e9-ad14-2baecb6008d3">
+    </UnitTestResult>
+    <UnitTestResult executionId="35e6e61e-4077-441a-949e-5e0f208196e5" testId="c6073ad2-1dfd-1823-7f61-0e4d779c6b0f" testName="EX_DE_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35e6e61e-4077-441a-949e-5e0f208196e5">
+    </UnitTestResult>
+    <UnitTestResult executionId="5eed7571-e4b7-4781-9c3d-e65a38e4a149" testId="5ffd0124-37d8-11bf-fa8d-5062ee6afc91" testName="EX_SP_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5eed7571-e4b7-4781-9c3d-e65a38e4a149">
+    </UnitTestResult>
+    <UnitTestResult executionId="b6758a8f-7ba8-4014-997c-39f49b0c7503" testId="cc8e988e-fc66-7582-921e-6f44ee2d4fb1" testName="HALTTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6758a8f-7ba8-4014-997c-39f49b0c7503">
+    </UnitTestResult>
+    <UnitTestResult executionId="a13d1699-3734-4324-bedd-fd3e56c08644" testId="6993b04e-0773-c13a-ebf9-79006fbce62b" testName="IMTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a13d1699-3734-4324-bedd-fd3e56c08644">
+    </UnitTestResult>
+    <UnitTestResult executionId="ff3f2ca5-8f9e-49c8-b42f-60f7a6304f1f" testId="d16ad0a6-d821-4cca-9aac-518623adb362" testName="INC_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ff3f2ca5-8f9e-49c8-b42f-60f7a6304f1f">
+    </UnitTestResult>
+    <UnitTestResult executionId="43c922f6-eb30-4c95-9f39-50a39a71c1b8" testId="d80f292a-b4c2-4be9-b82a-b5573e9be6f2" testName="INC_ssTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43c922f6-eb30-4c95-9f39-50a39a71c1b8">
+    </UnitTestResult>
+    <UnitTestResult executionId="ad01fea1-8933-426b-a754-92d61c59d090" testId="aece9089-8fd9-3739-7b3a-72bcdb4cb138" testName="INDTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad01fea1-8933-426b-a754-92d61c59d090">
+    </UnitTestResult>
+    <UnitTestResult executionId="8a22f1e8-3824-4b47-85b0-531a153ce6c7" testId="0eef37c0-80da-2b47-8f3e-2850bbdef705" testName="INDRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8a22f1e8-3824-4b47-85b0-531a153ce6c7">
+    </UnitTestResult>
+    <UnitTestResult executionId="bbfe2bcb-f35f-4f2a-8f69-eb48adda47bb" testId="663717dd-e6fb-6ae6-4ed1-26415e1cd665" testName="INITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbfe2bcb-f35f-4f2a-8f69-eb48adda47bb">
+    </UnitTestResult>
+    <UnitTestResult executionId="c658b499-2ba9-412e-b731-d23f9db40a3a" testId="accb7fb6-557d-89fd-8c02-43ad3120a4e4" testName="INIRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c658b499-2ba9-412e-b731-d23f9db40a3a">
+    </UnitTestResult>
+    <UnitTestResult executionId="e64f1650-d779-41f3-9ebf-b0bc424679cb" testId="cb76c32f-1004-2d6e-4048-b5467b53a179" testName="IN_A_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e64f1650-d779-41f3-9ebf-b0bc424679cb">
+    </UnitTestResult>
+    <UnitTestResult executionId="5dc5cb50-4b69-4163-b705-6cb5e0394b36" testId="6af126f8-3922-fbad-35b8-bf549d275e90" testName="IN_r_CTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5dc5cb50-4b69-4163-b705-6cb5e0394b36">
+    </UnitTestResult>
+    <UnitTestResult executionId="691a16eb-efa3-40ec-927a-d6494799456e" testId="644506c2-c887-ef59-e127-65e89db16cbc" testName="JP_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="691a16eb-efa3-40ec-927a-d6494799456e">
+    </UnitTestResult>
+    <UnitTestResult executionId="7d001005-eba6-4f51-98f0-c681199af915" testId="2a561a82-d650-4928-a63a-372019177aa0" testName="JP_cc_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d001005-eba6-4f51-98f0-c681199af915">
+    </UnitTestResult>
+    <UnitTestResult executionId="de8af7f3-00b2-48a8-82ed-2c953b6df810" testId="3cdbe969-b2db-38d4-00ab-7c7380efb3ba" testName="JP_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de8af7f3-00b2-48a8-82ed-2c953b6df810">
+    </UnitTestResult>
+    <UnitTestResult executionId="0e9afab7-52b5-4f3d-b902-de8815aef06b" testId="d987caa4-b236-d3ff-cce6-1360da40887d" testName="JRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0e9afab7-52b5-4f3d-b902-de8815aef06b">
+    </UnitTestResult>
+    <UnitTestResult executionId="d1569169-c7bc-44e1-9dbc-64794b0e269a" testId="2725660c-204c-cdd3-cc38-c8cb0969f291" testName="LDDTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1569169-c7bc-44e1-9dbc-64794b0e269a">
+    </UnitTestResult>
+    <UnitTestResult executionId="60f188e1-d46e-4c73-afb3-334813f28e1e" testId="fbf61387-acd6-ad6e-d454-963c3b13209e" testName="LDDRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="60f188e1-d46e-4c73-afb3-334813f28e1e">
+    </UnitTestResult>
+    <UnitTestResult executionId="8eeaf7f8-a0fa-444b-8dd9-c57607e71950" testId="26cfd68c-0b2b-b154-5fee-9a7274b0546f" testName="LDITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8eeaf7f8-a0fa-444b-8dd9-c57607e71950">
+    </UnitTestResult>
+    <UnitTestResult executionId="48bd76ae-ae6e-4e7c-8124-58c888e0beda" testId="c6014464-c5a6-fa24-8780-9b58004c3f58" testName="LDIRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48bd76ae-ae6e-4e7c-8124-58c888e0beda">
+    </UnitTestResult>
+    <UnitTestResult executionId="2822f9a5-72b0-4a21-b7e0-f2a90c50415b" testId="1098bc54-92c2-3c91-e91e-8afcd496d21e" testName="LD_A_BCTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2822f9a5-72b0-4a21-b7e0-f2a90c50415b">
+    </UnitTestResult>
+    <UnitTestResult executionId="10ae46b8-87e2-466a-ade1-74a2b29329c7" testId="dedf675d-4710-3439-30c1-2b6f394221dd" testName="LD_A_DETest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10ae46b8-87e2-466a-ade1-74a2b29329c7">
+    </UnitTestResult>
+    <UnitTestResult executionId="08e519aa-1a00-4e0c-9ca2-074bd62488c2" testId="77ea9ad2-e5e0-4a61-f03a-bc81b141b08e" testName="LD_A_ITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08e519aa-1a00-4e0c-9ca2-074bd62488c2">
+    </UnitTestResult>
+    <UnitTestResult executionId="056df8b5-cd37-45c7-a92b-f49da59d83ba" testId="d6f365f5-4679-7038-6450-481adfa7d5c7" testName="LD_A_RTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="056df8b5-cd37-45c7-a92b-f49da59d83ba">
+    </UnitTestResult>
+    <UnitTestResult executionId="5652c911-2828-47ed-abfe-f6c72d7fd98b" testId="3910ea2e-3d0e-baae-5cb5-ee5255a7ee35" testName="LD_A_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5652c911-2828-47ed-abfe-f6c72d7fd98b">
+    </UnitTestResult>
+    <UnitTestResult executionId="4e7fcfe0-6a09-4c6b-a3c6-519f7384aa31" testId="82c0cf7c-d6a8-c070-d23c-58c9b55e047a" testName="LD_BC_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e7fcfe0-6a09-4c6b-a3c6-519f7384aa31">
+    </UnitTestResult>
+    <UnitTestResult executionId="b44757af-b5bc-4fe8-83d7-cc5746cb88d8" testId="231bd03e-0d38-6cc5-0783-b65ae0f853d9" testName="LD_DE_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b44757af-b5bc-4fe8-83d7-cc5746cb88d8">
+    </UnitTestResult>
+    <UnitTestResult executionId="9fc17bff-c236-4929-ab10-f3079f14c059" testId="7a984ac0-e42a-474e-dd34-f1980e6732d9" testName="LD_HL_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9fc17bff-c236-4929-ab10-f3079f14c059">
+    </UnitTestResult>
+    <UnitTestResult executionId="4019afa0-9706-4d20-a307-d448004b6ed7" testId="8419ae4f-e0d9-7a9f-7f37-e3a84733904b" testName="LD_I_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4019afa0-9706-4d20-a307-d448004b6ed7">
+    </UnitTestResult>
+    <UnitTestResult executionId="5f7ce464-904d-4b7e-9689-962853a6f02f" testId="02081afb-f4e4-3f4d-8158-5c914990d541" testName="LD_R_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f7ce464-904d-4b7e-9689-962853a6f02f">
+    </UnitTestResult>
+    <UnitTestResult executionId="811ef44b-4322-49ce-93ad-8cc04758b6d9" testId="408ed624-5685-2cc2-3b5f-b6dc3f3441bf" testName="LD_SP_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="811ef44b-4322-49ce-93ad-8cc04758b6d9">
+    </UnitTestResult>
+    <UnitTestResult executionId="766cfc5f-4271-47df-907b-eb7ca7c40386" testId="9693f54a-8e39-e20e-ac44-1452f0049c4d" testName="LD_dd_nnTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="766cfc5f-4271-47df-907b-eb7ca7c40386">
+    </UnitTestResult>
+    <UnitTestResult executionId="abe14337-07da-457b-adfe-77a9317c1c7f" testId="531135d4-b324-d795-f9f5-d51886e82803" testName="LD_dd_nn2Test" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="abe14337-07da-457b-adfe-77a9317c1c7f">
+    </UnitTestResult>
+    <UnitTestResult executionId="1d2fcaab-e0e8-4568-8b8c-87461c6cf9d7" testId="9f97dc1f-2483-ec75-3db2-8e92253870cb" testName="LD_nn_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d2fcaab-e0e8-4568-8b8c-87461c6cf9d7">
+    </UnitTestResult>
+    <UnitTestResult executionId="9495c3d6-d3f4-4467-a15c-4296970f2507" testId="5fd1f04b-dac6-41bb-9db7-15f63c1db9f6" testName="LD_nn_HLTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9495c3d6-d3f4-4467-a15c-4296970f2507">
+    </UnitTestResult>
+    <UnitTestResult executionId="5b88e21e-5f2d-419e-bc50-b33aaaa6c971" testId="f9126364-3831-3363-8188-a09b575bcf73" testName="LD_nn_ddTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b88e21e-5f2d-419e-bc50-b33aaaa6c971">
+    </UnitTestResult>
+    <UnitTestResult executionId="396c6aeb-13f8-4efb-9aef-5a1684248e19" testId="4ca40fc0-23e6-fedb-25b7-f0ba20aa5cc5" testName="LD_r_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="396c6aeb-13f8-4efb-9aef-5a1684248e19">
+    </UnitTestResult>
+    <UnitTestResult executionId="7803886c-fa1a-43d5-bdee-f1e841ec2dc8" testId="4e29e539-acb7-4fe7-b58a-ad776d59b1bb" testName="LD_r_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7803886c-fa1a-43d5-bdee-f1e841ec2dc8">
+    </UnitTestResult>
+    <UnitTestResult executionId="fcfe5153-18e5-4c69-9f4c-fdb1417ff115" testId="efeb0611-e5d6-72cb-f153-edd9546c4863" testName="NEGTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fcfe5153-18e5-4c69-9f4c-fdb1417ff115">
+    </UnitTestResult>
+    <UnitTestResult executionId="7249c763-3de9-408e-8fe6-b773474f9ff4" testId="ef38ddd6-7755-2790-0e1b-b39d5b54c463" testName="OR_nTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7249c763-3de9-408e-8fe6-b773474f9ff4">
+    </UnitTestResult>
+    <UnitTestResult executionId="f87bead8-eda8-46e0-91ce-5e89c6a56a7f" testId="429a8c32-55b7-bbd1-b067-032d95921b55" testName="OR_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f87bead8-eda8-46e0-91ce-5e89c6a56a7f">
+    </UnitTestResult>
+    <UnitTestResult executionId="8962b3f3-572c-46e7-b613-ef484b101b38" testId="6582c566-3514-80d9-5e8b-746b8c877c02" testName="OTDRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8962b3f3-572c-46e7-b613-ef484b101b38">
+    </UnitTestResult>
+    <UnitTestResult executionId="c02254d3-a26c-4797-96c0-7eb668edcb5a" testId="613249bd-4594-d153-ca2b-015a8a45b6a0" testName="OTIRTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c02254d3-a26c-4797-96c0-7eb668edcb5a">
+    </UnitTestResult>
+    <UnitTestResult executionId="8df27113-607e-46fb-91ed-81bac9a7788e" testId="1e0740c8-2234-8fea-75be-3168c953cfa8" testName="OUTDTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8df27113-607e-46fb-91ed-81bac9a7788e">
+    </UnitTestResult>
+    <UnitTestResult executionId="f0324d4f-cf30-43c8-8639-d2d4e7839dba" testId="e500e466-400d-7a9d-97dd-2a6998d88e4b" testName="OUTITest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0324d4f-cf30-43c8-8639-d2d4e7839dba">
+    </UnitTestResult>
+    <UnitTestResult executionId="52135674-303a-4a7d-bc05-a3a2f91596ef" testId="00f0e72d-0ee9-884c-1553-d761223ad003" testName="OUT_C_rTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52135674-303a-4a7d-bc05-a3a2f91596ef">
+    </UnitTestResult>
+    <UnitTestResult executionId="674b994d-4aa4-4206-a316-f5721de0f312" testId="ec3dceb2-7476-60e7-45c6-cb4ca611c1fd" testName="OUT_n_ATest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="674b994d-4aa4-4206-a316-f5721de0f312">
+    </UnitTestResult>
+    <UnitTestResult executionId="63f561c2-a142-444a-840e-6958b944afcd" testId="1fa28479-68b5-6739-9382-2a843d130358" testName="POP_qqTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="63f561c2-a142-444a-840e-6958b944afcd">
+    </UnitTestResult>
+    <UnitTestResult executionId="de0c132d-f3a5-443a-a518-4bf9254f9a15" testId="9084bd1d-64fc-c645-d3ae-df82e73934b3" testName="PUSH_qqTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de0c132d-f3a5-443a-a518-4bf9254f9a15">
+    </UnitTestResult>
+    <UnitTestResult executionId="17ce029b-b4ca-448e-bb77-b61dd4afa622" testId="ec8889aa-5c28-4621-dc4c-a1bae4f864b3" testName="RESTest" computerName="SAMCRUISE-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="17ce029b-b4ca-448e-bb77-b61dd4afa622">
+    </UnitTestResult>
+  </Results>
+</TestRun>

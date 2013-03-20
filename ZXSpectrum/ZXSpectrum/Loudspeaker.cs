@@ -23,6 +23,7 @@ namespace ZXSpectrum
             //  Standard CD sample-rate is 44.1KHz, but we only need a mono speaker
             sfx = new DynamicSoundEffectInstance(44100, AudioChannels.Mono);
             xnaBuffer = new List<byte>();
+            sfx.Volume = 0.5f;
             sfx.Play();
         }
 

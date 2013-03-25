@@ -2023,7 +2023,6 @@ namespace ZXSpectrum.Z_80
             ModifyZeroFlag(A);
             ModifyCarryFlag8(initial, addition);
 
-
             ModifyHalfCarryFlag8(initial, addition);
 
             ModifyOverflowFlag8(initial, addition, A);
@@ -2859,6 +2858,7 @@ namespace ZXSpectrum.Z_80
             }
 
             var initial = GetRegister(r);
+
             var result = (initial - 1) & 0xFF;
 
             SetRegister(r, result);
@@ -2867,7 +2867,11 @@ namespace ZXSpectrum.Z_80
             ModifyZeroFlag(result);
 
             ModifyHalfCarryFlag8(initial, -1);
+
+
             ModifyOverflowFlag8(initial, -1, result);
+
+
             Set(Flag.Subtract);
             ModifyUndocumentedFlags8(result);
         }

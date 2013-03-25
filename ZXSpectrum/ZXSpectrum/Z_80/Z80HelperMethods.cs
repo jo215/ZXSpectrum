@@ -244,7 +244,7 @@ namespace ZXSpectrum.Z_80
             else
             {
                 var subtract = -addition;
-                if (((initial ^ subtract) & (initial ^ A) & 0x80) != 0)
+                if (((initial ^ subtract) & (initial ^ result) & 0x80) != 0)
                 {
                     Set(Flag.ParityOverflow);
                 }

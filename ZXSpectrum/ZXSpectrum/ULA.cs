@@ -125,6 +125,7 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
+            //LoadTAP("3dstarst.tap");
             LoadTAP("z80docflags.tap");
             //LoadSNA("Z80 Test Suite.sna");
         }

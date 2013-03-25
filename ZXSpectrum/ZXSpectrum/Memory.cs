@@ -25,21 +25,6 @@ namespace ZXSpectrum
     }
 
     /// <summary>
-    /// Event args for a beep (loudspeaker event)
-    /// </summary>
-    public class BeepEventArgs : EventArgs
-    {
-        public int DE;
-        public int HL;
-
-        public BeepEventArgs(int de, int hl)
-        {
-            DE = de;
-            HL = hl;
-        }
-    }
-
-    /// <summary>
     /// Represents the ZX Spectrum 48K's ROM + RAM.
     /// This implementation corrects the Z80 emulator's timing values for the Spectrum ULA's memory contention effect.
     /// More information @ http://www.worldofspectrum.org/faq/reference/48kreference.htm#Contention

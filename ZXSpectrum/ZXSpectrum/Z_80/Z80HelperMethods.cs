@@ -160,12 +160,11 @@ namespace ZXSpectrum.Z_80
             }
             else
             {
-                var hc = ((initial & 0xf) - ((-addition) & 0xf)) & 0x10;
-                //  Half-borrow
-                if (hc != 0x10)
-                    Reset(Flag.HalfCarry);
-                else
+                var subtract = -addition;
+                if ((((initial & 0x0f) - (subtract & 0x0f)) & 0x10) != 0)
                     Set(Flag.HalfCarry);
+                else
+                    Reset(Flag.HalfCarry);
             }
         }
 
@@ -228,10 +227,32 @@ namespace ZXSpectrum.Z_80
         /// <param name="addition"></param>
         private void ModifyOverflowFlag8(int initial, int addition, int result)
         {
-            if ((initial & 0x80) == (addition & 0x80) && (initial & 0x80) != (result & 0x80))
-                Set(Flag.ParityOverflow);
+            if (addition >= 0)
+            {
+                //  For addition, operands with like signs may cause overflow
+                if (((initial & 0x80) ^ (addition & 0x80)) == 0)
+                {
+                    //  If the result has a different sign then overflow is caused
+                    if (((result & 0x80) ^ (initial & 0x80)) == 0x80)
+                    {
+                        Set(Flag.ParityOverflow);
+                        return;
+                    }
+                }
+                Reset(Flag.ParityOverflow);
+            }
             else
-                Reset(Flag.ParityOverflow); 
+            {
+                var subtract = -addition;
+                if (((initial ^ subtract) & (initial ^ A) & 0x80) != 0)
+                {
+                    Set(Flag.ParityOverflow);
+                }
+                else
+                {
+                    Reset(Flag.ParityOverflow);
+                } 
+            }
         }
 
         /// <summary>

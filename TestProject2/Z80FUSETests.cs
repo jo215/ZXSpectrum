@@ -16,7 +16,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void FUSETests()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             /*
                 tests.in

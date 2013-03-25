@@ -26,6 +26,7 @@ namespace ZXSpectrum
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 608;
             graphics.PreferredBackBufferWidth = 704;
+            //  Render as fast as possible
             graphics.SynchronizeWithVerticalRetrace = false;
             IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
@@ -88,7 +89,6 @@ namespace ZXSpectrum
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
             //  DrawableGameComponents (ULA) auto-draw here
 
             base.Draw(gameTime);

@@ -31,7 +31,6 @@ namespace ZXSpectrum.Z_80
 
         internal Memory Memory;                            //  ROM / RAM
 
-        float MHz;                                      //  Clockspeed
         internal int CycleTStates;                      //  For counting T-states
         int previousTStates;                                
 
@@ -47,9 +46,8 @@ namespace ZXSpectrum.Z_80
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Z80(float mhz, Memory Memory)
+        public Z80(Memory Memory)
         {
-            MHz = mhz;
             this.Memory = Memory;
             //  Set the memory to know about this CPU (for working out contention)
             this.Memory.CPU = this;
@@ -117,11 +115,9 @@ namespace ZXSpectrum.Z_80
                         break;
                     case 1:
                         //  The processor restarts at location 0x0038
-
                         Memory[--SP] = PC >> 8;
                         Memory[--SP] = PC & 0xff;
                         PC = 0x0038;
-
                         break;
                     case 2:
                         //  The device supplies the LSByte of the routine pointer, HSByte in register I.
@@ -346,7 +342,6 @@ namespace ZXSpectrum.Z_80
 
                         if (x == 1)
                         {
-
                             //  Halt
                             if (y == 6 && z == 6) { HALT(); break; }
 
@@ -356,7 +351,6 @@ namespace ZXSpectrum.Z_80
 
                         if (x == 2)
                         {
-
                             //  Operations on Accumulator and register/memory location
                             if (y == 0) { ADD_A_r(z); break; }
                             if (y == 1) { ADC_A_r(z); break; }
@@ -559,15 +553,6 @@ namespace ZXSpectrum.Z_80
                 {
                     running = false;
                 }
-
-                //  End instruction time measurement and calculate how early we are
-                //long nsEarly = ((totalTStates - previousTStates) * nsPerTState) - (long)(1e9 * stopWatch.ElapsedTicks / (double)Stopwatch.Frequency);
-                //while (nsEarly > 0)
-                //{
-
-                //    nsEarly = ((totalTStates - previousTStates) * nsPerTState) - (long)(1e9 * stopWatch.ElapsedTicks / (double)Stopwatch.Frequency);
-                //}
-                //stopWatch.Stop();
             }
         }
 
@@ -1415,6 +1400,7 @@ namespace ZXSpectrum.Z_80
             {
                 addition++;
             }
+            addition = addition & 0xffff;
 
             var result = (initial + addition) & 0xffff;
             Set16BitRegisters(2, result);
@@ -1872,20 +1858,28 @@ namespace ZXSpectrum.Z_80
             Memory[--SP] = PC & 0xff;
             PC = p;
         }
-        
+
+
         /// <summary>
-        /// CP n
-        /// If there is a true compare between operand n and the Accumulator, the Z flag is set.
-        /// CP is just SUB with the result thrown away.
+        /// CP r
+        /// If the Accumulator is a true comparison with Register r, Z is set.
+        /// CP is just SUB with result thrown away.
         /// </summary>
-        private void CP_n()
+        /// <param name="r"></param>
+        private void CP_r(int r)
         {
-            CycleTStates += 7;
+            CycleTStates += 4;
 
             var initial = A;
-            var addition = -Memory[PC++];
+            if (r == 6 && prefix != 0)
+            {
+                CycleTStates += 4;
+                ReadDisplacementByte();
+            }
+            var reg = GetRegister(r);
+            var addition = -reg;
 
-            A = (A + addition) & 0xff;
+            A = ((A + addition) & 0xff);
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
@@ -1905,13 +1899,14 @@ namespace ZXSpectrum.Z_80
         /// If there is a true compare between operand n and the Accumulator, the Z flag is set.
         /// CP is just SUB with the result thrown away.
         /// </summary>
-        internal void CP_n(int addition)
+        private void CP_n()
         {
             CycleTStates += 7;
 
             var initial = A;
+            var addition = -Memory[PC++];
 
-            A = (A + addition) & 0xff;
+            A = ((A + addition) & 0xff);
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
@@ -2026,12 +2021,16 @@ namespace ZXSpectrum.Z_80
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
-            ModifyHalfCarryFlag8(initial, addition);
-            ModifyOverflowFlag8(initial, addition, A);
-            Set(Flag.Subtract);
             ModifyCarryFlag8(initial, addition);
 
+
+            ModifyHalfCarryFlag8(initial, addition);
+
+            ModifyOverflowFlag8(initial, addition, A);
+
+            Set(Flag.Subtract);
             ModifyUndocumentedFlags8(A);
+
         }
 
         /// <summary>
@@ -2047,6 +2046,7 @@ namespace ZXSpectrum.Z_80
             if ((F & Flag.Carry) == Flag.Carry)
                 addition++;
 
+            addition = addition & 0xff;
             A = (A + addition) & 0xff;
 
             ModifySignFlag8(A);
@@ -2345,40 +2345,6 @@ namespace ZXSpectrum.Z_80
         }
 
         /// <summary>
-        /// CP r
-        /// If the Accumulator is a true comparison with Register r, Z is set.
-        /// CP is just SUB with result thrown away.
-        /// </summary>
-        /// <param name="r"></param>
-        private void CP_r(int r)
-        {
-            CycleTStates += 4;
-
-            var initial = A;
-            if (r == 6 && prefix != 0)
-            {
-                CycleTStates += 4;
-                ReadDisplacementByte();
-            }
-            var reg = GetRegister(r);
-            var addition = -reg;
-
-            A = (A + addition) & 0xff;
-
-            ModifySignFlag8(A);
-            ModifyZeroFlag(A);
-
-            ModifyHalfCarryFlag8(initial, addition);
-            ModifyCarryFlag8(initial, addition);
-            ModifyOverflowFlag8(initial, addition, A);
-            Set(Flag.Subtract);
-
-            A = initial;
-
-            ModifyUndocumentedFlags8(reg);
-        }
-
-        /// <summary>
         /// OR r
         /// Logical OR between Accumulator and Register r
         /// </summary>
@@ -2517,10 +2483,12 @@ namespace ZXSpectrum.Z_80
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
+            ModifyCarryFlag8(initial, addition);
 
             ModifyHalfCarryFlag8(initial, addition);
-            ModifyCarryFlag8(initial, addition);
+
             ModifyOverflowFlag8(initial, addition, A);
+
             Set(Flag.Subtract);
 
             ModifyUndocumentedFlags8(A);
@@ -2547,6 +2515,8 @@ namespace ZXSpectrum.Z_80
 
             if ((F & Flag.Carry) == Flag.Carry)
                 addition++;
+
+            addition = addition & 0xff;
 
             A = (A + addition) & 0xff;
 
@@ -2648,14 +2618,15 @@ namespace ZXSpectrum.Z_80
             CycleTStates += 4;
 
             //  Previous carry copied to half-carry?
+            //  confirmed yes 24/03/2012
             if ((F & Flag.Carry) == Flag.Carry)
             {
-                //Set(Flag.HalfCarry);
+                Set(Flag.HalfCarry);
                 Reset(Flag.Carry);
             }
             else
             {
-                //Reset(Flag.HalfCarry);
+                Reset(Flag.HalfCarry);
                 Set(Flag.Carry);
             }
 

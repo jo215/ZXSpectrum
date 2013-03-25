@@ -70,7 +70,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void JimmyTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(0, 0x0000);
             target.DEC_ss(0);
@@ -94,7 +94,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void StackTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(0, 0x1234);
             Assert.IsTrue(target.B == 0x12
@@ -122,7 +122,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CarryTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 5;
             target.Memory[0] = 3;
@@ -147,7 +147,7 @@ namespace TestProject2
         public void Arithmetic8BitTest()
         {
             //  8-bit Load group
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 64;
             target.B = 65;
@@ -266,7 +266,7 @@ namespace TestProject2
         public void ZeroTest()
         {
             //  8-bit Load group
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.I = 3;
             target.LD_A_I();
@@ -298,7 +298,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADC_A_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x16;
             target.Set(Flag.Carry);
@@ -314,7 +314,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADC_A_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x16;
             target.Set(Flag.Carry);
@@ -330,7 +330,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADC_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(0, 0x16);
             target.Set(Flag.Carry);
@@ -346,7 +346,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADD_A_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x01;
             target.Memory[0] = 0x04;
@@ -361,7 +361,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADD_A_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x01;
             target.B = 0x04;
@@ -376,7 +376,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void ADD_HL_ssTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x4242);
             target.Set16BitRegisters(1, 0x1111);
@@ -391,7 +391,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void AND_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0] = 0x7b;
             target.A = 0xc3;
@@ -406,7 +406,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void AND_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.B = 0x7b;
             target.A = 0xc3;
@@ -421,7 +421,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void BITTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.prefix = 0xcb;
             target.B = 0;
@@ -436,7 +436,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CALL_cc_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Reset(Flag.Carry);
             target.PC = 0x1a48;
@@ -458,7 +458,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CALL_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.PC = 0x1a48;
             target.Memory[0x1a48] = 0x35;
@@ -478,7 +478,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CCFTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set(Flag.Carry);
             target.CCF();
@@ -492,7 +492,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CPDTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.Memory[0x1111] = 0x3b;
@@ -514,7 +514,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CPDRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1118);
             target.A = 0xf3;
@@ -538,7 +538,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CPITest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.Memory[0x1111] = 0x3b;
@@ -560,7 +560,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CPIRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.A = 0xf3;
@@ -584,7 +584,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CPLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0xb4;
             target.CPL();
@@ -598,7 +598,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CP_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x63;
             target.Memory[0] = 0x60;
@@ -616,7 +616,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void CP_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x63;
             target.Set16BitRegisters(2, 0x6000);
@@ -632,7 +632,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void DAATest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x15;
             target.B = 0x27;
@@ -648,7 +648,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void DEC_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.D = 0x2a;
             target.DEC_r(2);
@@ -662,7 +662,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void DEC_ssTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1001);
             target.DEC_ss(2);
@@ -676,7 +676,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void DITest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.IFF1 = true;
             target.IFF2 = true;
@@ -691,7 +691,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void DNJZTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
 
             target.DJNZ();
@@ -706,7 +706,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void EITest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.IFF1 = false;
             target.IFF2 = false;
@@ -721,7 +721,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void EXXTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(0, 0x0988);
             target.Set16BitRegisters(1, 0x9300);
@@ -743,7 +743,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void EX_AF_AF2Test()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x99;
             target.F = (target.F & 0x00);
@@ -763,7 +763,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void EX_DE_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(1, 0x2822);
             target.Set16BitRegisters(2, 0x499a);
@@ -779,7 +779,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void EX_SP_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x7012);
             target.SP = 0x8856;
@@ -799,7 +799,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void HALTTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.isHalted = false;
             target.HALT();
@@ -813,7 +813,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void IMTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.IM(2);
             Assert.IsTrue(target.interruptMode == 1, "Error: IM");
@@ -826,7 +826,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INC_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.D = 0x28;
             target.INC_r(2);
@@ -840,7 +840,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INC_ssTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1000);
             target.INC_ss(2);
@@ -854,7 +854,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INDTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.C = 0x07;
             target.B = 0x10;
@@ -873,7 +873,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INDRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.C = 0x07;
             target.B = 0x03;
@@ -895,7 +895,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INITest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.C = 0x07;
             target.B = 0x10;
@@ -913,7 +913,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void INIRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.C = 0x07;
             target.B = 0x03;
@@ -935,7 +935,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void IN_A_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x23;
             target.Memory[0] = 0x01;
@@ -950,7 +950,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void IN_r_CTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.C = 0x07;
             target.B = 0x10;
@@ -965,7 +965,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void JP_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.PC = 0x1000;
             target.Set16BitRegisters(2, 0x4800);
@@ -980,7 +980,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void JP_cc_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set(Flag.Carry);
             target.Memory[0x1520] = 0x03;
@@ -997,7 +997,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void JP_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0] = 0x34;
             target.Memory[1] = 0x45;
@@ -1012,7 +1012,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void JRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.PC = 481;
             target.Memory[481] = 3;
@@ -1027,7 +1027,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LDDTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.Memory[0x1111] = 0x88;
@@ -1049,7 +1049,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LDDRTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1114);
             target.Set16BitRegisters(1, 0x2225);
@@ -1081,7 +1081,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LDITest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.Memory[0x1111] = 0x88;
@@ -1103,7 +1103,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LDIRTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x1111);
             target.Set16BitRegisters(1, 0x2222);
@@ -1135,7 +1135,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_A_BCTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the BC register pair contains the number 4747H, and memory address 
             //  4747H contains byte 12H, then the instruction LD A, (BC) results in byte 
@@ -1154,7 +1154,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_A_DETest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the DE register pair contains the number 30A2H and memory address 
             //  30A2H contains byte 22H, then the instruction LD A, (DE) results in byte 
@@ -1173,7 +1173,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_A_ITest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.I = 126;
             target.LD_A_I();
@@ -1187,7 +1187,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_A_RTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.R = 129;
             target.LD_A_R();
@@ -1201,7 +1201,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_A_nnTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the contents of nn is number 8832H, and the content of memory address 
             //  8832H is byte 04H, at instruction LD A, (nn) byte 04H is in the 
@@ -1222,7 +1222,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_BC_ATest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the Accumulator contains 7AH and the BC register pair contains 1212H
             //  the instruction LD (BC), A results in 7AH in memory location 1212H.
@@ -1240,7 +1240,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_DE_ATest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the contents of register pair DE are 1128H, and the Accumulator contains 
             //  byte A0H, the instruction LD (DE), A results in A0H in memory location 
@@ -1259,7 +1259,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_HL_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0x4545] = 0x37;
             target.Memory[0x4546] = 0xa1;
@@ -1276,7 +1276,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_I_ATest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 100;
             target.LD_I_A();
@@ -1290,7 +1290,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_R_ATest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 24;
             target.LD_R_A();
@@ -1304,7 +1304,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_SP_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x442e);
             target.LD_SP_HL();
@@ -1318,7 +1318,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_dd_nnTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0] = 0x00;
             target.Memory[1] = 0x50;
@@ -1333,7 +1333,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_dd_nn2Test()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0] = 0x30;
             target.Memory[1] = 0x21;
@@ -1350,7 +1350,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_nn_ATest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the contents of the Accumulator are byte D7H, at execution of
             //  LD (3141H), AD 7H results in memory location 3141H.
@@ -1368,7 +1368,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_nn_HLTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(2, 0x483a);
             target.Memory[0] = 0x29;
@@ -1385,7 +1385,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_nn_ddTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Set16BitRegisters(0, 0x4644);
             target.Memory[0] = 0x00;
@@ -1402,7 +1402,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_r_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  At execution of LD E, A5H the contents of register E are A5H.
             target.Memory[0] = 0xa5;
@@ -1442,7 +1442,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void LD_r_rTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             //  If the H register contains the number 8AH, and the E register contains 10H, 
             //  the instruction LD H, E results in both registers containing 10H.
@@ -1517,7 +1517,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void NEGTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.A = 0x98;
             target.NEG();
@@ -1531,7 +1531,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OR_nTest()
         {
-             PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+             PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.Memory[0] = 0x48;
             target.A = 0x12;
@@ -1546,7 +1546,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OR_rTest()
         {
-            PrivateObject param0 = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject param0 = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(param0);
             target.H = 0x48;
             target.A = 0x12;
@@ -1561,7 +1561,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OTDRTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.C = 0x07;
             target.B = 0x03;
@@ -1584,7 +1584,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OTIRTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.C = 0x07;
             target.B = 0x03;
@@ -1606,7 +1606,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OUTDTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.C = 0x07;
             target.B = 0x10;
@@ -1624,7 +1624,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OUTITest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.C = 0x07;
             target.B = 0x10;
@@ -1641,7 +1641,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OUT_C_rTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.C = 0x01;
             target.D = 0x5a;
@@ -1655,7 +1655,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void OUT_n_ATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x23;
             target.Memory[0] = 0x01;
@@ -1669,7 +1669,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void POP_qqTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.SP = 0x1000;
             target.Memory[0x1000] = 0x55;
@@ -1685,7 +1685,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void PUSH_qqTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x22;
             target.SetFlags(0x33);
@@ -1701,7 +1701,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RESTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.D = 255;
             target.RES(6, 2);
@@ -1715,7 +1715,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RETTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.PC = 0x3535;
             target.SP = 0x2000;
@@ -1732,7 +1732,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RETITest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.SP = 0x2000;
             target.RETI();
@@ -1745,7 +1745,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RETNTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.SP = 0x1000;
             target.PC = 0x1a45;
@@ -1760,7 +1760,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RET_ccTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set(Flag.Sign);
             target.PC = 0x3535;
@@ -1778,7 +1778,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RLTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Reset(Flag.Carry);
             target.D = 128 + 15;
@@ -1793,7 +1793,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RLATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set(Flag.Carry);
             target.A = 118;
@@ -1808,7 +1808,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RLCTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set16BitRegisters(2, 0x2828);
             target.Memory[0x2828] = 0x88;
@@ -1823,7 +1823,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RLCATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x88;
             target.RLCA();
@@ -1837,7 +1837,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RLDTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set16BitRegisters(2, 0x5000);
             target.A = 0x7a;
@@ -1853,7 +1853,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RRTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set16BitRegisters(2, 0x4343);
             target.Memory[0x4343] = 0xdd;
@@ -1869,7 +1869,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RRATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0xe1;
             target.Reset(Flag.Carry);
@@ -1884,7 +1884,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RRCTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x31;
             target.RRC(7);
@@ -1898,7 +1898,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RRCATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x11;
             target.RRCA();
@@ -1912,7 +1912,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RRDTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set16BitRegisters(2, 0x5000);
             target.A = 0x84;
@@ -1928,7 +1928,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void RSTTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.PC = 0x15b3;
             target.RST(0x18);
@@ -1942,7 +1942,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SBC_A_nTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Memory[0] = 0x05;
             target.A = 0x16;
@@ -1958,7 +1958,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SBC_A_rTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x16;
             target.Set(Flag.Carry);
@@ -1975,7 +1975,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SBC_HLTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set16BitRegisters(2, 0x9999);
             target.Set16BitRegisters(1, 0x1111);
@@ -1991,7 +1991,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SCFTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.Reset(Flag.Carry);
             target.SCF();
@@ -2005,7 +2005,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SETTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0;
             target.SET(7, 7);
@@ -2019,7 +2019,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SLATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.L = 0xb1;
             target.SLA(5);
@@ -2033,7 +2033,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SLLTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.B = 0x01;
             target.SLL(0);
@@ -2047,7 +2047,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SRATest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.prefix = 0xdd;
             target.Set16BitRegisters(2, 0x1000);
@@ -2064,7 +2064,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SRLTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.B = 0x8f;
             target.SRL(0);
@@ -2078,7 +2078,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SUB_nTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 123;
             target.Memory[0] = 11;
@@ -2093,7 +2093,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void SUB_rTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x29;
             target.D = 0x11;
@@ -2108,7 +2108,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void XOR_nTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x96;
             target.Memory[0] = 0x5d;
@@ -2123,7 +2123,7 @@ namespace TestProject2
         [DeploymentItem("EmuTest.exe")]
         public void XOR_rTest()
         {
-            PrivateObject z = new PrivateObject(new Z80(3.5f, new Memory48K()));
+            PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x96;
             target.B = 0x5d;

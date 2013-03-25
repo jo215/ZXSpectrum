@@ -117,7 +117,7 @@ namespace ZXSpectrum
             Memory = new Memory48K(Game.Content.RootDirectory + "\\48.rom");
 
             //  The Z80
-            z80 = new Z80(3.5f, Memory);
+            z80 = new Z80(Memory);
 
             //  ULA handles all I/O
             //  The ULA is generally addressed at port 0xFE
@@ -125,8 +125,8 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
-            LoadTAP("findkeep.tap");
-
+            LoadTAP("z80docflags.tap");
+            //LoadSNA("Z80 Test Suite.sna");
         }
 
         /// <summary>

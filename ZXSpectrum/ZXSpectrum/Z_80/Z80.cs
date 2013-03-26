@@ -675,7 +675,7 @@ namespace ZXSpectrum.Z_80
                 CycleTStates += 16;
             }
 
-            ModifySignFlag8(A - compare);
+            ModifySignFlag8((A - compare) & 0xff);
             ModifyHalfCarryFlag8(A, -compare);
             int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
@@ -823,13 +823,14 @@ namespace ZXSpectrum.Z_80
         private void CPIR()
         {
             var compare = Memory[Get16BitRegisters(2)];
+
             if (compare == A)
                 Set(Flag.Zero);
             else
                 Reset(Flag.Zero);
 
-            Set16BitRegisters(2, (Get16BitRegisters(2) + 1) & 0xffff);
-            Set16BitRegisters(0, (Get16BitRegisters(0) - 1) & 0xffff);
+            Set16BitRegisters(2, Get16BitRegisters(2) + 1);
+            Set16BitRegisters(0, Get16BitRegisters(0) - 1);
 
             if (compare != A && Get16BitRegisters(0)  != 0)
             {
@@ -841,7 +842,8 @@ namespace ZXSpectrum.Z_80
                 CycleTStates += 16;
             }
 
-            ModifySignFlag8(A - compare);
+            ModifySignFlag8((A - compare) & 0xff);
+
             ModifyHalfCarryFlag8(A, -compare);
             int n = (A - compare) & 0xff;
             if ((F & Flag.HalfCarry) == Flag.HalfCarry)
@@ -849,7 +851,8 @@ namespace ZXSpectrum.Z_80
                 n = (n-1) & 0xff;
             }
             ModifyUndocumentedFlagsCompareGroup(n);
-            if (Get16BitRegisters(0) - 1 != 0)
+
+            if (Get16BitRegisters(0) != 0)
                 Set(Flag.ParityOverflow);
             else
                 Reset(Flag.ParityOverflow);
@@ -1234,7 +1237,8 @@ namespace ZXSpectrum.Z_80
             CycleTStates += 9;
 
             A = (R + 2) & 0xff;
-            ModifySignFlag8(R);
+
+            ModifySignFlag8(A);
             ModifyZeroFlag(R);
             Reset(Flag.HalfCarry);
             if (IFF2 == true)
@@ -1479,9 +1483,12 @@ namespace ZXSpectrum.Z_80
         {
             CycleTStates += 12;
 
-            var input = io.Read(Get16BitRegisters(0));
+            var input = io.Read(Get16BitRegisters(0)) & 0xff;
+
             if (r != 6)
                 SetRegister(r, input);
+            else
+                SetFlags(input);
 
             ModifySignFlag8(input);
             ModifyZeroFlag(input);
@@ -2668,53 +2675,47 @@ namespace ZXSpectrum.Z_80
         private void DAA()
         {
             CycleTStates += 4;
-            int r = A;
 
-            if (!F.HasFlag(Flag.Subtract))
-            {       
-                if ((F & Flag.HalfCarry) == Flag.HalfCarry || (A & 0xf) > 9)
-                    r += 0x06;
+            var CF = ((F & Flag.Carry) == Flag.Carry) ? 1 : 0;
+            var HF = ((F & Flag.HalfCarry) == Flag.HalfCarry) ? 1 : 0;
+            var NF = ((F & Flag.Subtract) == Flag.Subtract) ? 1 : 0;
 
-                if ((F & Flag.Carry) == Flag.Carry || A > 0x99)
-                    r += 0x60;
-            }
-            else
-            {
-                if ((F & Flag.HalfCarry) == Flag.HalfCarry || (A & 0xf) > 9)
-                    r -= 6;
-
-                if ((F & Flag.Carry) == Flag.Carry || (A > 0x99))
-                    r -= 0x60;
-            }
-
-            r = r & 0xFF;
-
-            if (((A ^ r) & 0x10) == 0x10)
-            {
-                Set(Flag.HalfCarry);
-            }
-            else
-            {
-                Reset(Flag.HalfCarry);
-            }
+            var hiNibble = (A >> 4) & 0xf;
+            var loNibble = A & 0xf;
             
-            if (A > 0x99)
-            {
-                Set(Flag.Carry);
-            }
+            var diff = 0;
+
+            if (CF == 0 && hiNibble < 10 && HF == 0 && loNibble < 10) diff = 0;
+            else if (CF == 0 && hiNibble < 10 && HF == 1 && loNibble < 10) diff = 6;
+            else if (CF == 0 && hiNibble < 9 && loNibble > 9) diff = 6;
+            else if (CF == 0 && hiNibble > 9 && HF == 0 && loNibble < 10) diff = 0x60;
+            else if (CF == 1 && HF == 0 && loNibble < 10) diff = 0x60;
+            else if (CF == 1 && HF == 1 && loNibble < 10) diff = 0x66;
+            else if (CF == 1 && loNibble > 9) diff = 0x66;
+            else if (CF == 0 && hiNibble > 8 && loNibble > 9) diff = 0x66;
+            else if (CF == 0 && hiNibble > 9 && HF == 1 && loNibble < 10) diff = 0x66;
+
+            if (CF == 0 && hiNibble < 10 && loNibble < 10) Reset(Flag.Carry);
+            else if (CF == 0 && hiNibble < 9 && loNibble > 9) Reset(Flag.Carry);
+            else if (CF == 0 && hiNibble > 8 && loNibble > 9) Set(Flag.Carry);
+            else if (CF == 0 && hiNibble > 9 && loNibble < 10) Set(Flag.Carry);
+            else if (CF == 1) Set(Flag.Carry);
+
+            if (NF == 0 && loNibble < 10) Reset(Flag.HalfCarry);
+            else if (NF == 0 && loNibble > 9) Set(Flag.HalfCarry);
+            else if (NF == 1 && HF == 0) Reset(Flag.HalfCarry);
+            else if (NF == 1 && HF == 1 && loNibble > 5) Reset(Flag.HalfCarry);
+            else if (NF == 1 && HF == 1 && loNibble < 6) Set(Flag.HalfCarry);
+
+            if (NF == 0)
+                A = (A + diff) & 0xff;
             else
-            {
-                Reset(Flag.Carry);
-            }
+                A = (A - diff) & 0xff;
 
-            ModifyParityFlagLogical(r);
-            
-            ModifySignFlag8(r);
-            ModifyZeroFlag(r);
-
-            ModifyUndocumentedFlags8(r);
-
-            A = r;
+            ModifySignFlag8(A);
+            ModifyParityFlagLogical(A);
+            ModifyUndocumentedFlags8(A);
+            ModifyZeroFlag(A);
         }
 
         /// <summary>

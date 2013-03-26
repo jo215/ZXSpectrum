@@ -125,7 +125,7 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
-            //LoadTAP("3dstarst.tap");
+            //LoadTAP("chashq48.tap");
             LoadTAP("z80docflags.tap");
             //LoadSNA("Z80 Test Suite.sna");
         }
@@ -565,7 +565,7 @@ namespace ZXSpectrum
                 //  Bit 6 is the EAR input port
                 //  Leave to 1 for now as no tape input
                 //  Bits 5 and 7 always 1
-                finalKeys |= 224;
+                finalKeys |= 160;
                 return finalKeys;
             }
             else if ((port & 0xff) == 0x1f)

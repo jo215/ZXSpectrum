@@ -284,7 +284,7 @@ namespace ZXSpectrum.Z_80
 
             var count = 0;
             for (var i = 0; i < 8; i++)
-                if (bits[i]) count++;
+                if (bits[i] == true) count++;
 
             if ((count & 1) == 1)
                 Reset(Flag.ParityOverflow);

@@ -102,7 +102,7 @@ namespace TestProject2
                             //for (int j = 0; j <128; j++)
                             while (!testIn.EndOfStream)
                             {
-
+                                target.Reset();
                                 target.Memory = new Memory48K();
                                 //  Opcode being tested
                                 string testName = testIn.ReadLine();

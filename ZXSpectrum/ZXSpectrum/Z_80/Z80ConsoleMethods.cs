@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ZXSpectrum.Z_80
 {
+    /// <summary>
+    /// Optional routines for console-based debugging.
+    /// </summary>
     public partial class Z80
     {
         /// <summary>

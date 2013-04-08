@@ -13,7 +13,7 @@ namespace ZXSpectrum
     public interface Memory
     {
         //  Indexer declaration: 
-        int this[int index, bool priority=false]
+        int this[int index, bool ulaAccess=false]
         {
             get;
             set;
@@ -87,9 +87,13 @@ namespace ZXSpectrum
                 if (CPU.CycleTStates >= 14335 && CPU.CycleTStates < 57343)
                 {
                     int line = (CPU.CycleTStates - 14335) / 224;
-                    if (line < 192)
+                    if (line >= 0  && line < 192)
                     {
+                        //  During these cycles the screen is being rendered by the ULA
                         int pos = (CPU.CycleTStates - 14335) % 224;
+                        //  If we are drawing side border then no contention
+                        if (pos >= 128) return;
+                        //  Otherwise dealy according to contention pattern (see final report)
                         int delay = 6 - (pos % 8);
                         if (delay < 0) delay = 0;
                         CPU.CycleTStates += delay;

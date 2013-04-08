@@ -34,14 +34,15 @@ namespace ZXSpectrum.Z_80
         internal int CycleTStates;                      //  For counting T-states
         int previousTStates;                                
 
-        bool isHalted;                      //  True if machine is in the HALT state
-        bool ignorePrefix;                  //  Prefixed opcodes which use (HL)
+        internal bool isHalted;                      //  True if machine is in the HALT state
+        
 
         IOController io;                //  Connected I/O devices
 
         internal int opcode = 0, prefix = 0, prefix2 = 0, displacement = 0;
+        bool ignorePrefix;                  //  Prefixed opcodes which use (HL)
 
-        internal bool fastLoad = false;
+        internal bool fastLoad = false;     //  Set to trap tape-loading routines
 
         /// <summary>
         /// Constructor.
@@ -87,6 +88,7 @@ namespace ZXSpectrum.Z_80
             prefix = 0;
             prefix2 = 0;
             displacement = 0;
+            CycleTStates = 0;
         }
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace ZXSpectrum.Z_80
             }
             if (nonMaskable)
             {
+                R++;
                 Memory[--SP] = PC >> 8;
                 Memory[--SP] = PC & 0xff;
                 PC = 0x0066;
@@ -108,6 +111,7 @@ namespace ZXSpectrum.Z_80
             }
             if (IFF1)
             {
+                R++;
                 switch (interruptMode)
                 {
                     case 0:
@@ -123,7 +127,6 @@ namespace ZXSpectrum.Z_80
                         //  The device supplies the LSByte of the routine pointer, HSByte in register I.
                         //  Not (generally used)
                         break;
-
                 }
             }
         }
@@ -133,12 +136,12 @@ namespace ZXSpectrum.Z_80
         /// </summary>
         public void Run(bool exitOnNOP = false, int maxTStates = 0)
         {
-            CycleTStates = 0;
+            //  For contention, we need to know where we are in the cycle
+            CycleTStates = CycleTStates % 69888;
+            previousTStates = CycleTStates;
             bool running = true;
             while (running)
             {
-
-                previousTStates = CycleTStates;
 
                 //  Trap tape load
                 if (PC == 0x056c || PC == 0x0112)
@@ -166,11 +169,7 @@ namespace ZXSpectrum.Z_80
                         {
                             //  This instruction has 2 prefix bytes and displacement byte
                             prefix2 = 0xCB;
-                            displacement = Memory[PC++];
-                            if (displacement > 127)
-                            {
-                                displacement = -256 + displacement;
-                            }
+                            ReadDisplacementByte();
                             opcode = Memory[PC++];
                         }
                         else if (opcode == 0xDD || opcode == 0xED || opcode == 0xFD)
@@ -178,6 +177,7 @@ namespace ZXSpectrum.Z_80
                             //  Ignore current prefix and continue;
                             NONI();
                             R += 2;
+                            R = R & 0xff;
                             continue;
                         }
                         else
@@ -544,12 +544,14 @@ namespace ZXSpectrum.Z_80
                 //  Increment r; twice for prefixed instructions
                 R++;
                 if (prefix != 0)
+                {
                     R++;
-                if (R >= 256)
-                    R = 0;
+                }
+
+                R = R & 0xff;
 
                 //  If we have defined a max amount of tStates to run for then check if we should return
-                if (maxTStates > 0 && CycleTStates >= maxTStates)
+                if (maxTStates > 0 && CycleTStates - previousTStates >= maxTStates)
                 {
                     running = false;
                 }
@@ -1238,7 +1240,7 @@ namespace ZXSpectrum.Z_80
 
             A = (R + 2) & 0xff;
 
-            ModifySignFlag8(A);
+            ModifySignFlag8(R);
             ModifyZeroFlag(R);
             Reset(Flag.HalfCarry);
             if (IFF2 == true)
@@ -1247,7 +1249,7 @@ namespace ZXSpectrum.Z_80
                 Reset(Flag.ParityOverflow);
             Reset(Flag.Subtract);
 
-            ModifyUndocumentedFlags8(A);
+            ModifyUndocumentedFlags8(R);
         }
 
         /// <summary>
@@ -1471,7 +1473,6 @@ namespace ZXSpectrum.Z_80
                 io.Write(Get16BitRegisters(0), 0);
             else
                 io.Write(Get16BitRegisters(0), GetRegister(r));
-
         }
 
         /// <summary>
@@ -1485,10 +1486,8 @@ namespace ZXSpectrum.Z_80
 
             var input = io.Read(Get16BitRegisters(0)) & 0xff;
 
-            if (r != 6)
+            if (r != 6 && opcode != 0xed70)
                 SetRegister(r, input);
-            else
-                SetFlags(input);
 
             ModifySignFlag8(input);
             ModifyZeroFlag(input);
@@ -1886,7 +1885,7 @@ namespace ZXSpectrum.Z_80
             var reg = GetRegister(r);
             var addition = -reg;
 
-            A = ((A + addition) & 0xff);
+            A = (A + addition) & 0xff;
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
@@ -1913,7 +1912,7 @@ namespace ZXSpectrum.Z_80
             var initial = A;
             var addition = -Memory[PC++];
 
-            A = ((A + addition) & 0xff);
+            A = (A + addition) & 0xff;
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
@@ -2053,7 +2052,7 @@ namespace ZXSpectrum.Z_80
                 addition++;
 
             addition = addition & 0xff;
-            A = (A + addition) & 0xff;
+            A = (initial + addition) & 0xff;
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);
@@ -2522,9 +2521,7 @@ namespace ZXSpectrum.Z_80
             if ((F & Flag.Carry) == Flag.Carry)
                 addition++;
 
-            addition = addition & 0xff;
-
-            A = (A + addition) & 0xff;
+            A = (initial + addition) & 0xff;
 
             ModifySignFlag8(A);
             ModifyZeroFlag(A);

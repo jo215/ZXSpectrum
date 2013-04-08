@@ -125,9 +125,10 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
-            //LoadTAP("chashq48.tap");
-            LoadTAP("z80docflags.tap");
-            //LoadSNA("Z80 Test Suite.sna");
+            ///LoadSNA("z80 test suite.sna");
+            //LoadTAP("z80docflags.tap");
+            //LoadTAP("findkeep.tap");
+            //LoadSNA("miner.sna");
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace ZXSpectrum
             //  Read in all blocks
             tapeBlocks = new List<List<byte>>();
             nextBlock = 0;
-            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\" + fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader br = new BinaryReader(fs))
                 {
@@ -162,26 +163,26 @@ namespace ZXSpectrum
         /// </summary>
         public void LoadBlock()
         {
-            List<byte> tapeBlock = tapeBlocks[nextBlock];
+            List<byte> currentBlock = tapeBlocks[nextBlock];
             nextBlock = (nextBlock + 1) % tapeBlocks.Count;
 
             if ((z80.GetShadowFlagsAsByte() & 0x01) == 0x01)
             {
                 //  Load command
-                if (z80.A2 == tapeBlock[0])
+                if (z80.A2 == currentBlock[0])
                 {
                     int blockLength = z80.E + (z80.D << 8);
                     int address = z80.IXL + (z80.IXH << 8);
-                    for (int i = 0; i < Math.Min(blockLength, tapeBlock.Count - 1); i++)
+                    for (int i = 0; i < Math.Min(blockLength, currentBlock.Count - 1); i++)
                     {
                         if (address >= 0x4000)
                         {
-                            Memory[address] = tapeBlock[i + 1];
+                            Memory[address] = currentBlock[i + 1];
                         }
                         address = (address + 1) & 0xffff;
                     }
 
-                    if (blockLength > tapeBlock.Count - 1)
+                    if (blockLength > currentBlock.Count - 1)
                     {
                         //  R: tape Load error
                         z80.Reset(Flag.Carry);
@@ -214,7 +215,7 @@ namespace ZXSpectrum
         /// <param name="fileName"></param>
         public void LoadSNA(string fileName)
         {
-            using (FileStream fs = File.Open(Game.Content.RootDirectory + "\\" + fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader br = new BinaryReader(fs))
                 {
@@ -388,6 +389,26 @@ namespace ZXSpectrum
             {
                 //  F5 - Save Snapshot
                 SaveSNA("test.SNA");
+            }
+            if (keys.IsKeyDown(Keys.F4))
+            {
+                //  F4  - Load
+                System.Windows.Forms.OpenFileDialog f = new System.Windows.Forms.OpenFileDialog();
+                f.Filter = "SNA files (*.sna)|*.sna|TAP files (*.tap)|*.tap";
+                f.Title = "Load tape or snapshot";
+                System.Windows.Forms.DialogResult r = f.ShowDialog();
+                if (r == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (f.FilterIndex == 1)
+                    {
+                        LoadSNA(f.FileName);
+                    }
+                    else
+                    {
+                        LoadTAP(f.FileName);
+                    }
+                }
+
             }
             if (keys.IsKeyDown(Keys.Escape))
             {

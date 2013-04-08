@@ -160,6 +160,7 @@ namespace ZXSpectrum.Z_80
             }
             else
             {
+                //  Half borrow
                 var subtract = -addition;
                 if ((((initial & 0x0f) - (subtract & 0x0f)) & 0x10) != 0)
                     Set(Flag.HalfCarry);
@@ -244,6 +245,7 @@ namespace ZXSpectrum.Z_80
             else
             {
                 var subtract = -addition;
+                //  For subtraction, oprerand with different signs may cause overflow
                 if (((initial ^ subtract) & (initial ^ result) & 0x80) != 0)
                 {
                     Set(Flag.ParityOverflow);

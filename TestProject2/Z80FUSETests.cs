@@ -169,7 +169,7 @@ namespace TestProject2
                                 testIn.ReadLine();
 
                                 //  Run the Z80 emulator for 1 instruction 
-                                target.Run(false, numStates);
+                                target.Run(numStates);
 
                                 //  Read in expected results
                                 Assert.IsTrue(testExpected.ReadLine().Equals(testName));

@@ -351,7 +351,7 @@ namespace ZXSpectrum
                 for (int i = 0; i < 882; i++)
                 {
                     //  69888 / 882 = 79 TStates per sample
-                    z80.Run(false, 79);
+                    z80.Run(79);
                     //  we just take the last value sent to the ear output
                     if (earActive)
                     {
@@ -409,6 +409,12 @@ namespace ZXSpectrum
                     }
                 }
 
+            }
+            if (keys.IsKeyDown(Keys.F12))
+            {
+                //  F12 - Reset
+                z80.Memory.ClearRAM();
+                z80.Reset();
             }
             if (keys.IsKeyDown(Keys.Escape))
             {

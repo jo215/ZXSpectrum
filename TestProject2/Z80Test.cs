@@ -1718,11 +1718,11 @@ namespace TestProject2
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.PC = 0x3535;
-            target.SP = 0x2000;
-            target.Memory[0x2000] = 0xb5;
-            target.Memory[0x2001] = 0x18;
+            target.SP = 0x5000;
+            target.Memory[0x5000] = 0xb5;
+            target.Memory[0x5001] = 0x18;
             target.RET();
-            Assert.IsTrue(target.SP == 0x2002 && target.PC == 0x18b5, "Error: RET");
+            Assert.IsTrue(target.SP == 0x5002 && target.PC == 0x18b5, "Error: RET");
         }
 
         /// <summary>
@@ -1764,11 +1764,11 @@ namespace TestProject2
             Z80_Accessor target = new Z80_Accessor(z);
             target.Set(Flag.Sign);
             target.PC = 0x3535;
-            target.SP = 0x2000;
-            target.Memory[0x2000] = 0xb5;
-            target.Memory[0x2001] = 0x18;
+            target.SP = 0x5000;
+            target.Memory[0x5000] = 0xb5;
+            target.Memory[0x5001] = 0x18;
             target.RET_cc(7);   //  RET M
-            Assert.IsTrue(target.SP == 0x2002 && target.PC == 0x18b5, "Error: RET cc");
+            Assert.IsTrue(target.SP == 0x5002 && target.PC == 0x18b5, "Error: RET cc");
         }
 
         /// <summary>
@@ -1810,10 +1810,10 @@ namespace TestProject2
         {
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
-            target.Set16BitRegisters(2, 0x2828);
-            target.Memory[0x2828] = 0x88;
+            target.Set16BitRegisters(2, 0x5828);
+            target.Memory[0x5828] = 0x88;
             target.RLC(6);
-            Assert.IsTrue((target.F & Flag.Carry) == Flag.Carry && target.Memory[0x2828] == 0x11, "Error: RLC(HL)");
+            Assert.IsTrue((target.F & Flag.Carry) == Flag.Carry && target.Memory[0x5828] == 0x11, "Error: RLC(HL)");
         }
 
         /// <summary>
@@ -1944,8 +1944,9 @@ namespace TestProject2
         {
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
-            target.Memory[0] = 0x05;
+            target.Memory[0x5000] = 0x05;
             target.A = 0x16;
+            target.PC = 0x5000;
             target.Set(Flag.Carry);
             target.SBC_A_n();
             Assert.IsTrue(target.A == 0x10, "Error: SBC A n");
@@ -1962,8 +1963,8 @@ namespace TestProject2
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x16;
             target.Set(Flag.Carry);
-            target.Set16BitRegisters(2, 0x3433);
-            target.Memory[0x3433] = 0x05;
+            target.Set16BitRegisters(2, 0x5433);
+            target.Memory[0x5433] = 0x05;
             target.SBC_A_r(6);
             Assert.IsTrue(target.A == 0x10, "Error: SBC A r");
         }
@@ -2050,11 +2051,11 @@ namespace TestProject2
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.prefix = 0xdd;
-            target.Set16BitRegisters(2, 0x1000);
-            target.Memory[0x1003] = 0xb8;
+            target.Set16BitRegisters(2, 0x5000);
+            target.Memory[0x5003] = 0xb8;
             target.displacement = 3;
             target.SRA(6);
-            Assert.IsTrue(target.Memory[0x1003] == 0xdc && (target.F & Flag.Carry) != Flag.Carry, "Error: SRA");
+            Assert.IsTrue(target.Memory[0x5003] == 0xdc && (target.F & Flag.Carry) != Flag.Carry, "Error: SRA");
         }
 
         /// <summary>
@@ -2081,7 +2082,8 @@ namespace TestProject2
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 123;
-            target.Memory[0] = 11;
+            target.Memory[0x5000] = 11;
+            target.PC = 0x5000;
             target.SUB_n();
             Assert.IsTrue(target.A == 112, "Error: SUB n");
         }
@@ -2111,7 +2113,8 @@ namespace TestProject2
             PrivateObject z = new PrivateObject(new Z80(new Memory48K()));
             Z80_Accessor target = new Z80_Accessor(z);
             target.A = 0x96;
-            target.Memory[0] = 0x5d;
+            target.Memory[0x5000] = 0x5d;
+            target.PC = 0x5000;
             target.XOR_n();
             Assert.IsTrue(target.A == 0xcb, "Error: XOR n");
         }

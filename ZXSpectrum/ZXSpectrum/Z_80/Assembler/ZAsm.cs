@@ -48,7 +48,7 @@ namespace ZXSpectrum.Z_80.Assembler
         public void AssembleAndRun(string sourcePath)
         {
             DoSecondPass(DoFirstPass(sourcePath));
-            Cpu.Run(true);
+            Cpu.Run();
             Console.WriteLine(sourcePath);
             Console.WriteLine("Execution complete.\n");
             Cpu.PrintRegisters();

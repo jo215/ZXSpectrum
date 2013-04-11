@@ -22,6 +22,8 @@ namespace ZXSpectrum
         int Length {get;}
         //  The CPU
         Z80 CPU { get; set; }
+
+        void ClearRAM();
     }
 
     /// <summary>
@@ -50,13 +52,21 @@ namespace ZXSpectrum
         {
             LoadROM(romPath);
         }
-        
+
+        public void ClearRAM()
+        {
+            for (int i = romEnd + 1; i < mem.Length; i++)
+            {
+                mem[i] = 0;
+            }
+        }
+
         /// <summary>
         /// Indexers for accessing underlying memory.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public int this[int index, bool ulaAccess=false]
+        public int this[int index, bool ulaAccess = false]
         {
             get
             {
@@ -65,7 +75,8 @@ namespace ZXSpectrum
             }
             set
             {
-                ////  Ignore attempts to write to ROM
+                //  Ignore attempts to write to ROM -
+                //  Turn off when running FUSE's tests
                 //if (romStart <= index && index <= romEnd)
                 //{
                 //    return;

@@ -125,10 +125,6 @@ namespace ZXSpectrum
             //  The high byte of the address is also used to select keyboard half-rows
             z80.AddDevice(this);
 
-            ///LoadSNA("z80 test suite.sna");
-            //LoadTAP("z80docflags.tap");
-            //LoadTAP("findkeep.tap");
-            //LoadSNA("miner.sna");
         }
 
         /// <summary>
@@ -276,8 +272,8 @@ namespace ZXSpectrum
             {
                 using (BinaryWriter bw = new BinaryWriter(fs))
                 {
-                    Memory[--z80.SP] = z80.PC >> 8;
-                    Memory[--z80.SP] = z80.PC & 0xff;
+                    Memory[z80.SP - 1] = z80.PC >> 8;
+                    Memory[z80.SP - 2] = z80.PC & 0xff;
                     bw.Write((byte)z80.I);
                     bw.Write((byte)z80.L2);
                     bw.Write((byte)z80.H2);
@@ -388,7 +384,16 @@ namespace ZXSpectrum
             if (keys.IsKeyDown(Keys.F5))
             {
                 //  F5 - Save Snapshot
-                SaveSNA("test.SNA");
+                System.Windows.Forms.SaveFileDialog f = new System.Windows.Forms.SaveFileDialog();
+                f.Filter = "SNA files (*.sna)|*.sna";
+                f.Title = "Save snapshot";
+                f.OverwritePrompt = true;
+                System.Windows.Forms.DialogResult r = f.ShowDialog();
+                if (r == System.Windows.Forms.DialogResult.OK)
+                {
+                    SaveSNA(f.FileName);
+                }
+                
             }
             if (keys.IsKeyDown(Keys.F4))
             {

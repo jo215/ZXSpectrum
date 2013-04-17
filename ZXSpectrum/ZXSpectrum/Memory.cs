@@ -38,6 +38,7 @@ namespace ZXSpectrum
 
         private int romStart = 0, romEnd = 16383, contentionStart = 0x4000, contentionEnd = 0x7fff;
 
+        private string romPath;
         /// <summary>
         /// Constructor - empty memory (no ROM).
         /// </summary>
@@ -50,11 +51,13 @@ namespace ZXSpectrum
         /// <param name="romPath"></param>
         public Memory48K(string romPath)
         {
+            this.romPath = romPath;
             LoadROM(romPath);
         }
 
         public void ClearRAM()
         {
+            LoadROM(romPath);
             for (int i = romEnd + 1; i < mem.Length; i++)
             {
                 mem[i] = 0;
@@ -104,7 +107,7 @@ namespace ZXSpectrum
                         int pos = (CPU.CycleTStates - 14335) % 224;
                         //  If we are drawing side border then no contention
                         if (pos >= 128) return;
-                        //  Otherwise dealy according to contention pattern (see final report)
+                        //  Otherwise delay according to contention pattern (see final report)
                         int delay = 6 - (pos % 8);
                         if (delay < 0) delay = 0;
                         CPU.CycleTStates += delay;

@@ -128,7 +128,7 @@ namespace ZXSpectrum.Z_80
                         break;
                     case 2:
                         //  The device supplies the LSByte of the routine pointer, HSByte in register I.
-                        //  Not (generally used)
+                        //  Not used
                         break;
                 }
             }
@@ -548,13 +548,22 @@ namespace ZXSpectrum.Z_80
                 }
 
                 //  Increment r; twice for prefixed instructions
+                bool bigR = false;
+                if (R > 127)
+                {
+                    bigR = true;
+                }
                 R++;
                 if (prefix != 0)
                 {
                     R++;
                 }
 
-                R = R & 0xff;
+                R = (R & 0x7f);
+                if (bigR)
+                {
+                    R += 128;
+                }
 
                 //  If we have defined a max amount of tStates to run for then check if we should return
                 if (maxTStates > 0 && CycleTStates - previousTStates >= maxTStates)
@@ -2924,7 +2933,8 @@ namespace ZXSpectrum.Z_80
                 ReadDisplacementByte();
                 CycleTStates++;          
             }
-            SetRegister(r, Memory[(PC++) & 0xffff]);
+            SetRegister(r, Memory[PC]);
+            PC = (PC + 1) & 0xffff;
         }
 
         /// <summary>
@@ -2945,7 +2955,7 @@ namespace ZXSpectrum.Z_80
 
             var initial = GetRegister(r);
 
-            var result = (initial - 1) & 0xFF;
+            var result = (initial - 1) & 0xff;
 
             SetRegister(r, result);
 
@@ -2979,7 +2989,7 @@ namespace ZXSpectrum.Z_80
             }
 
             var initial = GetRegister(r);
-            var result = (initial + 1) & 0xFF;
+            var result = (initial + 1) & 0xff;
 
             SetRegister(r, result);
 
@@ -3021,7 +3031,7 @@ namespace ZXSpectrum.Z_80
         private void LD_A_nn()
         {
             CycleTStates += 13;
-            var address = Memory[PC] + (Memory[PC + 1] << 8);
+            var address = Memory[PC] + (Memory[(PC + 1) & 0xffff] << 8);
             PC = (PC + 2) & 0xffff;
             A = Memory[address];
         }
@@ -3033,7 +3043,7 @@ namespace ZXSpectrum.Z_80
         private void LD_HL_nn()
         {
             CycleTStates += 16;
-            var address = Memory[PC] + (Memory[PC + 1] << 8);
+            var address = Memory[PC] + (Memory[(PC + 1) & 0xffff] << 8);
             PC = (PC + 2) & 0xffff;
             SetRegister(5, Memory[address]);
             SetRegister(4, Memory[(address + 1) & 0xffff]);
@@ -3066,7 +3076,7 @@ namespace ZXSpectrum.Z_80
         private void LD_nn_A()
         {
             CycleTStates += 13;
-            var address = Memory[PC] + (Memory[PC + 1] << 8);
+            var address = Memory[PC] + (Memory[(PC + 1) & 0xffff] << 8);
             PC = (PC + 2) & 0xffff;
             Memory[address] = A;
         }
@@ -3078,7 +3088,7 @@ namespace ZXSpectrum.Z_80
         private void LD_nn_HL()
         {
             CycleTStates += 16;
-            var address = Memory[PC] + (Memory[PC + 1] << 8);
+            var address = Memory[PC] + (Memory[(PC + 1) & 0xffff] << 8);
             PC = (PC + 2) & 0xffff;
             Memory[address] = GetRegister(5);
             Memory[(address + 1) & 0xffff] = GetRegister(4);
